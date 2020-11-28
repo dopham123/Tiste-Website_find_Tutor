@@ -551,6 +551,127 @@ ul.sociel_link li a {
     line-height: 28px;
 }
 
+.search {
+    background: #6e92cd;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 13px;
+    padding-top: 4px;
+    border-bottom: 1px solid #ccd4db;
+}
+
+#search-panel {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#search-panel h1 {
+    color: white;
+    font-size: 30px;
+}
+
+.btn {
+    text-decoration: none;
+    color: white;
+    margin-right: 5px;
+    background: #7aa3e6;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 7px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.search-box {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 3px 25px rgba(0, 0, 0, .05);
+    margin-bottom: 30px;
+}
+
+.search-bar {
+    border-bottom: 1px solid #e2e3eb;
+    display: flex;
+}
+
+.search-type {
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 46px;
+    font-size: 16px;
+    color: #868e9a;
+    display: flex;
+    flex: 1;
+}
+
+.search-content {
+    padding: 30px;
+}
+
+.search-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    margin-left: -15px;
+    margin-right: -15px;
+    justify-content: space-between;
+}
+
+.ipt {
+    box-sizing: border-box;
+}
+
+.input-search {
+    height: 40px;
+    background-color: #fff;
+    border: 1px solid #e6e8ed;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: block;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #4a4a4a;
+    outline: 0;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+#search-btn {
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+}
+
+.btn-search {
+    color: #fff;
+    background-color: #a9d622 !important;
+    max-width: 100%;
+    display: inline-block;
+    margin: 0;
+    border: 0;
+    font-size: 14px;
+    user-select: none;
+    text-transform: uppercase;
+    line-height: 1.5;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 30px;
+    font-weight: 500;
+    padding: 1em 2.5em;
+}
+
+#search-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
 
 /** end service section **/
 
