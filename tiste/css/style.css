@@ -535,7 +535,7 @@ ul.sociel_link li a {
 }
 
 .service .service-box i img {
-    height: 100px;
+    height: 88px;
 }
 
 .service .service-box h3 {
@@ -605,6 +605,12 @@ ul.sociel_link li a {
     color: #868e9a;
     display: flex;
     flex: 1;
+    transition: all .7s;
+}
+
+.search-type:active,.search-type:hover{
+    color: #7aa3e4;
+    border-bottom: 2px solid #7aa3e4;
 }
 
 .search-content{
@@ -666,6 +672,11 @@ ul.sociel_link li a {
     padding: 1em 2.5em;
 }
 
+.btn-search:hover{
+    color: #fff !important;
+    background-color: #94bc1e !important;
+}
+
 #search-icon{
     width: 18px;
     height: 18px;
@@ -717,6 +728,7 @@ ul.sociel_link li a {
     padding: 15px;
     color: #a3a3ba;
     font-size: 16px;
+    transition: all .5s;
 }
 
 .user-card:hover{
@@ -1328,3 +1340,74 @@ table {
 
 
 /*end of price */
+
+/* contact */
+label.label-edited {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: purple;
+    padding-top: 0.7rem;
+}
+
+input.input-edited {
+    border: 0;
+    border-bottom: 2px solid #ccc;
+    box-shadow: none !important;
+    padding-left: 10px;
+    padding: 0.6rem 0.75rem;
+}
+
+textarea.textarea-edited {
+    border: 2px solid #f0f0f0;
+    box-shadow: none !important;
+    border-radius: 0%;
+    padding: 0.6rem 0.75rem;
+}
+
+.required {
+    color: red;
+}
+
+form label.required:after {
+    color: red;
+    content: " *";
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.img-contact-height {
+    height: 27rem;
+}
+
+.contact-us-format {
+    font-size: 3rem;
+    color: #67DADF;
+}
+
+.get-in-touch-format {
+    font-size: 2rem;
+    color: #67DADF;
+}
+
+button.button-send-format {
+    border-radius: 1.4rem;
+    padding: 0.5rem 2rem;
+    font-weight: bold;
+    color: white;
+    background-color: #67DADF;
+}
+
+.white-bg-contact {
+    background: #fff;
+    padding: 40px 20px;
+    box-shadow: #ddd 0px 0px 10px 3px;
+    margin-bottom: 0;
+}
+
+.width-100 {
+    width: 100vw;
+}
+/* end of contact */
