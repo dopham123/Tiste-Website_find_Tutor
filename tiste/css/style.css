@@ -25,6 +25,7 @@ body {
     line-height: 1.80857;
     font-weight: normal;
     overflow-x: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 a {
@@ -430,7 +431,7 @@ ul.sociel_link li a {
 
 /** whyschose section **/
 
-.whyschose {
+.banner {
     background: #fff;
     padding-top: 85px;
 }
@@ -445,10 +446,10 @@ ul.sociel_link li a {
     line-height: 55px;
     color: #5DF6FD;
     font-weight: 500;
-    text-transform: uppercase;
     margin-bottom: 27px;
     position: relative;
     padding-bottom: 8px;
+    text-align: center;
 }
 
 .title span {
@@ -534,7 +535,7 @@ ul.sociel_link li a {
 }
 
 .service .service-box i img {
-    height: 88px;
+    height: 100px;
 }
 
 .service .service-box h3 {
@@ -551,15 +552,47 @@ ul.sociel_link li a {
     line-height: 28px;
 }
 
+<<<<<<< HEAD
 #search-panel {
     width: 100%;
     margin: 0;
     padding-top: 100px;
     padding-bottom: 100px;
     background: #e8ffff;
+=======
+.search{
+    background: #6e92cd;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 13px;
+    padding-top: 4px;
+    border-bottom: 1px solid #ccd4db;
 }
 
-.search-box {
+#search-panel{
+    width: 80%;
+    margin: 0 auto;
+}
+
+#search-panel h1{
+    color: white;
+    font-size: 30px;
+}
+
+.btn{
+    text-decoration: none;
+    color: white;
+    margin-right: 5px;
+    background: #7aa3e6;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 7px;
+    font-size: 12px;
+    text-align: center;
+>>>>>>> 5ba2c5f78fd55417466fefaaa147acc9cb849d49
+}
+
+.search-box{
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 2px 3px 25px rgba(0, 0, 0, .05);
@@ -567,13 +600,18 @@ ul.sociel_link li a {
     width: 100%;
 }
 
-.search-bar {
+.search-bar{
     border-bottom: 1px solid #e2e3eb;
     display: flex;
 }
 
+<<<<<<< HEAD
 .search-type {
     background-color: #e8ffff;
+=======
+.search-type{
+    background-color: transparent;
+>>>>>>> 5ba2c5f78fd55417466fefaaa147acc9cb849d49
     align-items: center;
     justify-content: center;
     position: relative;
@@ -585,12 +623,12 @@ ul.sociel_link li a {
     flex: 1;
 }
 
-.search-content {
+.search-content{
     padding: 30px;
     background-color: #e8ffff;
 }
 
-.search-row {
+.search-row{
     display: flex;
     flex-wrap: wrap;
     flex-grow: 1;
@@ -599,11 +637,11 @@ ul.sociel_link li a {
     justify-content: space-between;
 }
 
-.ipt {
+.ipt{
     box-sizing: border-box;
 }
 
-.input-search {
+.input-search{
     height: 40px;
     background-color: #fff;
     border: 1px solid #e6e8ed;
@@ -620,14 +658,14 @@ ul.sociel_link li a {
     margin: 0;
 }
 
-#search-btn {
+#search-btn{
     box-sizing: border-box;
     padding-left: 15px;
     padding-right: 15px;
     text-align: center;
 }
 
-.btn-search {
+.btn-search{
     color: #fff;
     background-color: rgba(0, 0, 0, .5);
     max-width: 100%;
@@ -645,19 +683,171 @@ ul.sociel_link li a {
     padding: 1em 2.5em;
 }
 
+<<<<<<< HEAD
 .btn-search:hover {
     background-color: #5DF6FD;
     transition: all .3s ease-in-out;
 }
 
 #search-icon {
+=======
+#search-icon{
+>>>>>>> 5ba2c5f78fd55417466fefaaa147acc9cb849d49
     width: 18px;
     height: 18px;
     display: inline-block;
     vertical-align: middle;
+
 }
 
+.service-info{
+    padding-top: 8px;
+    width: 100%;
+    background: #eff2f8;
+    font-size: 100%;
+}
 
+.main-content{
+    width: 80%;
+    margin: 0 auto;
+    clear: both;
+    padding-top: 0;
+    padding-bottom: 40px;
+}
+
+.total-member{
+    font-size: 120%;
+    color: #444;
+}
+
+.search-page ul{
+    list-style: none;
+    padding: 1px;
+    margin: 0;
+    clear: both;
+    text-align: right;
+    margin-top: 8px;
+    margin-bottom: 11px;
+    float: right;
+    background: #eee;
+}
+
+.user-card{
+    cursor: pointer;
+    display: flex;
+    margin-bottom: 30px;
+    box-shadow: 0 3px 5px rgba(25, 30, 62, .02);
+    border-radius: 10px;
+    border: 1px solid #ecedf2;
+    background-color: #fff;
+    padding: 15px;
+    color: #a3a3ba;
+    font-size: 16px;
+}
+
+.user-card:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.user-card-img{
+    margin: 5px;
+    margin-right: 25px;
+    width: 220px;
+}
+
+.user-card-img img{
+    border-radius: 7px;
+    max-width: 147px;
+    display: inline-block;
+    width: 147px;
+}
+
+.user-card-container{
+    display: flex;
+}
+
+.user-card-name{
+    font-size: 20px;
+}
+
+.user-rating{
+    font-size: 13px;
+    color: #444;
+    margin-left: 10px;
+    position: relative;
+    top: 2px;
+}
+
+.user-card-title{
+    font-weight: bold;
+    font-size: 15px;
+    color: #666;
+    margin-top: 6px;
+}
+
+.user-card-salary{
+    float: right;
+    color: #a9d622;
+    font-size: 18px;
+    position: relative;
+    top: -80px;
+    margin-right: 4px;
+    margin-bottom: -48px;
+}
+
+.salary{
+    color: #a9d622;
+    font-size: 21px;
+    display: inline-block;
+}
+
+.per{
+    color: #666;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.user-card-break{
+    height: 1px;
+    width: 50px;
+    border-top: 1px solid #ddd;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.address{
+    margin-top: 13px;
+    font-size: 13px;
+}
+
+.user-card-meta{
+    width: 100%;
+    margin-top: 6px;
+}
+.user-card-meta-hightlight{
+    background: #7aa3e6;
+    float: left;
+    margin-right: 10px;
+    color: #fff;
+}
+
+.user-card-meta-label{
+    display: inline-block;
+    position: relative;
+    top: 2px;
+}
+
+.user-card-total-member{
+    position: relative;
+    top: 2px;
+    display: inline-block;
+}
+
+.user-card-meta-icon{
+    margin-right: 5px;
+    position: relative;
+    top: -2px;
+}
 /** end service section **/
 
 
@@ -755,6 +945,7 @@ ul.sociel_link li a {
     line-height: 50px;
     padding-top: 40px;
 }
+
 
 .banner_Client {
     position: relative;
@@ -961,6 +1152,10 @@ ul.lik li a:hover {
     background-color: #5DF6FD;
 }
 
+.tiste{
+    font-weight: bold;
+}
+
 .brand_color .titlepage {
     margin-top: 70px;
     padding-bottom: 70px;
@@ -1026,11 +1221,20 @@ ul.lik li a:hover {
     width: 100%;
 }
 
+.marigntop-20{
+    margin-top: 40px;
+}
+
 .about .about_box h3 {
-    color: #000;
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 35px;
+    color: #5DF6FD;
+    font-size: 50px;
+    text-align: center;
+}
+
+.about .about_box h2 {
+    color: #5DF6FD;
+    font-size: 40px;
+    text-align: center;
 }
 
 .about .about_box p {
@@ -1038,6 +1242,7 @@ ul.lik li a:hover {
     font-size: 17px;
     line-height: 23px;
     padding-top: 10px;
+    text-align: center;
 }
 
 .page-header__video {
