@@ -25,7 +25,6 @@ body {
     line-height: 1.80857;
     font-weight: normal;
     overflow-x: hidden;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 a {
@@ -450,6 +449,7 @@ ul.sociel_link li a {
     position: relative;
     padding-bottom: 8px;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .title span {
@@ -832,34 +832,37 @@ ul.sociel_link li a {
     font-size: 13px;
 }
 
-.user-card-meta{
+.user-card-meta {
     width: 100%;
     margin-top: 6px;
 }
-.user-card-meta-hightlight{
+
+.user-card-meta-hightlight {
     background: #7aa3e6;
     float: left;
     margin-right: 10px;
     color: #fff;
 }
 
-.user-card-meta-label{
+.user-card-meta-label {
     display: inline-block;
     position: relative;
     top: 2px;
 }
 
-.user-card-total-member{
+.user-card-total-member {
     position: relative;
     top: 2px;
     display: inline-block;
 }
 
-.user-card-meta-icon{
+.user-card-meta-icon {
     margin-right: 5px;
     position: relative;
     top: -2px;
 }
+
+
 /** end service section **/
 
 
@@ -957,7 +960,6 @@ ul.sociel_link li a {
     line-height: 50px;
     padding-top: 40px;
 }
-
 
 .banner_Client {
     position: relative;
@@ -1235,18 +1237,6 @@ ul.lik li a:hover {
 
 .marigntop-20 {
     margin-top: 40px;
-}
-
-.about .about_box h3 {
-    color: #5DF6FD;
-    font-size: 50px;
-    text-align: center;
-}
-
-.about .about_box h2 {
-    color: #5DF6FD;
-    font-size: 40px;
-    text-align: center;
 }
 
 .about .about_box p {
