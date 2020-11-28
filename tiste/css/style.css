@@ -605,6 +605,12 @@ ul.sociel_link li a {
     color: #868e9a;
     display: flex;
     flex: 1;
+    transition: all .7s;
+}
+
+.search-type:active,.search-type:hover{
+    color: #7aa3e4;
+    border-bottom: 2px solid #7aa3e4;
 }
 
 .search-content{
@@ -666,6 +672,11 @@ ul.sociel_link li a {
     padding: 1em 2.5em;
 }
 
+.btn-search:hover{
+    color: #fff !important;
+    background-color: #94bc1e !important;
+}
+
 #search-icon{
     width: 18px;
     height: 18px;
@@ -717,6 +728,7 @@ ul.sociel_link li a {
     padding: 15px;
     color: #a3a3ba;
     font-size: 16px;
+    transition: all .5s;
 }
 
 .user-card:hover{
