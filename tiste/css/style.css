@@ -552,15 +552,7 @@ ul.sociel_link li a {
     line-height: 28px;
 }
 
-<<<<<<< HEAD
-#search-panel {
-    width: 100%;
-    margin: 0;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    background: #e8ffff;
-=======
-.search{
+.search {
     background: #6e92cd;
     width: 100%;
     margin: 0 auto;
@@ -569,17 +561,17 @@ ul.sociel_link li a {
     border-bottom: 1px solid #ccd4db;
 }
 
-#search-panel{
+#search-panel {
     width: 80%;
     margin: 0 auto;
 }
 
-#search-panel h1{
+#search-panel h1 {
     color: white;
     font-size: 30px;
 }
 
-.btn{
+.btn {
     text-decoration: none;
     color: white;
     margin-right: 5px;
@@ -589,10 +581,9 @@ ul.sociel_link li a {
     padding: 7px;
     font-size: 12px;
     text-align: center;
->>>>>>> 5ba2c5f78fd55417466fefaaa147acc9cb849d49
 }
 
-.search-box{
+.search-box {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 2px 3px 25px rgba(0, 0, 0, .05);
@@ -600,18 +591,13 @@ ul.sociel_link li a {
     width: 100%;
 }
 
-.search-bar{
+.search-bar {
     border-bottom: 1px solid #e2e3eb;
     display: flex;
 }
 
-<<<<<<< HEAD
 .search-type {
-    background-color: #e8ffff;
-=======
-.search-type{
     background-color: transparent;
->>>>>>> 5ba2c5f78fd55417466fefaaa147acc9cb849d49
     align-items: center;
     justify-content: center;
     position: relative;
@@ -623,12 +609,12 @@ ul.sociel_link li a {
     flex: 1;
 }
 
-.search-content{
+.search-content {
     padding: 30px;
     background-color: #e8ffff;
 }
 
-.search-row{
+.search-row {
     display: flex;
     flex-wrap: wrap;
     flex-grow: 1;
@@ -637,11 +623,11 @@ ul.sociel_link li a {
     justify-content: space-between;
 }
 
-.ipt{
+.ipt {
     box-sizing: border-box;
 }
 
-.input-search{
+.input-search {
     height: 40px;
     background-color: #fff;
     border: 1px solid #e6e8ed;
@@ -658,14 +644,14 @@ ul.sociel_link li a {
     margin: 0;
 }
 
-#search-btn{
+#search-btn {
     box-sizing: border-box;
     padding-left: 15px;
     padding-right: 15px;
     text-align: center;
 }
 
-.btn-search{
+.btn-search {
     color: #fff;
     background-color: rgba(0, 0, 0, .5);
     max-width: 100%;
@@ -683,31 +669,21 @@ ul.sociel_link li a {
     padding: 1em 2.5em;
 }
 
-<<<<<<< HEAD
-.btn-search:hover {
-    background-color: #5DF6FD;
-    transition: all .3s ease-in-out;
-}
-
 #search-icon {
-=======
-#search-icon{
->>>>>>> 5ba2c5f78fd55417466fefaaa147acc9cb849d49
     width: 18px;
     height: 18px;
     display: inline-block;
     vertical-align: middle;
-
 }
 
-.service-info{
+.service-info {
     padding-top: 8px;
     width: 100%;
     background: #eff2f8;
     font-size: 100%;
 }
 
-.main-content{
+.main-content {
     width: 80%;
     margin: 0 auto;
     clear: both;
@@ -715,12 +691,12 @@ ul.sociel_link li a {
     padding-bottom: 40px;
 }
 
-.total-member{
+.total-member {
     font-size: 120%;
     color: #444;
 }
 
-.search-page ul{
+.search-page ul {
     list-style: none;
     padding: 1px;
     margin: 0;
@@ -732,7 +708,7 @@ ul.sociel_link li a {
     background: #eee;
 }
 
-.user-card{
+.user-card {
     cursor: pointer;
     display: flex;
     margin-bottom: 30px;
@@ -745,32 +721,32 @@ ul.sociel_link li a {
     font-size: 16px;
 }
 
-.user-card:hover{
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+.user-card:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-.user-card-img{
+.user-card-img {
     margin: 5px;
     margin-right: 25px;
     width: 220px;
 }
 
-.user-card-img img{
+.user-card-img img {
     border-radius: 7px;
     max-width: 147px;
     display: inline-block;
     width: 147px;
 }
 
-.user-card-container{
+.user-card-container {
     display: flex;
 }
 
-.user-card-name{
+.user-card-name {
     font-size: 20px;
 }
 
-.user-rating{
+.user-rating {
     font-size: 13px;
     color: #444;
     margin-left: 10px;
@@ -778,14 +754,14 @@ ul.sociel_link li a {
     top: 2px;
 }
 
-.user-card-title{
+.user-card-title {
     font-weight: bold;
     font-size: 15px;
     color: #666;
     margin-top: 6px;
 }
 
-.user-card-salary{
+.user-card-salary {
     float: right;
     color: #a9d622;
     font-size: 18px;
@@ -795,19 +771,19 @@ ul.sociel_link li a {
     margin-bottom: -48px;
 }
 
-.salary{
+.salary {
     color: #a9d622;
     font-size: 21px;
     display: inline-block;
 }
 
-.per{
+.per {
     color: #666;
     font-size: 14px;
     display: inline-block;
 }
 
-.user-card-break{
+.user-card-break {
     height: 1px;
     width: 50px;
     border-top: 1px solid #ddd;
@@ -815,39 +791,42 @@ ul.sociel_link li a {
     margin-bottom: 7px;
 }
 
-.address{
+.address {
     margin-top: 13px;
     font-size: 13px;
 }
 
-.user-card-meta{
+.user-card-meta {
     width: 100%;
     margin-top: 6px;
 }
-.user-card-meta-hightlight{
+
+.user-card-meta-hightlight {
     background: #7aa3e6;
     float: left;
     margin-right: 10px;
     color: #fff;
 }
 
-.user-card-meta-label{
+.user-card-meta-label {
     display: inline-block;
     position: relative;
     top: 2px;
 }
 
-.user-card-total-member{
+.user-card-total-member {
     position: relative;
     top: 2px;
     display: inline-block;
 }
 
-.user-card-meta-icon{
+.user-card-meta-icon {
     margin-right: 5px;
     position: relative;
     top: -2px;
 }
+
+
 /** end service section **/
 
 
@@ -945,7 +924,6 @@ ul.sociel_link li a {
     line-height: 50px;
     padding-top: 40px;
 }
-
 
 .banner_Client {
     position: relative;
@@ -1152,7 +1130,7 @@ ul.lik li a:hover {
     background-color: #5DF6FD;
 }
 
-.tiste{
+.tiste {
     font-weight: bold;
 }
 
@@ -1221,7 +1199,7 @@ ul.lik li a:hover {
     width: 100%;
 }
 
-.marigntop-20{
+.marigntop-20 {
     margin-top: 40px;
 }
 
