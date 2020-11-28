@@ -842,3 +842,99 @@ ul.lik li a:hover {
 video {
     vertical-align: baseline;
 }
+
+
+/* price */
+.table-cell-font-format {
+    font-size: 0.8rem;
+}
+
+.bg-table-1 {
+    background-color: #5cd7de;
+    background-image: linear-gradient(to bottom left, #5cd7de, #cafafc);
+}
+
+.bg-table-2 {
+    background-color: #ffa930;
+    background-image: linear-gradient(to bottom left, #ffa930, #fcecd4);
+
+}
+
+.bg-table-3 {
+    background-color: #ff5256;
+    background-image: linear-gradient(to bottom left, #ff5256, #ff9698);
+}
+
+.table th {
+    vertical-align: middle;
+    border-top: none;
+    border-bottom: none;
+}
+
+.table td {
+    vertical-align: middle;
+    border-top: none;
+    border-bottom: none;
+}
+
+table {
+    border-radius: 1rem;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.table:hover {
+    -webkit-transform: scale(1.08);
+    transform: scale(1.08);
+}
+
+.caption-class {
+    font-size: 1.5rem;
+}
+
+.bg-button-1 {
+    background-color:  #28e0eb;
+    color: black;
+    border: black 1px solid;
+    border-radius: 1rem;
+}
+
+.bg-button-2 {
+    background-color:  #fab85c;
+    color: black;
+    border: black 1px solid;
+    border-radius: 1rem;
+}
+
+.bg-button-3 {
+    background-color:  #ff595e;
+    color: black;
+    border: black 1px solid;
+    border-radius: 1rem;
+}
+
+.hover-button {
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.hover-button:hover {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+    box-shadow: 0px 40px 29px -19px rgba(102, 172, 100, 0.9);
+}
+
+@media only screen and (max-width: 767px) {
+    .hover-button:hover {
+        -webkit-transform: none;
+        transform: none;
+        box-shadow: none;
+    }
+
+    .table:hover {
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+/*end of price */
