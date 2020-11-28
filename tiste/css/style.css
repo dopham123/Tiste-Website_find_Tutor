@@ -25,6 +25,7 @@ body {
     line-height: 1.80857;
     font-weight: normal;
     overflow-x: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 a {
@@ -325,7 +326,7 @@ ul.sociel_link li a {
 
 /** whyschose section **/
 
-.whyschose {
+.banner {
     background: #fff;
     padding-top: 85px;
 }
@@ -340,10 +341,10 @@ ul.sociel_link li a {
     line-height: 55px;
     color: #5DF6FD;
     font-weight: 500;
-    text-transform: uppercase;
     margin-bottom: 27px;
     position: relative;
     padding-bottom: 8px;
+    text-align: center;
 }
 
 .title span {
@@ -429,7 +430,7 @@ ul.sociel_link li a {
 }
 
 .service .service-box i img {
-    height: 88px;
+    height: 100px;
 }
 
 .service .service-box h3 {
@@ -544,6 +545,7 @@ ul.sociel_link li a {
     line-height: 50px;
     padding-top: 40px;
 }
+
 
 .banner_Client {
     position: relative;
@@ -750,6 +752,10 @@ ul.lik li a:hover {
     background-color: #5DF6FD;
 }
 
+.tiste{
+    font-weight: bold;
+}
+
 .brand_color .titlepage {
     margin-top: 70px;
     padding-bottom: 70px;
@@ -815,11 +821,20 @@ ul.lik li a:hover {
     width: 100%;
 }
 
+.marigntop-20{
+    margin-top: 40px;
+}
+
 .about .about_box h3 {
-    color: #000;
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 35px;
+    color: #5DF6FD;
+    font-size: 50px;
+    text-align: center;
+}
+
+.about .about_box h2 {
+    color: #5DF6FD;
+    font-size: 40px;
+    text-align: center;
 }
 
 .about .about_box p {
@@ -827,6 +842,7 @@ ul.lik li a:hover {
     font-size: 17px;
     line-height: 23px;
     padding-top: 10px;
+    text-align: center;
 }
 
 .page-header__video {
