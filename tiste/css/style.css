@@ -968,7 +968,10 @@ ul.sociel_link li a {
     display: block;
     font-size: 400%;
     position: absolute;
+<<<<<<< HEAD
     top: -10px;
+=======
+>>>>>>> b2ff44e35d8b2275263b0797a0ad3c66a3b84de9
     left: -5px;
 }
 
