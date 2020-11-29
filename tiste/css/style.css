@@ -162,7 +162,7 @@ nav.main-menu {
     color: #5DF6FD;
 }
 
-.main-menu ul>li nth:child(5) a {
+.main-menu ul>li :nth-child(5) a {
     padding-right: 0px;
 }
 
@@ -968,7 +968,6 @@ ul.sociel_link li a {
     display: block;
     font-size: 400%;
     position: absolute;
-    top: -10;
     left: -5px;
 }
 
