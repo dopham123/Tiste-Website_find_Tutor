@@ -181,7 +181,7 @@ nav.main-menu {
 }
 
 .main-menu ul>li a {
-    padding: 30px 23px 0 23px;
+    padding: 30px 15px 0 15px;
     line-height: 20px;
     font-size: 16px;
     display: block;
@@ -189,6 +189,7 @@ nav.main-menu {
     color: #010005;
     text-transform: uppercase;
     text-align: center;
+    width: 130px;
 }
 
 .main-menu ul li:last-child a {
@@ -221,11 +222,9 @@ nav.main-menu {
 .buy {
     background: #5DF6FD;
     padding: 7px 41px !important;
-    margin-top: 4px;
     border-radius: 5px;
     display: inline-block;
     border: 1px solid #00393C;
-    float: right;
 }
 
 .buy:hover {
@@ -473,7 +472,6 @@ ul.sociel_link li a {
     background: #fff;
     padding: 40px 20px;
     box-shadow: #ddd 0px 0px 10px 3px;
-    margin-bottom: 5px;
 }
 
 .choose_bg .white_bg .for_box {
@@ -636,7 +634,8 @@ ul.sociel_link li a {
 }
 
 .ipt{
-    box-sizing: border-box;
+    margin-top: 15px;
+
 }
 
 .input-search{
@@ -669,6 +668,7 @@ ul.sociel_link li a {
     max-width: 100%;
     display: inline-block;
     margin: 0;
+    margin-top: 15px;
     border: 0;
     font-size: 14px;
     user-select: none;
@@ -820,8 +820,10 @@ ul.sociel_link li a {
     margin-top: 6px;
 }
 .user-card-meta-hightlight{
+    font-size: 13px;
     background: #7aa3e6;
     float: left;
+    margin-top: 10px;
     margin-right: 10px;
     color: #fff;
 }
@@ -877,11 +879,10 @@ ul.sociel_link li a {
 }
 
 .product-bg {
-    background-image: linear-gradient(45deg,rgba(94, 94, 100, 0.8) 20%,rgba(68, 71, 71, 0.85)) ,url(../images/bg.jpg);
+    background-image: url(../images/bg.jpg);
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    background-size: 100% 100%;
 }
 
 .product-bg-white {
@@ -927,7 +928,6 @@ ul.sociel_link li a {
 
 .Clients_bg_white {
     background: #ffffffbd;
-    margin-top: 6px;
     padding-bottom: 40px;
 }
 
@@ -960,6 +960,16 @@ ul.sociel_link li a {
     padding-top: 40px;
     padding-bottom: 40px;
     display: inline-block;
+}
+
+.text-bg p::before{
+    font-style: italic;
+    content: '\201C';
+    display: block;
+    font-size: 400%;
+    position: absolute;
+    top: -10;
+    left: -5px;
 }
 
 .img_bg i {
@@ -1273,13 +1283,13 @@ video {
 .table th {
     vertical-align: middle;
     border-top: none;
-    border-bottom: none;
+    border-bottom: 1px solid white;
 }
 
 .table td {
     vertical-align: middle;
     border-top: none;
-    border-bottom: none;
+    border-bottom: 1px solid white;
 }
 
 table {
@@ -1338,6 +1348,11 @@ table {
         font-size: 1.3rem;
     }
 }
+@media only screen and (max-width: 768px) {
+    .user-card-salary{
+        display: none;
+    }
+}
 
 @media only screen and (max-width: 767px) {
     .hover-button:hover {
@@ -1356,6 +1371,60 @@ table {
 
     .table-cell-head-format {
         font-size: 1.5rem;
+    }
+
+    #location, #search-panel h1{
+        margin-left: 10px;
+    }
+
+    #search-panel{
+        width: 100%;
+        box-sizing: border-box;
+        height: auto;
+        padding-top: 5px;
+    }
+
+    .search-component{
+        width: 100% !important;
+    }
+
+    .main-content{
+        width: 100%;
+    }
+
+    .user-card{
+        display: block;
+        height: auto;
+        overflow: auto;
+    }
+
+    .user-card-img{
+        margin: 5px;
+        margin-right: 0.5%;
+        width: 23%;
+        float: left;
+        margin-left: 0;
+    }
+
+    .user-card-img img{
+        border-radius: 7px;
+        width: 100%;
+        display: inline-block;
+    }
+    
+    .user-card-name{
+        font-size: 18px;
+    }
+    .user-rating{
+        font-size: 13px;
+    }
+    .user-card-info{
+        width: 75%;
+        float: right;
+        margin-left: 0%;
+    }
+    .user-card-experiment{
+        float: left;
     }
 }
 
@@ -1430,6 +1499,11 @@ button.button-send-format {
 
 .width-100 {
     width: 100vw;
+}
+
+.size-60 {
+    width: 60px;
+    height: 60px;
 }
 
 @media (min-width: 1200px){
