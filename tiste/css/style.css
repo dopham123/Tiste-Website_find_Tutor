@@ -181,7 +181,7 @@ nav.main-menu {
 }
 
 .main-menu ul>li a {
-    padding: 30px 23px 0 23px;
+    padding: 30px 15px 0 15px;
     line-height: 20px;
     font-size: 16px;
     display: block;
@@ -189,6 +189,7 @@ nav.main-menu {
     color: #010005;
     text-transform: uppercase;
     text-align: center;
+    width: 130px;
 }
 
 .main-menu ul li:last-child a {
@@ -221,11 +222,9 @@ nav.main-menu {
 .buy {
     background: #5DF6FD;
     padding: 7px 41px !important;
-    margin-top: 4px;
     border-radius: 5px;
     display: inline-block;
     border: 1px solid #00393C;
-    float: right;
 }
 
 .buy:hover {
@@ -1269,13 +1268,13 @@ video {
 .table th {
     vertical-align: middle;
     border-top: none;
-    border-bottom: none;
+    border-bottom: 1px solid white;
 }
 
 .table td {
     vertical-align: middle;
     border-top: none;
-    border-bottom: none;
+    border-bottom: 1px solid white;
 }
 
 table {
@@ -1409,6 +1408,11 @@ button.button-send-format {
 
 .width-100 {
     width: 100vw;
+}
+
+.size-60 {
+    width: 60px;
+    height: 60px;
 }
 
 @media (min-width: 1200px){
