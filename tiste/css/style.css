@@ -834,8 +834,6 @@ ul.sociel_link li a {
     position: relative;
     top: -2px;
 }
-
-
 /** end service section **/
 
 
@@ -933,6 +931,7 @@ ul.sociel_link li a {
     line-height: 50px;
     padding-top: 40px;
 }
+
 
 .banner_Client {
     position: relative;
@@ -1139,7 +1138,7 @@ ul.lik li a:hover {
     background-color: #5DF6FD;
 }
 
-.tiste {
+.tiste{
     font-weight: bold;
 }
 
@@ -1208,7 +1207,7 @@ ul.lik li a:hover {
     width: 100%;
 }
 
-.marigntop-20 {
+.marigntop-20{
     margin-top: 40px;
 }
 
