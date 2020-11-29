@@ -1251,6 +1251,10 @@ video {
     font-size: 0.8rem;
 }
 
+.table-cell-head-format {
+    font-size: 1.5rem;
+}
+
 .bg-table-1 {
     background-color: #5cd7de;
     background-image: linear-gradient(to bottom left, #5cd7de, #cafafc);
@@ -1325,6 +1329,16 @@ table {
     box-shadow: 0px 40px 29px -19px rgba(102, 172, 100, 0.9);
 }
 
+@media only screen and (max-width: 991px) {
+    .table-cell-font-format {
+        font-size: 0.8em;
+    }
+
+    .table-cell-head-format {
+        font-size: 1.3rem;
+    }
+}
+
 @media only screen and (max-width: 767px) {
     .hover-button:hover {
         -webkit-transform: none;
@@ -1335,8 +1349,15 @@ table {
         -webkit-transform: none;
         transform: none;
     }
-}
 
+    .table-cell-font-format {
+        font-size: 1.1rem;
+    }
+
+    .table-cell-head-format {
+        font-size: 1.5rem;
+    }
+}
 
 /*end of price */
 
