@@ -1349,6 +1349,11 @@ table {
         font-size: 1.3rem;
     }
 }
+@media only screen and(max-width: 768) {
+    .user-card-salary{
+        display: none;
+    }
+}
 
 @media only screen and (max-width: 767px) {
     .hover-button:hover {
@@ -1407,9 +1412,7 @@ table {
         width: 100%;
         display: inline-block;
     }
-    .user-card-salary{
-        display: none;
-    }
+    
     .user-card-name{
         font-size: 18px;
     }
