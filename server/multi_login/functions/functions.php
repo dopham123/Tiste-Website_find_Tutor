@@ -29,6 +29,10 @@ if (isset($_POST['register_info_btn'])) {
 	register_info();
 }
 
+if (isset($_POST['register_profile_btn'])) {
+	register_profile();
+}
+
 // REGISTER USER
 function register()
 {
@@ -132,7 +136,70 @@ function register_info()
 		mysqli_query($db, $query);
 		header('location: index.php');
 	}
-	
+}
+
+
+function register_profile()
+{
+	// $target_dir_avatar = '../resource/img_avatar';
+	// $target_dir_profile = '../resource/img_profile';
+	// $target_file_1 = $target_dir_avatar . basename($_FILES["avatar_image"]["name"]);
+	// $target_file_2 = $target_dir_profile . basename($_FILES["profile_image"]["name"]);
+	// $uploadOk = 1;
+	// // call these variables with the global keyword to make them available in function
+	// // receive all input values from the form. Call the e() function
+	// // defined below to escape form values
+	// $avatar_image    	=  	e($_POST['avatar_image']);
+	// $profile_image      =  	e($_POST['profile_image']);
+
+	// $check = getimagesize($_FILES["avatar_image"]["tmp_name"]);
+	// if ($check !== false) {
+	// 	echo "File is an image - " . $check["mime"] . ".";
+	// 	$uploadOk = 1;
+	// } else {
+	// 	echo "File is not an image.";
+	// 	$uploadOk = 0;
+	// }
+	// // $experience = e($_POST['experience']);
+	// // $info  =  	e($_POST['info']);
+
+	// // $user_id = $_SESSION['user']['id'];
+
+	// // register user if there are no errors in the form
+	// // if (count($errors) == 0) {
+	// // 	$query = "INSERT INTO users_info (first_name, last_name, gender, phone_number, address_1, address_2, district, city, post_code, user_id) 
+	// // 				  VALUES('$fname', '$lname', '$gender', '$phone_number', '$address_1', '$address_2', '$district', '$city', '$post_code', '$user_id')";
+	// // 	mysqli_query($db, $query);
+	// // 	header('location: index.php');
+	// // }
+	$target_dir_avatar = "../resource/img_avatar/";
+	$target_file_avatar = $target_dir_avatar . basename($_FILES["avatar_image"]["name"]);
+	$uploadOk = 1;
+	// Check if image file is a actual image or fake image
+	$check_avatar = getimagesize($_FILES["avatar_image"]["tmp_name"]);
+	if ($check_avatar !== false) {
+		echo "File is an image - " . $check_avatar["mime"] . ".";
+		$uploadOk = 1;
+		echo $target_file_avatar;
+	} else {
+		echo "File is not an image.";
+		$uploadOk = 0;
+	}
+
+	$target_dir_profile = "../resource/img_profile/";
+	$target_file_profile = $target_dir_profile . basename($_FILES["profile_image"]["name"]);
+	$uploadOk = 1;
+	// Check if image file is a actual image or fake image
+	$check_profile = getimagesize($_FILES["avatar_image"]["tmp_name"]);
+	if ($check_profile !== false) {
+		echo "File is an image - " . $check_avatar["mime"] . ".";
+		$uploadOk = 1;
+		echo $target_file_profile;
+	} else {
+		echo "File is not an image.";
+		$uploadOk = 0;
+	}
+
 }
 
 // return user array from their id
