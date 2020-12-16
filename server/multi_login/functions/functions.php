@@ -64,7 +64,20 @@ function register()
 	if ($password_1 != $password_2) {
 		array_push($errors, "Mật khẩu không khớp");
 	}
-
+	if (count($errors) == 0) {
+		$select_stmt = "SELECT * FROM users WHERE username='$username' OR email='$email'";
+		$result = mysqli_query($db, $select_stmt);
+		if (mysqli_num_rows($result) > 0) {
+			while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+				if ($row["username"] == $username) {
+					array_push($errors, "Tên đăng nhập đã tồn tại");
+				}
+				if ($row["email"] == $email) {
+					array_push($errors, "Email đã tồn tại");
+				}
+			}
+		}
+	}
 	// register user if there are no errors in the form
 	if (count($errors) == 0) {
 		$password = md5($password_1); //encrypt the password before saving in the database
