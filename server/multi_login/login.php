@@ -1,13 +1,11 @@
 <?php 
-include('functions.php');
+include('./functions/functions.php');
 
 if (isAdmin()) {
-	$_SESSION['msg'] = "You must log in first";
 	header('location: ./admin/homepage_admin.php');
 }
 
 if (isUser()) {
-	$_SESSION['msg'] = "You must log in first";
 	header('location: ./index.php');
 }
 

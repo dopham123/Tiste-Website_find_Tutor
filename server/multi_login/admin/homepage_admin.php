@@ -20,7 +20,7 @@ if (isset($_GET['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!-- load jquery via CDN -->
-	<script src="../functions.js"></script>
+	<script src="../functions/functions.js"></script>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>

@@ -1,4 +1,4 @@
-<?php include('functions.php') ?>
+<?php include('./functions/functions.php');?>
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +16,7 @@
         <div class="input-group">
             <label>Loại tài khoản</label>
             <select name="role">
-                <option selected value="tutor">Tôi là gia sư</option>
+                <option selected value="admin">Tôi là gia sư</option>
                 <option value="user">Tôi là học viên</option>
             </select>
         </div>
