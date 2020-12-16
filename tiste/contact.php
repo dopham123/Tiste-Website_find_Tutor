@@ -8,6 +8,7 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- style css -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>Liên hệ</title>
 </head>
@@ -89,34 +90,89 @@
                         <form action="contact.php" method="POST">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="fname" class="label-edited">Tên</label> <span class="required">*</span>
+                                    <label for="fname" class="label-edited">Tên</label><span class="required" id="fname-error">*</span>
                                     <input type="text" name="fname" class="form-control input-edited" id="fname" placeholder="Ryan"
                                         required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="lname" class="label-edited">Họ lót</label> <span
-                                        class="required">*</span>
+                                        class="required" id="lname-error">*</span>
                                     <input type="text" name="lname" class="form-control input-edited" id="lname"
                                         placeholder="Reynold" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="email" class="label-edited">Địa chỉ email</label> <span
-                                    class="required">*</span>
+                                    class="required" id="email-error">*</span>
                                 <input type="email" name="email" class="form-control input-edited" id="email"
                                     placeholder="123@example.com" required>
                             </div>
                             <div class="form-group">
-                                <label for="pnumber" class="label-edited">Số điện thoại</label>
+                                <label for="pnumber" class="label-edited">Số điện thoại</label> <span style="color: red;"
+                                     id="pnum-error"></span>
                                 <input type="number" name="pnumber" class="form-control input-edited" id="pnumber"
                                     placeholder="0987654321">
                             </div>
                             <div class="form-group">
                                 <label for="message" class="label-edited">Lời nhắn</label> <span
-                                    class="required">*</span>
+                                    class="required" id="message-error">*</span>
                                 <textarea class="form-control textarea-edited" name="message" id="message" rows="4"
                                     placeholder="Để lại lời nhắn của bạn ở đây"></textarea>
                             </div>
+                            <script>
+                                function textValidator(text, maxlength) {
+                                    if (text.length < 2 || text.length > maxlength) {
+                                            return false;
+                                    }
+                                    return true;
+                                }
+
+                                function phoneNumberValidator(phoneNum) {
+                                    if (phoneNum[0] != 0) {
+                                            return false;
+                                    }
+                                    if (phoneNum.length < 10) {
+                                        return false;
+                                    }
+                                    return true;
+                                }
+
+                                $('#fname').change( () => {
+                                    let fname = $('#fname').val();
+                                    
+                                    if(!textValidator(fname,50)) {
+                                        $('#fname-error').html('    Invalid First name!');
+                                    } else{
+                                        $('#fname-error').html('*');
+                                    }
+                                });
+                                $('#lname').change( () => {
+                                    let lname = $('#lname').val();
+                                    
+                                    if(!textValidator(lname,50)) {
+                                        $('#lname-error').html('    Invalid Last name!');
+                                    } else{
+                                        $('#lname-error').html('*');
+                                    }
+                                });
+                                $('#pnumber').change( () => {
+                                    let pnumber = $('#pnumber').val();
+                                    if(!phoneNumberValidator(pnumber)) {
+                                        $('#pnum-error').html('    Invalid phone number!');
+                                    } else{
+                                        $('#lname-error').html('');
+                                    }
+                                });
+                                $('#message').change( () => {
+                                    let message = $('#message').val();
+                                    
+                                    if(!textValidator(message,1000)) {
+                                        $('#message-error').html('    Invalid Message!');
+                                    } else{
+                                        $('#message-error').html('*');
+                                    }
+                                });
+                            </script>
                             <div class="pb-4 pt-2">
                                 <button type="submit" class="btn button-send-format" name="submit-btn">GỬI</button>
                             </div>
