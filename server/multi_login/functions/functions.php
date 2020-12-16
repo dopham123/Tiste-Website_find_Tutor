@@ -19,6 +19,10 @@ $address_2 = "";
 $district = "";
 $city = "";
 $post_code = "";
+$target_file_avatar = "";
+$target_file_profile = "";
+$experience = "";
+$info = "";
 // call the register() function if register_btn is clicked
 if (isset($_POST['register_btn'])) {
 	register();
@@ -132,74 +136,56 @@ function register_info()
 	// register user if there are no errors in the form
 	if (count($errors) == 0) {
 		$query = "INSERT INTO users_info (first_name, last_name, gender, phone_number, address_1, address_2, district, city, post_code, user_id) 
-					  VALUES('$fname', '$lname', '$gender', '$phone_number', '$address_1', '$address_2', '$district', '$city', '$post_code', '$user_id')";
+					  VALUES('$fname', '$lname', '$gender', '$phone_number', '$address_1', '$address_2', '$district', '$city', '$post_code', $user_id)";
 		mysqli_query($db, $query);
-		header('location: index.php');
+		header('location: register_profile.php');
 	}
 }
 
 
 function register_profile()
 {
-	// $target_dir_avatar = '../resource/img_avatar';
-	// $target_dir_profile = '../resource/img_profile';
-	// $target_file_1 = $target_dir_avatar . basename($_FILES["avatar_image"]["name"]);
-	// $target_file_2 = $target_dir_profile . basename($_FILES["profile_image"]["name"]);
-	// $uploadOk = 1;
-	// // call these variables with the global keyword to make them available in function
-	// // receive all input values from the form. Call the e() function
-	// // defined below to escape form values
-	// $avatar_image    	=  	e($_POST['avatar_image']);
-	// $profile_image      =  	e($_POST['profile_image']);
+	global $db, $errors, $info, $experience;
 
-	// $check = getimagesize($_FILES["avatar_image"]["tmp_name"]);
-	// if ($check !== false) {
-	// 	echo "File is an image - " . $check["mime"] . ".";
-	// 	$uploadOk = 1;
-	// } else {
-	// 	echo "File is not an image.";
-	// 	$uploadOk = 0;
-	// }
-	// // $experience = e($_POST['experience']);
-	// // $info  =  	e($_POST['info']);
-
-	// // $user_id = $_SESSION['user']['id'];
-
-	// // register user if there are no errors in the form
-	// // if (count($errors) == 0) {
-	// // 	$query = "INSERT INTO users_info (first_name, last_name, gender, phone_number, address_1, address_2, district, city, post_code, user_id) 
-	// // 				  VALUES('$fname', '$lname', '$gender', '$phone_number', '$address_1', '$address_2', '$district', '$city', '$post_code', '$user_id')";
-	// // 	mysqli_query($db, $query);
-	// // 	header('location: index.php');
-	// // }
+	// check image
 	$target_dir_avatar = "../resource/img_avatar/";
-	$target_file_avatar = $target_dir_avatar . basename($_FILES["avatar_image"]["name"]);
-	$uploadOk_1 = "";
+	$target_file_avatar = "";
 	// Check if image file is a actual image or fake image
-	$check_avatar = getimagesize($_FILES["avatar_image"]["tmp_name"]);
-	if ($check_avatar !== false) {
-		echo "File is an image - " . $check_avatar["mime"] . ".";
-		$uploadOk_1 = 1;
-		echo $target_file_avatar;
+	if (!isset($_FILES['avatar_image']) || $_FILES['avatar_image']['error'] == UPLOAD_ERR_NO_FILE) {
 	} else {
-		echo "File is not an image.";
-		$uploadOk_1= 0;
+		$check_avatar = getimagesize($_FILES["avatar_image"]["tmp_name"]);
+		if ($check_avatar !== false) {
+			$target_file_avatar = $target_dir_avatar . basename($_FILES["avatar_image"]["name"]);
+			// echo $target_file_avatar;
+		} else {
+			array_push($errors, "File ảnh đại diện không đúng định dạng");
+		}
 	}
 
+	// check image
 	$target_dir_profile = "../resource/img_profile/";
-	$target_file_profile = $target_dir_profile . basename($_FILES["profile_image"]["name"]);
-	$uploadOk_2 = 1;
-	// Check if image file is a actual image or fake image
-	$check_profile = getimagesize($_FILES["avatar_image"]["tmp_name"]);
-	if ($check_profile !== false) {
-		echo "File is an image - " . $check_avatar["mime"] . ".";
-		$uploadOk_2 = 1;
-		echo $target_file_profile;
+	$target_file_profile = "";
+	if (!isset($_FILES['profile_image']) || $_FILES['profile_image']['error'] == UPLOAD_ERR_NO_FILE) {
 	} else {
-		echo "File is not an image.";
-		$uploadOk_2 = 0;
+		$check_profile = getimagesize($_FILES["profile_image"]["tmp_name"]);
+		if ($check_profile !== false) {
+			$target_file_profile = $target_dir_profile . basename($_FILES["profile_image"]["name"]);
+			// echo $target_file_profile;
+		} else {
+			array_push($errors, "File ảnh hồ sơ không đúng định dạng");
+		}
 	}
 
+	$experience = e($_POST['experience']);
+	$info  =  	e($_POST['info']);
+	$user_id = $_SESSION['user']['id'];
+
+	if (count($errors) == 0) {
+		$query = "INSERT INTO tutor_profile (experience, info, avatar_image, profile_image, user_id) 
+					  VALUES('$experience', '$info', '$target_file_avatar', '$target_file_profile', $user_id)";
+		mysqli_query($db, $query);
+		header('location: index.php');
+	}
 }
 
 // return user array from their id

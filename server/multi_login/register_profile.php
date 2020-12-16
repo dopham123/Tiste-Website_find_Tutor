@@ -12,6 +12,8 @@
         <h2>Register</h2>
     </div>
     <form action="register_profile.php" method="post" enctype="multipart/form-data">
+        <?php echo display_error(); ?>
+
         <div class="input-group">
             <label>Chọn ảnh hồ sơ</label>
             <input type="file" name="avatar_image" id="avatar_image">
@@ -24,34 +26,19 @@
 
         <div class="input-group">
             <label>Thông tin của bạn</label>
-            <input type="textarea" rows="10" cols="50" name="info">
+            <textarea rows="10" cols="50" name="info"><?php echo $info; ?></textarea>
         </div>
 
         <div class="input-group">
             <label>Kinh nghiệm của bạn</label>
-            <input type="textarea" name="experience">
+            <textarea rows="10" cols="50" name="experience"><?php echo $experience; ?></textarea>
         </div>
 
         <div class="input-group">
-            <input type="submit" value="Upload Image" name="register_profile_btn">
+            <input type="submit" value="Đăng ký" name="register_profile_btn">
         </div>
 
     </form>
-    <!-- <div class="input-group">
-            <label>Chọn ảnh hồ sơ</label>
-            <input type="file" name="profile_image" id="profile_image">
-        </div>
-        <div class="input-group">
-            <label>Kinh nghiệm của bạn</label>
-            <input type="textarea" name="experience">
-        </div>
-        <div class="input-group">
-            <label>Thông tin của bạn</label>
-            <input type="textarea" rows="10" cols="50" name="info">
-        </div>
-        <div class="input-group">
-            <input type="submit" value="Upload Image" name="register_profile_btn">
-        </div> -->
 </body>
 
 </html>

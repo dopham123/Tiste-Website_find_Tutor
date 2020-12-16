@@ -4,7 +4,7 @@
 
 <head>
     <title>Registration system PHP and MySQL</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style/style.css">
 </head>
 
 <body>
@@ -55,7 +55,7 @@
             <input type="number" name="post_code" value="<?php echo $post_code; ?>">
         </div>
         <div class="input-group">
-            <button type="submit" class="btn" name="register_info_btn">Register</button>
+            <button type="submit" class="btn" name="register_info_btn">Tiếp tục</button>
         </div>
     </form>
 </body>
