@@ -174,30 +174,30 @@ function register_profile()
 	// // }
 	$target_dir_avatar = "../resource/img_avatar/";
 	$target_file_avatar = $target_dir_avatar . basename($_FILES["avatar_image"]["name"]);
-	$uploadOk = 1;
+	$uploadOk_1 = "";
 	// Check if image file is a actual image or fake image
 	$check_avatar = getimagesize($_FILES["avatar_image"]["tmp_name"]);
 	if ($check_avatar !== false) {
 		echo "File is an image - " . $check_avatar["mime"] . ".";
-		$uploadOk = 1;
+		$uploadOk_1 = 1;
 		echo $target_file_avatar;
 	} else {
 		echo "File is not an image.";
-		$uploadOk = 0;
+		$uploadOk_1= 0;
 	}
 
 	$target_dir_profile = "../resource/img_profile/";
 	$target_file_profile = $target_dir_profile . basename($_FILES["profile_image"]["name"]);
-	$uploadOk = 1;
+	$uploadOk_2 = 1;
 	// Check if image file is a actual image or fake image
 	$check_profile = getimagesize($_FILES["avatar_image"]["tmp_name"]);
 	if ($check_profile !== false) {
 		echo "File is an image - " . $check_avatar["mime"] . ".";
-		$uploadOk = 1;
+		$uploadOk_2 = 1;
 		echo $target_file_profile;
 	} else {
 		echo "File is not an image.";
-		$uploadOk = 0;
+		$uploadOk_2 = 0;
 	}
 
 }
