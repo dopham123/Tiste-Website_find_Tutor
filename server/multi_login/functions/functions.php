@@ -19,6 +19,10 @@ $address_2 = "";
 $district = "";
 $city = "";
 $post_code = "";
+$target_file_avatar = "";
+$target_file_profile = "";
+$experience = "";
+$info = "";
 // call the register() function if register_btn is clicked
 if (isset($_POST['register_btn'])) {
 	register();
@@ -27,6 +31,10 @@ if (isset($_POST['register_btn'])) {
 // call the register_infor() function if register_info_btn is clicked
 if (isset($_POST['register_info_btn'])) {
 	register_info();
+}
+
+if (isset($_POST['register_profile_btn'])) {
+	register_profile();
 }
 
 // REGISTER USER
@@ -128,11 +136,56 @@ function register_info()
 	// register user if there are no errors in the form
 	if (count($errors) == 0) {
 		$query = "INSERT INTO users_info (first_name, last_name, gender, phone_number, address_1, address_2, district, city, post_code, user_id) 
-					  VALUES('$fname', '$lname', '$gender', '$phone_number', '$address_1', '$address_2', '$district', '$city', '$post_code', '$user_id')";
+					  VALUES('$fname', '$lname', '$gender', '$phone_number', '$address_1', '$address_2', '$district', '$city', '$post_code', $user_id)";
+		mysqli_query($db, $query);
+		header('location: register_profile.php');
+	}
+}
+
+
+function register_profile()
+{
+	global $db, $errors, $info, $experience;
+
+	// check image
+	$target_dir_avatar = "../resource/img_avatar/";
+	$target_file_avatar = "";
+	// Check if image file is a actual image or fake image
+	if (!isset($_FILES['avatar_image']) || $_FILES['avatar_image']['error'] == UPLOAD_ERR_NO_FILE) {
+	} else {
+		$check_avatar = getimagesize($_FILES["avatar_image"]["tmp_name"]);
+		if ($check_avatar !== false) {
+			$target_file_avatar = $target_dir_avatar . basename($_FILES["avatar_image"]["name"]);
+			// echo $target_file_avatar;
+		} else {
+			array_push($errors, "File ảnh đại diện không đúng định dạng");
+		}
+	}
+
+	// check image
+	$target_dir_profile = "../resource/img_profile/";
+	$target_file_profile = "";
+	if (!isset($_FILES['profile_image']) || $_FILES['profile_image']['error'] == UPLOAD_ERR_NO_FILE) {
+	} else {
+		$check_profile = getimagesize($_FILES["profile_image"]["tmp_name"]);
+		if ($check_profile !== false) {
+			$target_file_profile = $target_dir_profile . basename($_FILES["profile_image"]["name"]);
+			// echo $target_file_profile;
+		} else {
+			array_push($errors, "File ảnh hồ sơ không đúng định dạng");
+		}
+	}
+
+	$experience = e($_POST['experience']);
+	$info  =  	e($_POST['info']);
+	$user_id = $_SESSION['user']['id'];
+
+	if (count($errors) == 0) {
+		$query = "INSERT INTO tutor_profile (experience, info, avatar_image, profile_image, user_id) 
+					  VALUES('$experience', '$info', '$target_file_avatar', '$target_file_profile', $user_id)";
 		mysqli_query($db, $query);
 		header('location: index.php');
 	}
-	
 }
 
 // return user array from their id

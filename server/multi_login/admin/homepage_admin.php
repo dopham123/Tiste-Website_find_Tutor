@@ -1,5 +1,5 @@
 <?php 
-include('../functions.php');
+include('../functions/functions.php');
 
 if (!isAdmin()) {
 	$_SESSION['msg'] = "You must log in first";
@@ -21,7 +21,7 @@ if (isset($_GET['logout'])) {
     <title>Home Page</title>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!-- load jquery via CDN -->
 	<script src="../functions/functions.js"></script>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="./style/style.css">
 </head>
 <body>
     <div class="container">
