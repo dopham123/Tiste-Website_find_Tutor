@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <?php include('../server/multi_login/functions/contact-info.php');?>
     <header>
         <div class="header">
             <div class="head_top">
@@ -54,8 +55,8 @@
                                         <li> <a href="index.html">Trang chủ</a> </li>
                                         <li> <a href="about.html">Giới thiệu</a> </li>
                                         <li> <a href="service.html">Dịch vụ</a> </li>
-                                        <li> <a href="prices.html">BẢng giá</a> </li>
-                                        <li class="active"> <a href="contact.html">Liên hệ</a> </li>
+                                        <li> <a href="prices.html">Bảng giá</a> </li>
+                                        <li class="active"> <a href="contact.php">Liên hệ</a> </li>
                                         <li> <a href="#">Đăng ký</a> </li>
                                     </ul>
                                 </nav>
@@ -85,39 +86,39 @@
                                 class="img-fluid img-contact-height bg-white"></div>
                     </div>
                     <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 bg-white">
-                        <form>
+                        <form action="contact.php" method="POST">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="fname" class="label-edited">Tên</label> <span class="required">*</span>
-                                    <input type="text" class="form-control input-edited" id="fname" placeholder="Ryan"
+                                    <input type="text" name="fname" class="form-control input-edited" id="fname" placeholder="Ryan"
                                         required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="lname" class="label-edited">Họ lót</label> <span
                                         class="required">*</span>
-                                    <input type="text" class="form-control input-edited" id="lname"
+                                    <input type="text" name="lname" class="form-control input-edited" id="lname"
                                         placeholder="Reynold" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="email" class="label-edited">Địa chỉ email</label> <span
                                     class="required">*</span>
-                                <input type="email" class="form-control input-edited" id="email"
+                                <input type="email" name="email" class="form-control input-edited" id="email"
                                     placeholder="123@example.com" required>
                             </div>
                             <div class="form-group">
                                 <label for="pnumber" class="label-edited">Số điện thoại</label>
-                                <input type="number" class="form-control input-edited" id="pnumber"
+                                <input type="number" name="pnumber" class="form-control input-edited" id="pnumber"
                                     placeholder="0987654321">
                             </div>
                             <div class="form-group">
                                 <label for="message" class="label-edited">Lời nhắn</label> <span
                                     class="required">*</span>
-                                <textarea class="form-control textarea-edited" id="message" rows="4"
+                                <textarea class="form-control textarea-edited" name="message" id="message" rows="4"
                                     placeholder="Để lại lời nhắn của bạn ở đây"></textarea>
                             </div>
                             <div class="pb-4 pt-2">
-                                <button type="submit" class="btn button-send-format">GỬI</button>
+                                <button type="submit" class="btn button-send-format" name="submit-btn">GỬI</button>
                             </div>
                         </form>
                     </div>
