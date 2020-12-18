@@ -25,15 +25,15 @@ $post_code              =  e($_POST['post_code']);
 $username_valid = $email_valid = false;
 
 if (empty($username)) {
-    $errors['username'] = 'Name can not be blank!!';
+    $errors['username'] = 'Tên không được để trống';
 }
 
 if (empty($email)) {
-    $errors['email'] = 'Year can not be blank!!';
+    $errors['email'] = 'Email không đuợc để trống';
 }
 
 if (empty($errors)) {
-    $select_stmt = "SELECT * FROM users WHERE username='$username' OR email='$email'";
+    $select_stmt = "SELECT * FROM users WHERE username='$username'";
     $result = mysqli_query($db, $select_stmt);
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -43,6 +43,21 @@ if (empty($errors)) {
             if ($row["username"] == $username) {
                 $errors['username'] = "Tên đăng nhập đã tồn tại!! Vui lòng chọn tên đăng nhập khác";
             }
+            // if ($row["email"] == $email) {
+            //     $errors['email'] = "Email đã tồn tại!! Vui lòng nhập email khác";
+            // }
+        }
+    }
+    $select_stmt = "SELECT * FROM users WHERE email='$email'";
+    $result = mysqli_query($db, $select_stmt);
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            if ($row['id'] == $user_id) {
+                break;
+            }
+            // if ($row["username"] == $username) {
+            //     $errors['username'] = "Tên đăng nhập đã tồn tại!! Vui lòng chọn tên đăng nhập khác";
+            // }
             if ($row["email"] == $email) {
                 $errors['email'] = "Email đã tồn tại!! Vui lòng nhập email khác";
             }

@@ -11,7 +11,7 @@
             <th>Operation</th>
         </tr>
         <?php
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM users WHERE user_type <> 'admin'";
         $result = mysqli_query($con, $sql);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
@@ -24,16 +24,10 @@
                     </td>
                     <td>
                         <button onclick="
-                            editFunction(event);
-                        " class="button-a button-edit" name="button-edit-<?php echo $row['id'] ?>" id="<?php echo $row['id'] ?>">Edit
-                        </button>
-                        <button disabled onclick="
-                            saveFunction(event);
-                        " type="submit" class="button-a" id="saveFunction-<?php echo $row['id'] ?>" name="<?php echo $row['id'] ?>" style="background-color: #ccc">Save
-                        </button>
-                        <button onclick="
-                            deleteFunction(event);
-                            setTimeout(loadFile('data-table', 'ajax_show.php'), 3000);
+                        confirmDelete(event);
+                        setTimeout(function() {
+                            loadFile('data-table', 'user_info.php'
+                            )}, 2000);
                         " type="submit" class="button-a btn-delete" name="<?php echo $row['id'] ?>">Delete
                         </button>
                     </td>

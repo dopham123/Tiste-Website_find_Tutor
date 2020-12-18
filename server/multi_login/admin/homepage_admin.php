@@ -22,19 +22,50 @@ if (isset($_GET['logout'])) {
 	<title>Home Page</title>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!-- load jquery via CDN -->
 	<script src="../functions/functions.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<!-- style css -->
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 	<link rel="stylesheet" href="./style.css">
+	<style>
+		.input-group {
+			display: block;
+		}
+
+		.error {
+			width: 92%;
+			margin: 0px auto;
+			padding: 10px;
+			border: 1px solid #a94442;
+			color: #a94442;
+			background: #f2dede;
+			border-radius: 5px;
+			text-align: left;
+		}
+	</style>
 </head>
 
 <body>
-	<div class="container">
-		<div class="data-table">
+	<h1>Admin Page</h1>
+	<div class="text-center">
+		<div class="row">
+			<div class="col-sm-1">
+				<button type="button" onclick="loadFile('data-table', 'user_info.php')">Show Data</button>
+				<button type="button" onclick="loadFile('add-new-user', 'create_user_form.php')">Thêm một người dùng mới</button>
+				<a href="../index.php?logout='1'" style="color: red;">logout</a>
+			</div>
+			<div class="col-sm-11">
+				<div class="data-table"></div>
+			</div>
 		</div>
-		<div class="show-message"></div>
-
-		<button type="button" onclick="loadFile('data-table', 'user_info.php')">Show Data</button>
+		<br>
+		<div class="row">
+			<div class="col-sm-7" style="text-align: left;">
+				<div class="add-new-user"></div>
+			</div>
+		</div>
+		<div class="show-message" style="text-align: left;"></div>
 	</div>
 
-	<div class=""></div>
 </body>
 
 </html>
