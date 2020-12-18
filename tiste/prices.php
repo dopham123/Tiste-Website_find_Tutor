@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <?php include('../server/multi_login/functions/prices-info.php');?>
     <header>
         <div class="header">
             <div class="head_top">
@@ -82,6 +83,9 @@
         <div class="product-bg-white">
             <div class="container">
                 <div class="row">
+                    <?php
+                        for($i = 0; $i < count($data); $i++){
+                    ?>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 text-center">
                         <table class="table table-cell-font-format text-center bg-table-1">
                             <thead class="caption-class">
@@ -129,7 +133,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 text-center">
+                    <?php
+                        }
+                    ?>
+                    <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 text-center">
                         <table class="table table-cell-font-format text-center bg-table-2">
                             <thead class="caption-class">
                                 <tr>
@@ -222,7 +229,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
