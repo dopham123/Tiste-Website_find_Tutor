@@ -103,10 +103,10 @@ $(document).ready(function () {
                         $('.show-message').addClass('has-error'); // add the error class to show red input
                         $('.show-message').append('<div class="help-block" style="color: red;">' + data.errors.password + '</div>'); // add the actual error message under our input
                     }
-    
+
                 } else {
                     $('.form-password').html('<div class="">' + data.message + '</div>');
-                    document.getElementById('new_password').setAttribute('disabled', false);
+                    document.getElementById('new_password').removeAttribute("disabled");
                     // setTimeout(loadFile('user-info', '../admin/show_user_info.php?user_id=' + user_id), 3000);
                 }
             })
@@ -114,11 +114,11 @@ $(document).ready(function () {
     });
 });
 
-function confirmSubmit() {
-    return confirm('Bạn đồng ý với những thay đổi?');
+function confirmSubmit(message) {
+    return confirm(message);
 }
 function confirmSaveInfo() {
-    if (confirmSubmit()) {
+    if (confirmSubmit('Bạn đồng ý với những thay đổi?')) {
         saveInfo();
     }
 }
