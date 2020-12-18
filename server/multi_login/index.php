@@ -3,6 +3,10 @@ include('./functions/functions.php');
 if (!isLoggedIn()) {
     $_SESSION['msg'] = "You must log in first";
     header('location: login.php');
+}
+
+if (isLoggedIn() && isAdmin()) {
+    header('location: ./admin/homepage_admin.php');
 } 
 ?>
 <!DOCTYPE html>
