@@ -23,13 +23,6 @@ if (isset($_GET['logout'])) {
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!-- load jquery via CDN -->
 	<script src="../functions/functions.js"></script>
 	<link rel="stylesheet" href="./style.css">
-
-	<style>
-		.container {
-			display: grid;
-			grid-template-columns: 1fr 3fr;
-		}
-	</style>
 </head>
 
 <body>
