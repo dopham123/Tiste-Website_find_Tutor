@@ -106,7 +106,7 @@ $(document).ready(function () {
 
                 } else {
                     $('.form-password').html('<div class="">' + data.message + '</div>');
-                    document.getElementById('new_password').removeAttribute("disabled");
+                    $('#new_password').removeAttr("disabled");
                     // setTimeout(loadFile('user-info', '../admin/show_user_info.php?user_id=' + user_id), 3000);
                 }
             })

@@ -8,6 +8,10 @@
     <div></div>
     <div>
         <button type="submit" name="submit" id="submit">Tạo</button>
-        <input type="button" name="cancel_password" style="width: 40px;" value="Huỷ">
+        <button name="cancel" onclick=
+        "
+            $('.form-password').html('');
+            $('#new_password').removeAttr('disabled');
+        ">Huỷ</button>
     </div>
 </div>
