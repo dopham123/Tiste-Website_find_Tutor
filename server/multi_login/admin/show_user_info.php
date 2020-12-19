@@ -138,32 +138,31 @@ if (isset($_GET['logout'])) {
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
                                 <label for="avatar_image">Ảnh đại diện</label>
-                                <!-- <input name="avatar_image" id="avatar_image" class="input-info" disabled type="text" value="<?php echo $row['avatar_image'] ?>"> -->
                                 <img src="../<?php echo $row['avatar_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;>
 
                                 <label for="profile_image">Ảnh hồ sơ</label>
                                 <img src="../<?php echo $row['profile_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;">
 
                                 <label for="experience">Kinh nghiệm</label>
-                                <textarea disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
+                                <textarea class="input-info experience" disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
 
                                 <label for="info">Thông tin thêm:</label>
-                                <textarea disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
+                                <textarea class="input-info info" disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
                             <?php
                             }
                         } else {
                             ?>
                             <label for="avatar_image">Ảnh đại diện</label>
-                            <input name="avatar_image" id="avatar_image" class="input-info" disabled type="number" value="">
+                            <img src="" alt="avatar">
 
                             <label for="profile_image">Ảnh hồ sơ</label>
-                            <input name="profile_image" id="profile_image" class="input-info" disabled type="text" value="">
+                                <img src="" alt="profile">
 
                             <label for="experience">Kinh nghiệm</label>
-                            <textarea disabled rows="5" cols="50" name="experience"></textarea>
+                            <textarea class="input-info" disabled rows="5" cols="50" name="experience"></textarea>
 
                             <label for="info">Thông tin thêm:</label>
-                            <textarea disabled rows="5" cols="50" name="info"></textarea>
+                            <textarea class="input-info" disabled rows="5" cols="50" name="info"></textarea>
             <?php
                         }
                     }

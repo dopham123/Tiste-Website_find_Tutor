@@ -44,8 +44,10 @@ function saveInfo() {
         'district': $('input[name=district]').val(),
         'city': $('input[name=city]').val(),
         'post_code': $('input[name=post_code]').val(),
-
+        'info': $('.info').val(),
+        'experience': $('.experience').val(),
     };
+
     // process the ajax
     $.ajax({
         type: 'POST',
