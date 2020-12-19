@@ -13,17 +13,18 @@ CREATE TABLE `users` (
 
 CREATE TABLE `users_info` ( 
     `user_info_id` int(10) NOT NULL AUTO_INCREMENT,
-    `first_name` varchar(100) NOT NULL, 
-    `last_name` varchar(100) NOT NULL, 
-    `gender` varchar(100) NOT NULL, 
-    `phone_number` varchar(100) NOT NULL, 
-    `address_1` varchar(100) NOT NULL, 
+    `first_name` varchar(100), 
+    `last_name` varchar(100), 
+    `gender` varchar(100), 
+    `phone_number` varchar(100), 
+    `address_1` varchar(100), 
     `address_2` varchar(100),
-    `district`varchar(100) NOT NULL,
-    `city`  varchar(100) NOT NULL,
-    `post_code` varchar(100) NOT NULL,
+    `district`varchar(100),
+    `city`  varchar(100),
+    `post_code` varchar(100),
     `user_id` int(10), 
-    FOREIGN KEY(user_id) REFERENCES users(id),
+    FOREIGN KEY(user_id) REFERENCES users(id)
+    ON DELETE CASCADE,
     PRIMARY KEY (user_info_id) );
 
 CREATE TABLE `tutor_profile` ( 
@@ -33,7 +34,8 @@ CREATE TABLE `tutor_profile` (
     `avatar_image` varchar(100) , 
     `profile_image` varchar(100) , 
     `user_id` int(10), 
-    FOREIGN KEY(user_id) REFERENCES users(id),
+    FOREIGN KEY(user_id) REFERENCES users(id)         
+    ON DELETE CASCADE,
     PRIMARY KEY (tutor_profile_id) );
 
 INSERT INTO users (`id`, `username`, `email`, `password`, `user_type`) VALUES (11, "admin", "admin@gmail.com", "21232f297a57a5a743894a0e4a801fc3", "admin");

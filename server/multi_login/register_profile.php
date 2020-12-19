@@ -1,4 +1,9 @@
 <?php include('./functions/functions.php'); ?>
+<?php
+if (isStudent()) {
+	header('location: ./index.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 

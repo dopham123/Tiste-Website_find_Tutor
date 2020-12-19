@@ -73,6 +73,52 @@ function saveInfo() {
         })
 }
 
+function createUser() {
+
+    $('.show-message').removeClass('has-error');
+    $('.help-block').remove();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    // var id = event.target.name;
+
+    var formData = {
+        'username': $('input[name=username]').val(),
+        'email': $('input[name=email]').val(),
+        'user_type': $('select.user_type-class').val(),
+        'password_1': $('input[name=password_1]').val(),
+        'password_2': $('input[name=password_2]').val(),
+    };
+    // process the ajax
+    $.ajax({
+        type: 'POST',
+        url: './ajax/create_user.php',
+        data: formData,
+        dataType: 'json',
+        encode: true
+    })
+        .done(function (data) {
+            console.log(data);
+            if (!data.success) {
+                // show error
+                if (data.errors.username) {
+                    $('.show-message').addClass('has-error'); // add the error class to show red input
+                    $('.show-message').append('<div class="help-block" style="color: red;">' + data.errors.username + '</div>'); // add the actual error message under our input
+                }
+                if (data.errors.email) {
+                    $('.show-message').addClass('has-error'); // add the error class to show red input
+                    $('.show-message').append('<div class="help-block" style="color: red;">' + data.errors.email + '</div>'); // add the actual error message under our input
+                }
+                if (data.errors.password) {
+                    $('.show-message').addClass('has-error'); // add the error class to show red input
+                    $('.show-message').append('<div class="help-block" style="color: red;">' + data.errors.password + '</div>'); // add the actual error message under our input
+                }
+
+            } else {
+                setTimeout(loadFile('data-table', '../admin/user_info.php'), 2000);
+            }
+        })
+}
+
 $(document).ready(function () {
 
     $('.form-password').submit(function (event) {
@@ -114,11 +160,39 @@ $(document).ready(function () {
     });
 });
 
+function deleteFunction(event) {
+    var ajaxRequest;
+    try {
+        ajaxRequest = new XMLHttpRequest();
+    } catch (e) {
+        try {
+            ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+
+            try {
+                ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {
+                alert("Co loi xay ra voi trinh duyet cua ban!");
+                return false;
+            }
+        }
+    }
+    var id = parseInt(event.target.name);
+    ajaxRequest.open("GET", "../admin/ajax/delete_user.php?id=" + id, true);
+    ajaxRequest.send(null);
+}
+
 function confirmSubmit(message) {
     return confirm(message);
 }
 function confirmSaveInfo() {
     if (confirmSubmit('Bạn đồng ý với những thay đổi?')) {
         saveInfo();
+    }
+}
+
+function confirmDelete(event){
+    if (confirmSubmit('Bạn có muốn xoá user này?')) {
+        deleteFunction(event);
     }
 }

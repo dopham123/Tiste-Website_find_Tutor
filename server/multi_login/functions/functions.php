@@ -306,9 +306,18 @@ function isAdmin()
 	}
 }
 
-function isUser()
+function isTutor()
 {
-	if (isset($_SESSION['user']) && ($_SESSION['user']['user_type'] == 'tutor' || $_SESSION['user']['user_type'] == 'user')) {
+	if (isset($_SESSION['user']) && ($_SESSION['user']['user_type'] == 'tutor')) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function isStudent()
+{
+	if (isset($_SESSION['user']) && ($_SESSION['user']['user_type'] == 'user')) {
 		return true;
 	} else {
 		return false;

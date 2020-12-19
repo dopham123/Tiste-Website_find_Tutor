@@ -5,7 +5,7 @@ if (isAdmin()) {
 	header('location: ./admin/homepage_admin.php');
 }
 
-if (isUser()) {
+if (isTutor() || isStudent()) {
 	header('location: ./index.php');
 }
 
