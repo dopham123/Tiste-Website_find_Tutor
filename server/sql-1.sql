@@ -59,10 +59,6 @@ CREATE TABLE `tutor_type` (
     `id` int(10) NOT NULL AUTO_INCREMENT,
     `name` varchar(100) NOT NULL, 
     PRIMARY KEY (id) );
-CREATE TABLE `subject` ( 
-    `id` int(10) NOT NULL AUTO_INCREMENT,
-    `name` varchar(100) NOT NULL, 
-    PRIMARY KEY (id) );
 CREATE TABLE `prices` ( 
     `id` int(10) NOT NULL AUTO_INCREMENT,
     `min_price` int NOT NULL,
@@ -70,14 +66,20 @@ CREATE TABLE `prices` (
     `class_typeID` int(10) NOT NULL, 
     `gradeID` int(10) NOT NULL,
     `tutor_typeID` int(10) NOT NULL,
-    `suject_ID` int(10) NOT NULL,
     CONSTRAINT FK_ClassType FOREIGN KEY (class_typeID) REFERENCES class_type(id),
     CONSTRAINT FK_Grade FOREIGN KEY (gradeID) REFERENCES grade(id),
     CONSTRAINT FK_TutorType FOREIGN KEY (tutor_typeID) REFERENCES tutor_type(id),
-    CONSTRAINT FK_Suject FOREIGN KEY (suject_ID) REFERENCES subject(id),
     PRIMARY KEY (id) );
 INSERT INTO `class_type`(`name`) VALUES ('Lớp 2 buổi/tuần');
 INSERT INTO `grade`(`name`) VALUES ('Lớp 1-5');
 INSERT INTO `tutor_type`(`name`) VALUES ('Toán');
-INSERT INTO `subject`(`name`) VALUES ('Sinh viên');
-INSERT INTO `prices`(`min_pice`, `max_pice`, `class_typeID`, `gradeID`, `tutor_typeID`, `suject_ID`) VALUES (500000, 1500000,1,1,1,1);
+INSERT INTO `prices`(`min_price`, `max_price`, `class_typeID`, `gradeID`, `tutor_typeID`) VALUES (500000, 1500000,1,1,1);
+
+CREATE TABLE `comment` ( 
+    `id` int(10) NOT NULL AUTO_INCREMENT,
+    `comment` varchar(100) NOT NULL,
+    `commentatorID` int(10) NOT NULL, 
+    `tutorID` int(10) NOT NULL,
+    CONSTRAINT FK_Commentator FOREIGN KEY (commentatorID) REFERENCES users(id),
+    CONSTRAINT FK_Tutor FOREIGN KEY (tutorID) REFERENCES users(id),
+    PRIMARY KEY (id) );
