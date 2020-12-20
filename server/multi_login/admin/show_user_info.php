@@ -40,7 +40,7 @@ if (isset($_GET['logout'])) {
     <form class="edit-form" method="POST" onsubmit="event.preventDefault()">
         <button onclick="enableEdit('input-info');" class="button-a button-edit" name="button-edit">Edit
         </button>
-        <button disabled onclick="confirmSaveInfo()" type="submit" class="button-a" id="save" style="background-color: #ccc">Save
+        <button disabled onclick="confirmSaveInfo()" type="submit" class="button-a" id="save" name="btn-save" style="background-color: #ccc">Save
         </button>
 
         <!-- show error here -->
@@ -141,10 +141,18 @@ if (isset($_GET['logout'])) {
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
                                 <label for="avatar_image">Ảnh đại diện</label>
-                                <img src="<?php echo $row['avatar_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;>
+                                <div>
+                                    <label>Chọn ảnh đại diện mới</label>
+                                    <input disabled class="input-info" type="file" name="avatar_image" id="avatar_image">
+                                    <img src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
+                                </div>
 
                                 <label for=" profile_image">Ảnh hồ sơ</label>
-                                <img src="<?php echo $row['profile_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;">
+                                <div>
+                                    <label>Chọn ảnh hồ sơ mới</label>
+                                    <input disabled class="input-info" type="file" name="profile_image" id="profile_image">
+                                    <img src="<?php echo $row['profile_image'] ?>" alt="profile" style="height: 300px; width: 400px;">
+                                </div>
 
                                 <label for="experience">Kinh nghiệm</label>
                                 <textarea class="input-info experience" disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
@@ -160,13 +168,21 @@ if (isset($_GET['logout'])) {
                             $sql = "SELECT * FROM tutor_profile WHERE user_id=$user_id";
                             $result = mysqli_query($con, $sql);
                             if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
-                                    ?>
+                                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                ?>
                                     <label for="avatar_image">Ảnh đại diện</label>
-                                    <img src="" alt="avatar">
+                                    <div>
+                                        <label>Chọn ảnh đại diện mới</label>
+                                        <input disabled class="input-info" type="file" name="avatar_image" id="avatar_image">
+                                        <img src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
+                                    </div>
 
                                     <label for="profile_image">Ảnh hồ sơ</label>
-                                    <img src="" alt="profile">
+                                    <div>
+                                        <label>Chọn ảnh hồ sơ mới</label>
+                                        <input disabled class="input-info" type="file" name="profile_image" id="profile_image">
+                                        <img src="<?php echo $row['profile_image'] ?>" alt="profile" style="height: 300px; width: 400px;">
+                                    </div>
 
                                     <label for="experience">Kinh nghiệm</label>
                                     <textarea class="input-info" disabled rows="5" cols="50" name="experience"></textarea>
@@ -198,3 +214,9 @@ if (isset($_GET['logout'])) {
 </body>
 
 </html>
+
+<?php
+if (isset($_POST['btn_save'])) {
+    echo 1;
+}
+?>

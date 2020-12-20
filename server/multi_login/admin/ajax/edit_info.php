@@ -20,6 +20,9 @@ $city                   =  e($_POST['city']);
 $post_code              =  e($_POST['post_code']);
 $info                   =  e($_POST['info']);
 $experience             =  e($_POST['experience']);
+$profile_image             =  e($_POST['profile_image']);
+$avatar_image             =  e($_POST['avatar_image']);
+
 
 
 $username_valid = $email_valid = false;
@@ -86,7 +89,7 @@ if (!empty($errors)) {
     if (mysqli_num_rows($result_3) > 0) {
         while ($row = mysqli_fetch_array($result_3, MYSQLI_ASSOC)) {
             if ($row['user_type'] == 'tutor') {
-                $sql_tutor_profile = "UPDATE tutor_profile SET info = '$info', experience = '$experience' WHERE user_id=$user_id";
+                $sql_tutor_profile = "UPDATE tutor_profile SET info = '$info', experience = '$experience', profile_image = '$profile_image', avatar_image = '$avatar_image' WHERE user_id=$user_id";
                 $result_4 = mysqli_query($con, $sql_tutor_profile);
             }
         }

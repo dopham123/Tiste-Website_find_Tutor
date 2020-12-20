@@ -46,6 +46,8 @@ function saveInfo() {
         'post_code': $('input[name=post_code]').val(),
         'info': $('.info').val(),
         'experience': $('.experience').val(),
+        'avatar_image': "../../resource/img_avatar/" + $('#avatar_image').val().split("\\").pop(),
+        'profile_image': "../../resource/img_profile/" + $('#profile_image').val().split("\\").pop(),
     };
 
     // process the ajax
