@@ -24,6 +24,7 @@ $experience             =  e($_POST['experience']);
 
 $username_valid = $email_valid = false;
 
+// Validate for username and email
 if (empty($username)) {
     $errors['username'] = 'Tên không được để trống';
 }
@@ -43,9 +44,6 @@ if (empty($errors)) {
             if ($row["username"] == $username) {
                 $errors['username'] = "Tên đăng nhập đã tồn tại!! Vui lòng chọn tên đăng nhập khác";
             }
-            // if ($row["email"] == $email) {
-            //     $errors['email'] = "Email đã tồn tại!! Vui lòng nhập email khác";
-            // }
         }
     }
     $select_stmt = "SELECT * FROM users WHERE email='$email'";
@@ -55,9 +53,6 @@ if (empty($errors)) {
             if ($row['id'] == $user_id) {
                 break;
             }
-            // if ($row["username"] == $username) {
-            //     $errors['username'] = "Tên đăng nhập đã tồn tại!! Vui lòng chọn tên đăng nhập khác";
-            // }
             if ($row["email"] == $email) {
                 $errors['email'] = "Email đã tồn tại!! Vui lòng nhập email khác";
             }

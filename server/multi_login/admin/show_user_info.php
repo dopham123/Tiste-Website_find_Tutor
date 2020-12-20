@@ -43,6 +43,11 @@ if (isset($_GET['logout'])) {
         <button disabled onclick="confirmSaveInfo()" type="submit" class="button-a" id="save" style="background-color: #ccc">Save
         </button>
 
+    <!-- show error here -->
+        <div class="show-message"></div>     
+    <!-- show error here -->
+
+    <!-- show info here -->
         <?php
         $sql = "SELECT * FROM users, users_info WHERE user_id=$user_id AND id=$user_id";
         $result = mysqli_query($con, $sql);
@@ -103,8 +108,6 @@ if (isset($_GET['logout'])) {
                     <?php
                     }
                     ?>
-                    <!-- <input name="gender" id="gender" class="input-info" disabled type="text" value="<?php echo $row['gender'] ?>"> -->
-
                     <label for="phone_number">Số điện thoại:</label>
                     <input name="phone_number" id="phone_number" class="input-info" disabled type="number" value="<?php echo $row['phone_number'] ?>">
 
@@ -170,8 +173,10 @@ if (isset($_GET['logout'])) {
             }
             ?>
                 </div>
-
+    <!-- end of show info here -->
     </form>
+
+    <!-- create new password -->
     <input name="new_password" id="new_password" type="button" value="Tạo mật khẩu mới" onclick="
                             loadFile('new-password', 'form_create_password.php');
                             document.getElementById('new_password').setAttribute('disabled', true);
@@ -179,7 +184,7 @@ if (isset($_GET['logout'])) {
     <form class="form-password" action="" onsubmit="event.preventDefault();">
         <div class="new-password container-1"></div>
     </form>
-    <div class="show-message"></div>
+    <!--end of create new password -->
 
 </body>
 

@@ -21,12 +21,13 @@
                     <td><input disabled type="text" name="user-name-<?php echo $row['id'] ?>" value="<?php echo $row['username'] ?>" style="text-align: center;"> </td>
                     <td><input disabled type="text" name="email-<?php echo $row['id'] ?>" value="<?php echo $row['email'] ?>" style="text-align: center;"></td>
                     <td><input disabled type="text" name="user_type-<?php echo $row['id'] ?>" 
-                    value="<?php 
-                        if ($row['user_type'] == 'tutor')
-                            echo "Gia sư";
-                        else echo "Học viên";
-                        ?>" 
-                    style="text-align: center;"></td>
+                        value="<?php 
+                            if ($row['user_type'] == 'tutor')
+                                echo "Gia sư";
+                            else echo "Học viên";
+                            ?>" 
+                        style="text-align: center;">
+                    </td>
 
                     <td>
                         <a class="" href="show_user_info.php?user_id=<?php echo $row['id'] ?>">Click để xem thêm</a>

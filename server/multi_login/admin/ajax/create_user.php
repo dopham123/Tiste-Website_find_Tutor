@@ -11,6 +11,7 @@ $user_type              =  e($_POST['user_type']);
 $password_1 = e($_POST['password_1']);
 $password_2 = e($_POST['password_2']);
 
+// Validate input
 if (empty($username)) {
 	$errors['username'] = "Tên đăng nhập không được để trống";
 }
