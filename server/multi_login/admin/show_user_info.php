@@ -141,10 +141,10 @@ if (isset($_GET['logout'])) {
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
                                 <label for="avatar_image">Ảnh đại diện</label>
-                                <img src="../<?php echo $row['avatar_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;>
+                                <img src="<?php echo $row['avatar_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;>
 
                                 <label for="profile_image">Ảnh hồ sơ</label>
-                                <img src="../<?php echo $row['profile_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;">
+                                <img src="<?php echo $row['profile_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;">
 
                                 <label for="experience">Kinh nghiệm</label>
                                 <textarea class="input-info experience" disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
