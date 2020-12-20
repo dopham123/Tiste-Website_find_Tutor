@@ -7,10 +7,10 @@
     <input name="confirm_password" id="confirm_password" class="input-password" type="password" value="">
     <div></div>
     <div>
-        <button type="submit" name="submit" id="submit">Tạo</button>
+        <button type="submit" name="submit" id="submit" onclick="createPassword();">Tạo</button>
         <button name="cancel" onclick=
         "
-            $('.form-password').html('');
+            $('.new-password').html('');
             $('#new_password').removeAttr('disabled');
         ">Huỷ</button>
     </div>

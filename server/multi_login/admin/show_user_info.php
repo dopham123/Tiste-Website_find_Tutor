@@ -212,6 +212,7 @@ $target_dir_avatar = "../../resource/img_avatar/";
     <form class="form-password" action="" onsubmit="event.preventDefault();">
         <div class="new-password container-1"></div>
     </form>
+    <div class="show-message-pass"></div>
     <!--end of create new password -->
 
 </body>

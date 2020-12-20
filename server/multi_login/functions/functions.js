@@ -58,7 +58,7 @@ function saveInfo() {
         }
         info = $('.info').val();
         experience = $('.experience').val();
-    } else console.log(check);
+    }
 
     var formData = {
         'username': $('input[name=username]').val(),
@@ -152,7 +152,7 @@ function createUser() {
         })
 }
 
-$(document).ready(function () {
+function createPassword(){
 
     $('.form-password').submit(function (event) {
         $('.show-message').removeClass('has-error');
@@ -179,19 +179,19 @@ $(document).ready(function () {
                 if (!data.success) {
                     // show error
                     if (data.errors.password) {
-                        $('.show-message').addClass('has-error'); // add the error class to show red input
-                        $('.show-message').append('<div class="help-block" style="color: red;">' + data.errors.password + '</div>'); // add the actual error message under our input
+                        $('.show-message-pass').addClass('has-error'); // add the error class to show red input
+                        $('.show-message-pass').append('<div class="help-block" style="color: red;">' + data.errors.password + '</div>'); // add the actual error message under our input
                     }
 
                 } else {
-                    $('.form-password').html('<div class="">' + data.message + '</div>');
+                    $('.form-password').html('<div class="new-password container-1">' + data.message + '</div>');
                     $('#new_password').removeAttr("disabled");
                     // setTimeout(loadFile('user-info', '../admin/show_user_info.php?user_id=' + user_id), 3000);
                 }
             })
         //stop submit
     });
-});
+}
 
 function deleteFunction(event) {
     var ajaxRequest;
