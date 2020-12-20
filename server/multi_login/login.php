@@ -14,7 +14,7 @@ if (isTutor() || isStudent()) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Registration system PHP and MySQL</title>
+	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="./style/style.css">
 </head>
 <body>

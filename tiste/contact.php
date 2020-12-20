@@ -56,7 +56,7 @@
                                         <li> <a href="index.html">Trang chủ</a> </li>
                                         <li> <a href="about.html">Giới thiệu</a> </li>
                                         <li> <a href="service.html">Dịch vụ</a> </li>
-                                        <li> <a href="prices.html">Bảng giá</a> </li>
+                                        <li> <a href="prices.php">Bảng giá</a> </li>
                                         <li class="active"> <a href="contact.php">Liên hệ</a> </li>
                                         <li> <a href="#">Đăng ký</a> </li>
                                     </ul>

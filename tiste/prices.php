@@ -13,6 +13,11 @@
 </head>
 
 <body>
+    <?php include('../server/multi_login/functions/prices-info.php');?>
+    <script>
+        let data = <?php echo $data;?>;
+        console.log(data);
+    </script>
     <header>
         <div class="header">
             <div class="head_top">
@@ -54,7 +59,7 @@
                                         <li> <a href="index.html">Trang chủ</a> </li>
                                         <li> <a href="about.html">Giới thiệu</a> </li>
                                         <li> <a href="service.html">Dịch vụ</a> </li>
-                                        <li class="active"> <a href="prices.html">Bảng giá</a> </li>
+                                        <li class="active"> <a href="prices.php">Bảng giá</a> </li>
                                         <li> <a href="contact.php">Liên hệ</a> </li>
                                         <li> <a href="#">Đăng ký</a> </li>
                                     </ul>
@@ -82,12 +87,14 @@
         <div class="product-bg-white">
             <div class="container">
                 <div class="row">
+                    
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 text-center">
                         <table class="table table-cell-font-format text-center bg-table-1">
                             <thead class="caption-class">
                                 <tr>
-                                    <th scope="col" colspan="3" class="table-cell-head-format"><span>Lớp 2
-                                            buổi/tuần</span> <span class="d-block text-dark">(8 buổi/tháng)</span>
+                                    <th scope="col" colspan="3" class="table-cell-head-format"><span>
+                                    Lớp 2 buổi/tuần
+                                    </span> <span class="d-block text-dark">(8 buổi/tháng)</span>
                                     </th>
                                 </tr>
                             </thead>
@@ -129,6 +136,7 @@
                             </tbody>
                         </table>
                     </div>
+                    
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 text-center">
                         <table class="table table-cell-font-format text-center bg-table-2">
                             <thead class="caption-class">
