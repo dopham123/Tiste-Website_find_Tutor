@@ -185,10 +185,10 @@ if (isset($_GET['logout'])) {
                                     </div>
 
                                     <label for="experience">Kinh nghiệm</label>
-                                    <textarea class="input-info" disabled rows="5" cols="50" name="experience"></textarea>
+                                    <textarea class="input-info" disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
 
                                     <label for="info">Thông tin thêm:</label>
-                                    <textarea class="input-info" disabled rows="5" cols="50" name="info"></textarea>
+                                    <textarea class="input-info" disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
             <?php
                                 }
                             }
@@ -214,9 +214,3 @@ if (isset($_GET['logout'])) {
 </body>
 
 </html>
-
-<?php
-if (isset($_POST['btn_save'])) {
-    echo 1;
-}
-?>
