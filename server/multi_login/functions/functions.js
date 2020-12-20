@@ -40,12 +40,21 @@ function saveInfo() {
     if (check) {
         if ($('#avatar_image').val() != "") {
             avatar_image = "../../resource/img_avatar/" + $('#avatar_image').val().split("\\").pop();
+            // profile_image = "../../resource/img_profile/" + $('#profile_image').val().split("\\").pop();
+        } else {
+            // profile_image = document.getElementById("profile_image_1").src;
+            // profile_image = "../../" + profile_image.substr(60);
+            avatar_image = document.getElementById("avatar_image_1").src;
+            avatar_image = "../../" + avatar_image.substr(60);
+        }
+
+        if ($('#profile_image').val() != "") {
             profile_image = "../../resource/img_profile/" + $('#profile_image').val().split("\\").pop();
         } else {
             profile_image = document.getElementById("profile_image_1").src;
             profile_image = "../../" + profile_image.substr(60);
-            avatar_image = document.getElementById("avatar_image_1").src;
-            avatar_image = "../../" + avatar_image.substr(60);
+            // avatar_image = document.getElementById("avatar_image_1").src;
+            // avatar_image = "../../" + avatar_image.substr(60);
         }
         info = $('.info').val();
         experience = $('.experience').val();
