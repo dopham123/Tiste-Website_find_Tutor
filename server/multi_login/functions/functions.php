@@ -161,7 +161,7 @@ function register_profile()
 	global $db, $errors, $info, $experience;
 
 	// check image
-	$target_dir_avatar = "../resource/img_avatar/";
+	$target_dir_avatar = "../../resource/img_avatar/";
 	$target_file_avatar = "";
 	// Check if image file is a actual image or fake image
 	if (!isset($_FILES['avatar_image']) || $_FILES['avatar_image']['error'] == UPLOAD_ERR_NO_FILE) {
@@ -176,7 +176,7 @@ function register_profile()
 	}
 
 	// check image
-	$target_dir_profile = "../resource/img_profile/";
+	$target_dir_profile = "../../resource/img_profile/";
 	$target_file_profile = "";
 	if (!isset($_FILES['profile_image']) || $_FILES['profile_image']['error'] == UPLOAD_ERR_NO_FILE) {
 	} else {

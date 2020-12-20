@@ -43,6 +43,11 @@ if (isset($_GET['logout'])) {
         <button disabled onclick="confirmSaveInfo()" type="submit" class="button-a" id="save" style="background-color: #ccc">Save
         </button>
 
+    <!-- show error here -->
+        <div class="show-message"></div>     
+    <!-- show error here -->
+
+    <!-- show info here -->
         <?php
         $sql = "SELECT * FROM users, users_info WHERE user_id=$user_id AND id=$user_id";
         $result = mysqli_query($con, $sql);
@@ -103,8 +108,6 @@ if (isset($_GET['logout'])) {
                     <?php
                     }
                     ?>
-                    <!-- <input name="gender" id="gender" class="input-info" disabled type="text" value="<?php echo $row['gender'] ?>"> -->
-
                     <label for="phone_number">Số điện thoại:</label>
                     <input name="phone_number" id="phone_number" class="input-info" disabled type="number" value="<?php echo $row['phone_number'] ?>">
 
@@ -138,32 +141,31 @@ if (isset($_GET['logout'])) {
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
                                 <label for="avatar_image">Ảnh đại diện</label>
-                                <!-- <input name="avatar_image" id="avatar_image" class="input-info" disabled type="text" value="<?php echo $row['avatar_image'] ?>"> -->
-                                <img src="../<?php echo $row['avatar_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;>
+                                <img src="<?php echo $row['avatar_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;>
 
                                 <label for="profile_image">Ảnh hồ sơ</label>
-                                <img src="../<?php echo $row['profile_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;">
+                                <img src="<?php echo $row['profile_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;">
 
                                 <label for="experience">Kinh nghiệm</label>
-                                <textarea disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
+                                <textarea class="input-info experience" disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
 
                                 <label for="info">Thông tin thêm:</label>
-                                <textarea disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
+                                <textarea class="input-info info" disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
                             <?php
                             }
                         } else {
                             ?>
                             <label for="avatar_image">Ảnh đại diện</label>
-                            <input name="avatar_image" id="avatar_image" class="input-info" disabled type="number" value="">
+                            <img src="" alt="avatar">
 
                             <label for="profile_image">Ảnh hồ sơ</label>
-                            <input name="profile_image" id="profile_image" class="input-info" disabled type="text" value="">
+                                <img src="" alt="profile">
 
                             <label for="experience">Kinh nghiệm</label>
-                            <textarea disabled rows="5" cols="50" name="experience"></textarea>
+                            <textarea class="input-info" disabled rows="5" cols="50" name="experience"></textarea>
 
                             <label for="info">Thông tin thêm:</label>
-                            <textarea disabled rows="5" cols="50" name="info"></textarea>
+                            <textarea class="input-info" disabled rows="5" cols="50" name="info"></textarea>
             <?php
                         }
                     }
@@ -171,8 +173,10 @@ if (isset($_GET['logout'])) {
             }
             ?>
                 </div>
-
+    <!-- end of show info here -->
     </form>
+
+    <!-- create new password -->
     <input name="new_password" id="new_password" type="button" value="Tạo mật khẩu mới" onclick="
                             loadFile('new-password', 'form_create_password.php');
                             document.getElementById('new_password').setAttribute('disabled', true);
@@ -180,7 +184,7 @@ if (isset($_GET['logout'])) {
     <form class="form-password" action="" onsubmit="event.preventDefault();">
         <div class="new-password container-1"></div>
     </form>
-    <div class="show-message"></div>
+    <!--end of create new password -->
 
 </body>
 

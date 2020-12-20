@@ -9,6 +9,8 @@ $user_id        = $_GET['user_id'];
 $password               =  e($_POST['password']);
 $confirm_password       =  e($_POST['confirm_password']);
 
+// Validate input
+
 if (empty($password)) {
     $errors['password'] = 'Mật khẩu không được để trống';
 } else {
