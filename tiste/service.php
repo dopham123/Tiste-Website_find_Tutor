@@ -193,7 +193,7 @@ include '../server/multi_login/config.php';
                                             </div>
                                             <div class="user-card-break"></div>
                                         </div>
-                                            <div class="user-card-experiment col-12">
+                                            <div class="user-card-experiment">
                                                 
                                                 <div class="experiment">
                                                     '.$row["intro"].'

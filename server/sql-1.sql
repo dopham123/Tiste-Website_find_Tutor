@@ -98,9 +98,9 @@ CREATE TABLE `service` (
     `eval` int(10) NOT NULL,
     `user_if_id` int(10), 
     FOREIGN KEY(user_if_id) REFERENCES users(id),
-    PRIMARY KEY (id) )
+    PRIMARY KEY (id) );
 
-
+-- Khúc này lúc insert vô để ý cái user_if_id là khóa ngoại, coi thử cái user_if_id thêm vào đã có trong bảng user chưa 
 INSERT INTO `service` (`id`, `img`, `subject`, `class`, `salary`, `num_of_std`, `exp`, `intro`, `star`, `eval`, `user_if_id`) VALUES 
 ('1', 'images/lau.JPG', 'Toán - Lý - Hóa', '1 - 3', '2', '9', '2', 'Đại học Bách Khoa TP.HCM - Vui vẻ, hoạt bát, năng động, cách giảng dạy sáng tạo.', '5', '7', '2'),
 ('2', 'images/luc.JPG', 'Toán - Tiếng Anh', '6 - 9', '2.5', '12', '5', 'Đại học Bách Khoa TP.HCM - Vui vẻ, hoạt bát, năng động, cách giảng dạy sáng tạo.', '4.5', '14', '3'),
@@ -109,7 +109,7 @@ INSERT INTO `service` (`id`, `img`, `subject`, `class`, `salary`, `num_of_std`, 
 
 
 
-
+-- Khúc này thêm user đồ vào thôi, không cần cũng được
 INSERT INTO `users_info` (`user_info_id`, `first_name`, `last_name`, `gender`, `phone_number`, `address_1`, `address_2`, `district`, `city`, `post_code`, `user_id`) VALUES ('2', 'Lâu', 'Trương', 'Nam', '12345', 'ádfg', 'ád', 'Thủ ĐỨc', 'HCM', '111', '2');
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `user_type`) VALUES ('3', 'lucle', 'luc@gmail.com', '12345', 'tutor');
 INSERT INTO `users_info` (`user_info_id`, `first_name`, `last_name`, `gender`, `phone_number`, `address_1`, `address_2`, `district`, `city`, `post_code`, `user_id`) VALUES ('3', 'Lực', 'Lê', 'Nam', '1234567', 'qưert', 'tyui', 'Gò Vấp', 'HCM', '222', '3');
