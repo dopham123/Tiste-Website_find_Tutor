@@ -43,11 +43,11 @@ if (isset($_GET['logout'])) {
         <button disabled onclick="confirmSaveInfo()" type="submit" class="button-a" id="save" style="background-color: #ccc">Save
         </button>
 
-    <!-- show error here -->
-        <div class="show-message"></div>     
-    <!-- show error here -->
+        <!-- show error here -->
+        <div class="show-message"></div>
+        <!-- show error here -->
 
-    <!-- show info here -->
+        <!-- show info here -->
         <?php
         $sql = "SELECT * FROM users, users_info WHERE user_id=$user_id AND id=$user_id";
         $result = mysqli_query($con, $sql);
@@ -143,7 +143,7 @@ if (isset($_GET['logout'])) {
                                 <label for="avatar_image">Ảnh đại diện</label>
                                 <img src="<?php echo $row['avatar_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;>
 
-                                <label for="profile_image">Ảnh hồ sơ</label>
+                                <label for=" profile_image">Ảnh hồ sơ</label>
                                 <img src="<?php echo $row['profile_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;">
 
                                 <label for="experience">Kinh nghiệm</label>
@@ -151,29 +151,38 @@ if (isset($_GET['logout'])) {
 
                                 <label for="info">Thông tin thêm:</label>
                                 <textarea class="input-info info" disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
-                            <?php
+                                <?php
                             }
                         } else {
-                            ?>
-                            <label for="avatar_image">Ảnh đại diện</label>
-                            <img src="" alt="avatar">
+                            $sql = "INSERT INTO tutor_profile (experience, info, avatar_image, profile_image, user_id) 
+                            VALUES('', '', '', '', $user_id)";
+                            $result = mysqli_query($con, $sql);
+                            $sql = "SELECT * FROM tutor_profile WHERE user_id=$user_id";
+                            $result = mysqli_query($con, $sql);
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
+                                    ?>
+                                    <label for="avatar_image">Ảnh đại diện</label>
+                                    <img src="" alt="avatar">
 
-                            <label for="profile_image">Ảnh hồ sơ</label>
-                                <img src="" alt="profile">
+                                    <label for="profile_image">Ảnh hồ sơ</label>
+                                    <img src="" alt="profile">
 
-                            <label for="experience">Kinh nghiệm</label>
-                            <textarea class="input-info" disabled rows="5" cols="50" name="experience"></textarea>
+                                    <label for="experience">Kinh nghiệm</label>
+                                    <textarea class="input-info" disabled rows="5" cols="50" name="experience"></textarea>
 
-                            <label for="info">Thông tin thêm:</label>
-                            <textarea class="input-info" disabled rows="5" cols="50" name="info"></textarea>
+                                    <label for="info">Thông tin thêm:</label>
+                                    <textarea class="input-info" disabled rows="5" cols="50" name="info"></textarea>
             <?php
+                                }
+                            }
                         }
                     }
                 }
             }
             ?>
                 </div>
-    <!-- end of show info here -->
+                <!-- end of show info here -->
     </form>
 
     <!-- create new password -->

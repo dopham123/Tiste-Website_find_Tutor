@@ -83,7 +83,7 @@ if (!empty($errors)) {
     $sql_select = "SELECT user_type FROM users WHERE id = $user_id";
     $result_3 = mysqli_query($con, $sql_select);
 
-    if (mysqli_num_rows($result) > 0) {
+    if (mysqli_num_rows($result_3) > 0) {
         while ($row = mysqli_fetch_array($result_3, MYSQLI_ASSOC)) {
             if ($row['user_type'] == 'tutor') {
                 $sql_tutor_profile = "UPDATE tutor_profile SET info = '$info', experience = '$experience' WHERE user_id=$user_id";

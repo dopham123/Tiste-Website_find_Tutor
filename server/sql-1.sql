@@ -29,8 +29,8 @@ CREATE TABLE `users_info` (
 
 CREATE TABLE `tutor_profile` ( 
     `tutor_profile_id` int(10) NOT NULL AUTO_INCREMENT,
-    `experience` varchar(100) NOT NULL, 
-    `info` varchar(100) NOT NULL, 
+    `experience` varchar(100), 
+    `info` varchar(100), 
     `avatar_image` varchar(100) , 
     `profile_image` varchar(100) , 
     `user_id` int(10), 
