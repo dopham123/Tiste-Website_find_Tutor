@@ -14,8 +14,8 @@ Select a file to upload:
 
 <script>
 function myFunction() {
-  var x = $('#myFile').val().split("\\").pop();
-  document.getElementById("demo").innerHTML = "../../resource/img_profile/"+ x;
+  var x = document.getElementById("myFile").value;
+  document.getElementById("demo").innerHTML = x.split("\\").pop();
 }
 function getFileData(myFile){
    var file = myFile.files[0];  

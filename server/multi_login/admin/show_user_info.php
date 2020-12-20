@@ -15,6 +15,9 @@ if (isset($_GET['logout'])) {
     unset($_SESSION['user']);
     header("location: ../login.php");
 }
+$target_dir_profile = "../../resource/img_profile/";
+$target_dir_avatar = "../../resource/img_avatar/";
+
 ?>
 
 <!DOCTYPE html>
@@ -144,14 +147,14 @@ if (isset($_GET['logout'])) {
                                 <div>
                                     <label>Chọn ảnh đại diện mới</label>
                                     <input disabled class="input-info" type="file" name="avatar_image" id="avatar_image">
-                                    <img src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
+                                    <img id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
                                 </div>
 
                                 <label for=" profile_image">Ảnh hồ sơ</label>
                                 <div>
                                     <label>Chọn ảnh hồ sơ mới</label>
                                     <input disabled class="input-info" type="file" name="profile_image" id="profile_image">
-                                    <img src="<?php echo $row['profile_image'] ?>" alt="profile" style="height: 300px; width: 400px;">
+                                    <img id="profile_image_1" src="<?php echo $row['profile_image'] ?>" alt="profile" style="height: 300px; width: 400px;">
                                 </div>
 
                                 <label for="experience">Kinh nghiệm</label>
@@ -163,7 +166,7 @@ if (isset($_GET['logout'])) {
                             }
                         } else {
                             $sql = "INSERT INTO tutor_profile (experience, info, avatar_image, profile_image, user_id) 
-                            VALUES('', '', '', '', $user_id)";
+                            VALUES('', '', '$target_dir_avatar', '$target_dir_profile', $user_id)";
                             $result = mysqli_query($con, $sql);
                             $sql = "SELECT * FROM tutor_profile WHERE user_id=$user_id";
                             $result = mysqli_query($con, $sql);
@@ -174,21 +177,21 @@ if (isset($_GET['logout'])) {
                                     <div>
                                         <label>Chọn ảnh đại diện mới</label>
                                         <input disabled class="input-info" type="file" name="avatar_image" id="avatar_image">
-                                        <img src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
+                                        <img id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
                                     </div>
 
                                     <label for="profile_image">Ảnh hồ sơ</label>
                                     <div>
                                         <label>Chọn ảnh hồ sơ mới</label>
                                         <input disabled class="input-info" type="file" name="profile_image" id="profile_image">
-                                        <img src="<?php echo $row['profile_image'] ?>" alt="profile" style="height: 300px; width: 400px;">
+                                        <img id="profile_image_1" src="<?php echo $row['profile_image'] ?>" alt="profile" style="height: 300px; width: 400px;">
                                     </div>
 
                                     <label for="experience">Kinh nghiệm</label>
-                                    <textarea class="input-info" disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
+                                    <textarea class="input-info experience" disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
 
                                     <label for="info">Thông tin thêm:</label>
-                                    <textarea class="input-info" disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
+                                    <textarea class="input-info info" disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
             <?php
                                 }
                             }
