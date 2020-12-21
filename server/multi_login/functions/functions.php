@@ -289,7 +289,7 @@ function login()
 				$_SESSION['user'] = $logged_in_user;
 				$_SESSION['success']  = "You are now logged in";
 
-				header('location: index.php');
+				header('location: ../../ass_2_ver1/Tiste-Website_find_Tutor/tiste/index.php');
 			}
 		} else {
 			array_push($errors, "Wrong username/password combination");
