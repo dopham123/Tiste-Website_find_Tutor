@@ -3,10 +3,6 @@
 if (isLoggedIn() && isAdmin()) {
     header('location: ../server/multi_login/admin/homepage_admin.php');
 }
-
-if (isTutor() || isStudent()) {
-    header('location: ./index.php');
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,10 +35,11 @@ if (isTutor() || isStudent()) {
                         </div>
                         <div class="col d-flex align-items-center justify-content-end">
                             <?php
-                            if (isTutor() || isStudent()) { ?>
+                            if (isTutor() || isStudent()) {
+                                $row = getInfo($_SESSION['user']['id']); ?>
                                 <div>
                                     <ul>
-                                        <li><a class="buy text-center""><?php echo $_SESSION['user']['username'] ?></a></li>
+                                        <li><a class="buy text-center"><?php echo $row['first_name'] . ' ' .$row['last_name'] ; ?></a></li>
                                 </ul>
                             </div>
                             <?php

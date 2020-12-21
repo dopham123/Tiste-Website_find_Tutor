@@ -26,7 +26,7 @@ if (isTutor() || isStudent()) {
 	<style>
 		.welcom-login-format {
 			font-size: 2rem;
-			color: #67DADF;
+			color: #20aeff;
 		}
 
 		.login-grid {
@@ -52,6 +52,22 @@ if (isTutor() || isStudent()) {
 			background: #fff;
 			padding: 40px 20px;
 			margin-bottom: 0;
+		}
+
+		.blue-bg-login {
+			background-color: #09a6ff;
+		}
+
+		.label-edited-login {
+			font-size: 0.8rem;
+			font-weight: bold;
+			color: white;
+			padding-top: 0.7rem;
+		}
+
+		.login-btn {
+			background-color: #0c6cc2;
+			color: white;
 		}
 	</style>
 </head>
@@ -110,7 +126,7 @@ if (isTutor() || isStudent()) {
 		</div>
 	</header>
 	<!-- login -->
-	<div class="container-fluid d-flex justify-content-center align-items-center border">
+	<div class="container-fluid d-flex justify-content-center align-items-center border" style="padding: 10.6vh;">
 		<div class="row">
 			<div class="container d-flex justify-content-center align-items-center white-bg-login">
 				<div class="row bg-white width-100 d-flex justify-content-center">
@@ -119,18 +135,21 @@ if (isTutor() || isStudent()) {
 							<h2 class="font-weight-bold welcom-login-format text-center">CHÀO MỪNG BẠN TRỞ LẠI VỚI TISTE</h2>
 						</div>
 					</div>
-					<div class="col-sm-6 bg-white border border-info rounded">
+					<div class="col-sm-6 border border-info rounded blue-bg-login">
 						<form method="post" action="login.php">
 							<?php echo display_error(); ?>
 							<div class="row">
+								<div class="col-sm-12 d-flex justify-content-start mt-2">
+									<h1 style="color: white; font-weight: bold;">ĐĂNG NHẬP</h1>
+								</div>
 								<div class="col-sm-3 d-flex align-items-center">
-									<label for="username" class="label-edited">Tên đăng nhập<span class="required" id="username-error">*</span></label>
+									<label for="username" class="label-edited-login">Tên đăng nhập<span class="required" id="username-error"></span></label>
 								</div>
 								<div class="col-sm-9 d-flex justify-content-center align-items-center">
 									<input type="text" name="username" class="form-control form-control-edited input-login" id="username" placeholder="wibuneverdie" required>
 								</div>
 								<div class="col-sm-3 d-flex align-items-center">
-									<label for="password" class="label-edited">Mật khẩu</label> <span style="color: red;" id="password-error">*</span>
+									<label for="password" class="label-edited-login">Mật khẩu</label> <span style="color: red;" id="password-error"></span>
 								</div>
 								<div class="col-sm-9">
 									<input type="password" name="password" class="form-control form-control-edited input-login" id="password" placeholder="*******" required>
@@ -138,14 +157,14 @@ if (isTutor() || isStudent()) {
 							</div>
 							<div class="row pb-4 pt-2">
 								<div class="col-sm-12 d-flex align-items-center justify-content-end">
-									<button type="submit" class="btn" name="login_btn">Đăng nhập</button>
+									<button type="submit" class="login-btn rounded-pill border border-dark" name="login_btn">Đăng nhập</button>
 								</div>
 							</div>
 						</form>
 					</div>
 					<div class="col-sm-12 d-flex align-items-center justify-content-center">
-						<p>
-							Bạn chưa có tài khoản? <a href="../server/multi_login/register.php">Đăng ký ngay</a>
+						<p class="font-weight-bold">
+						 	Bạn chưa có tài khoản? <a href="../server/multi_login/register.php"><u style="color: blue;">Đăng ký ngay</u></a>
 						</p>
 					</div>
 				</div>

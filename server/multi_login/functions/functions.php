@@ -323,3 +323,15 @@ function isStudent()
 		return false;
 	}
 }
+
+function getInfo($id)
+{
+	global $db;
+	$row = array();
+	$sql = "SELECT * FROM users_info WHERE user_id=$id";
+	$result = mysqli_query($db, $sql);
+	if (mysqli_num_rows($result) > 0) {
+		return $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	}
+	return $row;
+}
