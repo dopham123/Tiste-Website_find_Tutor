@@ -70,7 +70,7 @@ if (isLoggedIn() && isAdmin()) {
                                     <ul class="menu-area-main d-flex-column justify-content-around">
                                         <li class="active"> <a href="index.html">Trang chủ</a> </li>
                                         <li> <a href="about.html">Giới thiệu</a> </li>
-                                        <li> <a href="service.html">Dịch vụ</a> </li>
+                                        <li> <a href="service.php">Dịch vụ</a> </li>
                                         <li> <a href="prices.php">BẢng giá</a> </li>
                                         <li> <a href="contact.php">Liên hệ</a> </li>
                                         <li> <a href="#">Đăng ký</a> </li>
@@ -97,7 +97,7 @@ if (isLoggedIn() && isAdmin()) {
                         <h1 style="color: white;"><strong class="yellow_bold" style="font-size: larger;">Tiste</strong><br>Vì nền giáo dục Việt<br>
                         </h1>
                         <p>Nơi tốt nhất để tìm kiếm gia sư cho bạn</p>
-                        <a href="service.html">Tìm gia sư</a>
+                        <a href="service.php">Tìm gia sư</a>
                     </div>
                 </div>
             </div>
