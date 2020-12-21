@@ -3,6 +3,12 @@
 if (isLoggedIn() && isAdmin()) {
     header('location: ../server/multi_login/admin/homepage_admin.php');
 }
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['user']);
+    header("location: ./index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,14 +45,15 @@ if (isLoggedIn() && isAdmin()) {
                                 $row = getInfo($_SESSION['user']['id']); ?>
                                 <div>
                                     <ul>
-                                        <li><a class="buy text-center"><?php echo $row['first_name'] . ' ' .$row['last_name'] ; ?></a></li>
-                                </ul>
-                            </div>
+                                        <li><a class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
+                                        <a href="./index.php?logout='1'" style="color: red;">logout</a>
+                                    </ul>
+                                </div>
                             <?php
                             } else { ?>
                                 <div>
-                                <ul>
-                                    <li><a class=" buy text-center" href="./login.php">Đăng nhập</a></li>
+                                    <ul>
+                                        <li><a class=" buy text-center" href="./login.php">Đăng nhập</a></li>
                                     </ul>
                                 </div>
                             <?php
