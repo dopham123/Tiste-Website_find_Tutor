@@ -1,11 +1,22 @@
+<?php include('../server/multi_login/functions/functions.php'); ?>
+<?php
+if (isLoggedIn() && isAdmin()) {
+    header('location: ../server/multi_login/admin/homepage_admin.php');
+}
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['user']);
+    header("location: ./index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- style css -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
@@ -29,19 +40,32 @@
                             </div>
                         </div>
                         <div class="col d-flex align-items-center justify-content-end">
-                            <div>
-                                <ul>
-                                    <li><a class="buy text-center" href="#">Đăng nhập</a></li>
-                                </ul>
-                            </div>
+                            <?php
+                            if (isTutor() || isStudent()) {
+                                $row = getInfo($_SESSION['user']['id']); ?>
+                                <div>
+                                    <ul>
+                                        <li><a class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
+                                        <a href="./index.php?logout='1'" style="color: red;">logout</a>
+                                    </ul>
+                                </div>
+                            <?php
+                            } else { ?>
+                                <div>
+                                    <ul>
+                                        <li><a class=" buy text-center" href="./login.php">Đăng nhập</a></li>
+                                    </ul>
+                                </div>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center"
-                        style="padding-left: 0; text-align: center;">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center" style="padding-left: 0; text-align: center;">
                         <div class="logo">
                             <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
                         </div>
@@ -77,8 +101,7 @@
 
 
                     <div class="carousel-caption relative">
-                        <h1 style="color: white;"><strong class="yellow_bold"
-                                style="font-size: larger;">Tiste</strong><br>Vì nền giáo dục Việt<br>
+                        <h1 style="color: white;"><strong class="yellow_bold" style="font-size: larger;">Tiste</strong><br>Vì nền giáo dục Việt<br>
                         </h1>
                         <p>Nơi tốt nhất để tìm kiếm gia sư cho bạn</p>
                         <a href="service.php">Tìm gia sư</a>
@@ -130,8 +153,7 @@
                         <div class="for_box">
                             <i><img src="icon/Icon_Personal.png" alt="icon" /></i>
                             <h3>Hỗ trợ tận tâm</h3>
-                            <p><span class="tiste"><a href="contact.php">Trung tâm CSKH</a></span> của <span
-                                    class="tiste">Tiste</span> luôn sẵn sàng 24/24 để giải đáp thắc mắc của bạn.</p>
+                            <p><span class="tiste"><a href="contact.php">Trung tâm CSKH</a></span> của <span class="tiste">Tiste</span> luôn sẵn sàng 24/24 để giải đáp thắc mắc của bạn.</p>
                         </div>
                     </div>
                 </div>
@@ -153,8 +175,7 @@
                             <div class="container">
                                 <div class="carousel-caption text-bg">
                                     <div class="img_bg">
-                                        <i><img src="images/steve.png" alt="icon" /><span>Luc Le (Chủ tịch)<br><strong
-                                                    class="date">28/10/2020</strong></span></i>
+                                        <i><img src="images/steve.png" alt="icon" /><span>Luc Le (Chủ tịch)<br><strong class="date">28/10/2020</strong></span></i>
                                     </div>
                                     <p style="font-style: italic;">Trong bối cảnh mà xã hội thay đổi không ngừng thì
                                         những thương hiệu tồn tại lâu dài là những thương hiệu được tạo dựng từ trái tim
@@ -177,10 +198,7 @@
     <!-- map -->
     <div class="container-fluid padin">
         <div class="map">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4272.728587798533!2d106.80426879135803!3d10.879283864146885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x29d5aeb365cee20b!2sKTX%20Khu%20A%20%C4%90HQG%20TP.HCM!5e0!3m2!1svi!2s!4v1606484954232!5m2!1svi!2s"
-                height="650" style="border:0; width: 100%;" allowfullscreen="" aria-hidden="false"
-                tabindex="0"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4272.728587798533!2d106.80426879135803!3d10.879283864146885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x29d5aeb365cee20b!2sKTX%20Khu%20A%20%C4%90HQG%20TP.HCM!5e0!3m2!1svi!2s!4v1606484954232!5m2!1svi!2s" height="650" style="border:0; width: 100%;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
         </div>
     </div>
     <!-- end map -->

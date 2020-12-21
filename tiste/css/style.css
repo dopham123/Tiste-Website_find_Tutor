@@ -1437,7 +1437,7 @@ label.label-edited {
     padding-top: 0.7rem;
 }
 
-input.input-edited {
+input.input-login {
     border: 0;
     border-bottom: 2px solid #ccc;
     box-shadow: none !important;

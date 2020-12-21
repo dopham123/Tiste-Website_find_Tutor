@@ -27,9 +27,38 @@ function saveInfo() {
     $('.show-message').removeClass('has-error');
     $('.help-block').remove();
 
+    var avatar_image = "";
+    var profile_image = "";
+    var info = "";
+    var experience = "";
+
     const urlParams = new URLSearchParams(window.location.search);
     const user_id = urlParams.get('user_id');
     // var id = event.target.name;
+
+    var check = document.getElementById("avatar_image");
+    if (check) {
+        if ($('#avatar_image').val() != "") {
+            avatar_image = "../../resource/img_avatar/" + $('#avatar_image').val().split("\\").pop();
+            // profile_image = "../../resource/img_profile/" + $('#profile_image').val().split("\\").pop();
+        } else {
+            // profile_image = document.getElementById("profile_image_1").src;
+            // profile_image = "../../" + profile_image.substr(60);
+            avatar_image = document.getElementById("avatar_image_1").src;
+            avatar_image = "../../" + avatar_image.substr(60);
+        }
+
+        if ($('#profile_image').val() != "") {
+            profile_image = "../../resource/img_profile/" + $('#profile_image').val().split("\\").pop();
+        } else {
+            profile_image = document.getElementById("profile_image_1").src;
+            profile_image = "../../" + profile_image.substr(60);
+            // avatar_image = document.getElementById("avatar_image_1").src;
+            // avatar_image = "../../" + avatar_image.substr(60);
+        }
+        info = $('.info').val();
+        experience = $('.experience').val();
+    }
 
     var formData = {
         'username': $('input[name=username]').val(),
@@ -44,8 +73,10 @@ function saveInfo() {
         'district': $('input[name=district]').val(),
         'city': $('input[name=city]').val(),
         'post_code': $('input[name=post_code]').val(),
-        'info': $('.info').val(),
-        'experience': $('.experience').val(),
+        'info': info,
+        'experience': experience,
+        'avatar_image': avatar_image,
+        'profile_image': profile_image,
     };
 
     // process the ajax
@@ -121,7 +152,7 @@ function createUser() {
         })
 }
 
-$(document).ready(function () {
+function createPassword(){
 
     $('.form-password').submit(function (event) {
         $('.show-message').removeClass('has-error');
@@ -148,19 +179,19 @@ $(document).ready(function () {
                 if (!data.success) {
                     // show error
                     if (data.errors.password) {
-                        $('.show-message').addClass('has-error'); // add the error class to show red input
-                        $('.show-message').append('<div class="help-block" style="color: red;">' + data.errors.password + '</div>'); // add the actual error message under our input
+                        $('.show-message-pass').addClass('has-error'); // add the error class to show red input
+                        $('.show-message-pass').append('<div class="help-block" style="color: red;">' + data.errors.password + '</div>'); // add the actual error message under our input
                     }
 
                 } else {
-                    $('.form-password').html('<div class="">' + data.message + '</div>');
+                    $('.form-password').html('<div class="new-password container-1">' + data.message + '</div>');
                     $('#new_password').removeAttr("disabled");
                     // setTimeout(loadFile('user-info', '../admin/show_user_info.php?user_id=' + user_id), 3000);
                 }
             })
         //stop submit
     });
-});
+}
 
 function deleteFunction(event) {
     var ajaxRequest;
@@ -193,7 +224,7 @@ function confirmSaveInfo() {
     }
 }
 
-function confirmDelete(event){
+function confirmDelete(event) {
     if (confirmSubmit('Bạn có muốn xoá user này?')) {
         deleteFunction(event);
     }

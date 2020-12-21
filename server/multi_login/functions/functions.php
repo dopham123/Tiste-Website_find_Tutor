@@ -289,7 +289,7 @@ function login()
 				$_SESSION['user'] = $logged_in_user;
 				$_SESSION['success']  = "You are now logged in";
 
-				header('location: index.php');
+				header('location: ../../ass_2_ver1/Tiste-Website_find_Tutor/tiste/index.php');
 			}
 		} else {
 			array_push($errors, "Wrong username/password combination");
@@ -322,4 +322,16 @@ function isStudent()
 	} else {
 		return false;
 	}
+}
+
+function getInfo($id)
+{
+	global $db;
+	$row = array();
+	$sql = "SELECT * FROM users_info WHERE user_id=$id";
+	$result = mysqli_query($db, $sql);
+	if (mysqli_num_rows($result) > 0) {
+		return $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	}
+	return $row;
 }

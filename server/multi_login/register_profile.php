@@ -20,7 +20,7 @@ if (isStudent()) {
         <?php echo display_error(); ?>
 
         <div class="input-group">
-            <label>Chọn ảnh hồ sơ</label>
+            <label>Chọn ảnh đại diện</label>
             <input type="file" name="avatar_image" id="avatar_image">
         </div>
 

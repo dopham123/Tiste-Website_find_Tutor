@@ -15,6 +15,9 @@ if (isset($_GET['logout'])) {
     unset($_SESSION['user']);
     header("location: ../login.php");
 }
+$target_dir_profile = "../../resource/img_profile/";
+$target_dir_avatar = "../../resource/img_avatar/";
+
 ?>
 
 <!DOCTYPE html>
@@ -40,14 +43,14 @@ if (isset($_GET['logout'])) {
     <form class="edit-form" method="POST" onsubmit="event.preventDefault()">
         <button onclick="enableEdit('input-info');" class="button-a button-edit" name="button-edit">Edit
         </button>
-        <button disabled onclick="confirmSaveInfo()" type="submit" class="button-a" id="save" style="background-color: #ccc">Save
+        <button disabled onclick="confirmSaveInfo()" type="submit" class="button-a" id="save" name="btn-save" style="background-color: #ccc">Save
         </button>
 
-    <!-- show error here -->
-        <div class="show-message"></div>     
-    <!-- show error here -->
+        <!-- show error here -->
+        <div class="show-message"></div>
+        <!-- show error here -->
 
-    <!-- show info here -->
+        <!-- show info here -->
         <?php
         $sql = "SELECT * FROM users, users_info WHERE user_id=$user_id AND id=$user_id";
         $result = mysqli_query($con, $sql);
@@ -141,39 +144,64 @@ if (isset($_GET['logout'])) {
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
                                 <label for="avatar_image">Ảnh đại diện</label>
-                                <img src="<?php echo $row['avatar_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;>
+                                <div>
+                                    <label>Chọn ảnh đại diện mới</label>
+                                    <input disabled class="input-info" type="file" name="avatar_image" id="avatar_image">
+                                    <img id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
+                                </div>
 
-                                <label for="profile_image">Ảnh hồ sơ</label>
-                                <img src="<?php echo $row['profile_image'] ?>" alt="Italian Trulli" style="height: 300px; width: 400px;">
+                                <label for=" profile_image">Ảnh hồ sơ</label>
+                                <div>
+                                    <label>Chọn ảnh hồ sơ mới</label>
+                                    <input disabled class="input-info" type="file" name="profile_image" id="profile_image">
+                                    <img id="profile_image_1" src="<?php echo $row['profile_image'] ?>" alt="profile" style="height: 300px; width: 400px;">
+                                </div>
 
                                 <label for="experience">Kinh nghiệm</label>
                                 <textarea class="input-info experience" disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
 
                                 <label for="info">Thông tin thêm:</label>
                                 <textarea class="input-info info" disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
-                            <?php
+                                <?php
                             }
                         } else {
-                            ?>
-                            <label for="avatar_image">Ảnh đại diện</label>
-                            <img src="" alt="avatar">
+                            $sql = "INSERT INTO tutor_profile (experience, info, avatar_image, profile_image, user_id) 
+                            VALUES('', '', '$target_dir_avatar', '$target_dir_profile', $user_id)";
+                            $result = mysqli_query($con, $sql);
+                            $sql = "SELECT * FROM tutor_profile WHERE user_id=$user_id";
+                            $result = mysqli_query($con, $sql);
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                ?>
+                                    <label for="avatar_image">Ảnh đại diện</label>
+                                    <div>
+                                        <label>Chọn ảnh đại diện mới</label>
+                                        <input disabled class="input-info" type="file" name="avatar_image" id="avatar_image">
+                                        <img id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
+                                    </div>
 
-                            <label for="profile_image">Ảnh hồ sơ</label>
-                                <img src="" alt="profile">
+                                    <label for="profile_image">Ảnh hồ sơ</label>
+                                    <div>
+                                        <label>Chọn ảnh hồ sơ mới</label>
+                                        <input disabled class="input-info" type="file" name="profile_image" id="profile_image">
+                                        <img id="profile_image_1" src="<?php echo $row['profile_image'] ?>" alt="profile" style="height: 300px; width: 400px;">
+                                    </div>
 
-                            <label for="experience">Kinh nghiệm</label>
-                            <textarea class="input-info" disabled rows="5" cols="50" name="experience"></textarea>
+                                    <label for="experience">Kinh nghiệm</label>
+                                    <textarea class="input-info experience" disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
 
-                            <label for="info">Thông tin thêm:</label>
-                            <textarea class="input-info" disabled rows="5" cols="50" name="info"></textarea>
+                                    <label for="info">Thông tin thêm:</label>
+                                    <textarea class="input-info info" disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
             <?php
+                                }
+                            }
                         }
                     }
                 }
             }
             ?>
                 </div>
-    <!-- end of show info here -->
+                <!-- end of show info here -->
     </form>
 
     <!-- create new password -->
@@ -184,6 +212,7 @@ if (isset($_GET['logout'])) {
     <form class="form-password" action="" onsubmit="event.preventDefault();">
         <div class="new-password container-1"></div>
     </form>
+    <div class="show-message-pass"></div>
     <!--end of create new password -->
 
 </body>
