@@ -36,6 +36,18 @@ $target_dir_avatar = "../../resource/img_avatar/";
             display: grid;
             grid-template-columns: 2fr 2fr;
         }
+
+        input {
+            display: block;
+        }
+
+        select {
+            display: block;
+        }
+
+        label {
+            display: inline;
+        }
     </style>
 </head>
 
@@ -56,7 +68,7 @@ $target_dir_avatar = "../../resource/img_avatar/";
         $result = mysqli_query($con, $sql);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
-                <div class="container-1">
+                <div class="">
 
                     <label for="username">Tên đăng nhập:</label>
                     <input name="username" id="username" class="input-info" disabled type="text" value="<?php echo $row['username'] ?>">
@@ -67,13 +79,13 @@ $target_dir_avatar = "../../resource/img_avatar/";
                     <label for="user_type">Vai trò:</label>
                     <?php
                     if (strval($row['user_type']) == 'tutor') { ?>
-                        <select name="user_type" id="user_type" class="input-info user_type-class" disabled>
+                        <select onchange="changeUserTypeShow();" name="user_type" id="<?php echo $row['id'] ?>" class="input-info user_type-class" disabled>
                             <option selected value="tutor">Gia sư</option>
                             <option value="user">Học viên</option>
                         </select>
                     <?php
                     } else if (strval($row['user_type']) == 'user') { ?>
-                        <select name="user_type" id="user_type" class="input-info user_type-class" disabled>
+                        <select onchange="changeUserTypeShow();" name="user_type" id="<?php echo $row['id'] ?>" class="input-info user_type-class" disabled>
                             <option value="tutor">Gia sư</option>
                             <option selected value="user">Học viên</option>
                         </select>
@@ -143,36 +155,7 @@ $target_dir_avatar = "../../resource/img_avatar/";
                         $result = mysqli_query($con, $sql);
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
-                                <label for="avatar_image">Ảnh đại diện</label>
-                                <div>
-                                    <label>Chọn ảnh đại diện mới</label>
-                                    <input disabled class="input-info" type="file" name="avatar_image" id="avatar_image">
-                                    <img id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
-                                </div>
-
-                                <label for=" profile_image">Ảnh hồ sơ</label>
-                                <div>
-                                    <label>Chọn ảnh hồ sơ mới</label>
-                                    <input disabled class="input-info" type="file" name="profile_image" id="profile_image">
-                                    <img id="profile_image_1" src="<?php echo $row['profile_image'] ?>" alt="profile" style="height: 300px; width: 400px;">
-                                </div>
-
-                                <label for="experience">Kinh nghiệm</label>
-                                <textarea class="input-info experience" disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
-
-                                <label for="info">Thông tin thêm:</label>
-                                <textarea class="input-info info" disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
-                                <?php
-                            }
-                        } else {
-                            $sql = "INSERT INTO tutor_profile (experience, info, avatar_image, profile_image, user_id) 
-                            VALUES('', '', '$target_dir_avatar', '$target_dir_profile', $user_id)";
-                            $result = mysqli_query($con, $sql);
-                            $sql = "SELECT * FROM tutor_profile WHERE user_id=$user_id";
-                            $result = mysqli_query($con, $sql);
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                                ?>
+                                <div class="show_profile">
                                     <label for="avatar_image">Ảnh đại diện</label>
                                     <div>
                                         <label>Chọn ảnh đại diện mới</label>
@@ -180,7 +163,7 @@ $target_dir_avatar = "../../resource/img_avatar/";
                                         <img id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
                                     </div>
 
-                                    <label for="profile_image">Ảnh hồ sơ</label>
+                                    <label for=" profile_image">Ảnh hồ sơ</label>
                                     <div>
                                         <label>Chọn ảnh hồ sơ mới</label>
                                         <input disabled class="input-info" type="file" name="profile_image" id="profile_image">
@@ -192,14 +175,45 @@ $target_dir_avatar = "../../resource/img_avatar/";
 
                                     <label for="info">Thông tin thêm:</label>
                                     <textarea class="input-info info" disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
-            <?php
+                                    <?php
+                                }
+                            } else {
+                                $sql = "INSERT INTO tutor_profile (experience, info, avatar_image, profile_image, user_id) 
+                            VALUES('', '', '$target_dir_avatar', '$target_dir_profile', $user_id)";
+                                $result = mysqli_query($con, $sql);
+                                $sql = "SELECT * FROM tutor_profile WHERE user_id=$user_id";
+                                $result = mysqli_query($con, $sql);
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                    ?>
+                                        <label for="avatar_image">Ảnh đại diện</label>
+                                        <div>
+                                            <label>Chọn ảnh đại diện mới</label>
+                                            <input disabled class="input-info" type="file" name="avatar_image" id="avatar_image">
+                                            <img id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
+                                        </div>
+
+                                        <label for="profile_image">Ảnh hồ sơ</label>
+                                        <div>
+                                            <label>Chọn ảnh hồ sơ mới</label>
+                                            <input disabled class="input-info" type="file" name="profile_image" id="profile_image">
+                                            <img id="profile_image_1" src="<?php echo $row['profile_image'] ?>" alt="profile" style="height: 300px; width: 400px;">
+                                        </div>
+
+                                        <label for="experience">Kinh nghiệm</label>
+                                        <textarea class="input-info experience" disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea>
+
+                                        <label for="info">Thông tin thêm:</label>
+                                        <textarea class="input-info info" disabled rows="5" cols="50" name="info"><?php echo $row['info']; ?></textarea>
+                <?php
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-            ?>
+                ?>
+                                </div>
                 </div>
                 <!-- end of show info here -->
     </form>

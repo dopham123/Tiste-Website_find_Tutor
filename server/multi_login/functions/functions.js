@@ -229,3 +229,13 @@ function confirmDelete(event) {
         deleteFunction(event);
     }
 }
+
+function changeUserTypeShow() {
+    var user_type = document.getElementsByClassName("user_type-class")[0];
+    var user_id = document.getElementsByClassName("user_type-class")[0].id;
+    if(user_type.value == "tutor") {
+        loadFile("show_profile", "../admin/change_user_type_edit.php?user_id=" + user_id);
+    } else {
+        document.getElementsByClassName("show_profile")[0].innerHTML=' ';
+    }
+}
