@@ -34,9 +34,9 @@ tr:nth-child(even) {
     margin-top: 20px;
 }
 
-.container {
+/* .container {
     text-align: center;
-}
+} */
 
 .message {
     color: red; 

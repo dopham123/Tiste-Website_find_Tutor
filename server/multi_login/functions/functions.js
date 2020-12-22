@@ -152,7 +152,7 @@ function createUser() {
         })
 }
 
-function createPassword(){
+function createPassword() {
 
     $('.form-password').submit(function (event) {
         $('.show-message').removeClass('has-error');
@@ -233,9 +233,15 @@ function confirmDelete(event) {
 function changeUserTypeShow() {
     var user_type = document.getElementsByClassName("user_type-class")[0];
     var user_id = document.getElementsByClassName("user_type-class")[0].id;
-    if(user_type.value == "tutor") {
+    if (user_type.value == "tutor") {
         loadFile("show_profile", "../admin/change_user_type_edit.php?user_id=" + user_id);
     } else {
-        document.getElementsByClassName("show_profile")[0].innerHTML=' ';
+        document.getElementsByClassName("show_profile")[0].innerHTML = ' ';
     }
+}
+
+function showFileName(id){
+// Add the following code if you want the name of the file appear on select
+    var fileName = $('#' + id).val().split("\\").pop();
+    $('#' + id).siblings(".custom-file-label").addClass("selected").html(fileName);
 }
