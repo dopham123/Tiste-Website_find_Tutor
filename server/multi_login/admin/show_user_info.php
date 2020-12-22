@@ -35,32 +35,39 @@ $target_dir_avatar = "../../resource/img_avatar/";
     <link rel="stylesheet" href="./style.css">
 
     <style>
-        .container-1 {
-            display: grid;
-            grid-template-columns: 2fr 2fr;
+        .ava-pro-img-format {
+            position: absolute;
+            /* Take your picture out of the flow */
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* Make the picture taking the size of it's parent */
+            width: 100%;
+            /* This if for the object-fit */
+            height: 100%;
+            /* This if for the object-fit */
+            /* Equivalent of the background-size: cover; of a background-image */
+            object-position: center;
         }
 
-        input {
+        .img-container {
+            position: relative;
+            width: 100%;
+            /* The size you want */
+        }
+
+        .img-container::after {
+            content: "";
             display: block;
-        }
-
-        select {
-            display: block;
-        }
-
-        label {
-            display: inline;
+            padding-bottom: 100%;
+            /* The padding depends on the width, not on the height, so with a padding-bottom of 100% you will get a square */
         }
     </style>
 </head>
 
 <body>
     <form class="edit-form" method="POST" onsubmit="event.preventDefault()">
-        <button onclick="enableEdit('input-info');" class="button-a button-edit" name="button-edit">Edit
-        </button>
-        <button disabled onclick="confirmSaveInfo()" type="submit" class="button-a" id="save" name="btn-save" style="background-color: #ccc">Save
-        </button>
-
         <!-- show error here -->
         <div class="show-message"></div>
         <!-- show error here -->
@@ -203,49 +210,68 @@ $target_dir_avatar = "../../resource/img_avatar/";
                     <div></div>
                     <div></div>
 
-
-                    <?php
-                    if ($row['user_type'] == 'tutor') {
-                        $sql = "SELECT * FROM tutor_profile WHERE user_id=$user_id";
-                        $result = mysqli_query($con, $sql);
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
-                                <div class="show_profile">
+                    <!-- create new password -->
+                    <div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div>
+                                    <input class="btn btn-secondary btn-outline-dark" name="new_password" id="new_password" type="button" style="color: black" value="Tạo mật khẩu mới" onclick="
+                                    loadFile('new-password', 'form_create_password.php');
+                                    document.getElementById('new_password').setAttribute('disabled', true);">
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <form id="form-create-pass" class="form-password" action="" onsubmit="event.preventDefault();">
+                                    <div class="show-success ml-3">
+                                        <div class="new-password form-group row"></div>
+                                    </div>
+                                </form>
+                                <div class="show-message-pass"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of create new password -->
+                    <div class="show_profile">
+                        <?php
+                        if ($row['user_type'] == 'tutor') {
+                            $sql = "SELECT * FROM tutor_profile WHERE user_id=$user_id";
+                            $result = mysqli_query($con, $sql);
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
                                     <div class="row">
-                                        <div class="col-sm-3 d-flex justify-content-start mt-2">
+                                        <div class="col-sm-6 d-flex justify-content-start mt-2">
                                             <label for="avatar_image">Ảnh đại diện</label>
                                         </div>
-                                        <div class="col-sm-9">
+
+                                        <div class="col-sm-6 d-flex justify-content-start mt-2">
+                                            <label for=" profile_image">Ảnh hồ sơ</label>
+                                        </div>
+                                        <div class="col-sm-6">
                                             <div class="custom-file mb-3">
                                                 <input disabled type="file" class="input-info custom-file-input" id="avatar_image" name="avatar_image">
                                                 <label class="custom-file-label" for="avatar_image">Chọn ảnh đại diện mới</label>
                                             </div>
-                                            <!-- <label>Chọn ảnh đại diện mới</label>
-                                            <input disabled class="input-info" type="file" name="avatar_image" id="avatar_image"> -->
-                                            <img id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
+                                            <div class="img-container">
+                                                <img class="ava-pro-img-format img-fluid img-thumbnail" id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar">
+                                            </div>
                                         </div>
 
-                                        <div class="col-sm-3 d-flex justify-content-start mt-2">
-                                            <label for=" profile_image">Ảnh hồ sơ</label>
-                                        </div>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-6">
                                             <div>
                                                 <div class="custom-file mb-3">
                                                     <input disabled type="file" class="input-info custom-file-input" id="profile_image" name="profile_image">
                                                     <label class="custom-file-label" for="profile_image">Chọn ảnh hồ sơ mới</label>
                                                 </div>
-                                                <!-- <label>Chọn ảnh hồ sơ mới</label>
-                                                <input disabled class="input-info" type="file" name="profile_image" id="profile_image"> -->
-                                                <img id="profile_image_1" src="<?php echo $row['profile_image'] ?>" alt="profile" style="height: 300px; width: 400px;">
+                                                <div class="img-container">
+                                                    <img class="ava-pro-img-format img-fluid img-thumbnail" id="profile_image_1" src="<?php echo $row['profile_image'] ?>" alt="profile">
+                                                </div>
                                             </div>
                                         </div>
-
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="experience">Kinh nghiệm:</label>
                                                 <textarea class="form-control input-info experience" disabled rows="5" name="experience"><?php echo $row['experience']; ?></textarea>
                                             </div>
-                                            <!-- <textarea class="input-info experience" disabled rows="5" cols="50" name="experience"><?php echo $row['experience']; ?></textarea> -->
                                         </div>
 
                                         <div class="col-sm-12">
@@ -262,47 +288,46 @@ $target_dir_avatar = "../../resource/img_avatar/";
                                             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
                                         });
                                     </script>
-                                </div>
 
 
-                                <?php
-                            }
-                        } else {
-                            $sql = "INSERT INTO tutor_profile (experience, info, avatar_image, profile_image, user_id) 
+                                    <?php
+                                }
+                            } else {
+                                $sql = "INSERT INTO tutor_profile (experience, info, avatar_image, profile_image, user_id) 
                                     VALUES('', '', '$target_dir_avatar', '$target_dir_profile', $user_id)";
-                            $result = mysqli_query($con, $sql);
-                            $sql = "SELECT * FROM tutor_profile WHERE user_id=$user_id";
-                            $result = mysqli_query($con, $sql);
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                                ?>
-                                    <div class="show_profile">
+                                $result = mysqli_query($con, $sql);
+                                $sql = "SELECT * FROM tutor_profile WHERE user_id=$user_id";
+                                $result = mysqli_query($con, $sql);
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                    ?>
                                         <div class="row">
-                                            <div class="col-sm-3 d-flex justify-content-start mt-2">
+                                            <div class="col-sm-6 d-flex justify-content-start mt-2">
                                                 <label for="avatar_image">Ảnh đại diện</label>
                                             </div>
-                                            <div class="col-sm-9">
+
+                                            <div class="col-sm-6 d-flex justify-content-start mt-2">
+                                                <label for="profile_image">Ảnh hồ sơ</label>
+                                            </div>
+                                            <div class="col-sm-6">
                                                 <div class="custom-file mb-3">
                                                     <input disabled type="file" class="input-info custom-file-input" id="avatar_image" name="avatar_image">
                                                     <label class="custom-file-label" for="avatar_image">Chọn ảnh đại diện mới</label>
                                                 </div>
-                                                <!-- <label>Chọn ảnh đại diện mới</label>
-                                            <input disabled class="input-info" type="file" name="avatar_image" id="avatar_image"> -->
-                                                <img id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar" style="height: 300px; width: 400px;">
+                                                <div class="img-container">
+                                                    <img class="ava-pro-img-format img-fluid img-thumbnail" id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar">
+                                                </div>
                                             </div>
 
-                                            <div class="col-sm-3 d-flex justify-content-start mt-2">
-                                                <label for="profile_image">Ảnh hồ sơ</label>
-                                            </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6">
                                                 <div>
                                                     <div class="custom-file mb-3">
                                                         <input disabled type="file" class="input-info custom-file-input" id="profile_image" name="profile_image">
                                                         <label class="custom-file-label" for="profile_image">Chọn ảnh hồ sơ mới</label>
                                                     </div>
-                                                    <!-- <label>Chọn ảnh hồ sơ mới</label>
-                                                <input disabled class="input-info" type="file" name="profile_image" id="profile_image"> -->
-                                                    <img id="profile_image_1" src="<?php echo $row['profile_image'] ?>" alt="profile" style="height: 300px; width: 400px;">
+                                                    <div class="img-container">
+                                                        <img class="ava-pro-img-format img-fluid img-thumbnail" id="profile_image_1" src="<?php echo $row['profile_image'] ?>" alt="profile">
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -317,16 +342,16 @@ $target_dir_avatar = "../../resource/img_avatar/";
                                             </div>
                                         </div>
                                 <?php
+                                    }
                                 }
-                            }
                                 ?>
-                                    </div>
-                    <?php
+                <?php
+                            }
                         }
                     }
                 }
-            }
-                    ?>
+                ?>
+                    </div>
                     <script>
                         // Add the following code if you want the name of the file appear on select
                         $(".custom-file-input").on("change", function() {
@@ -336,18 +361,21 @@ $target_dir_avatar = "../../resource/img_avatar/";
                     </script>
                 </div>
                 <!-- end of show info here -->
+
+                <div class="container mb-2">
+                    <div class="row">
+                        <div class="col-sm-12 d-flex justify-content-end align-items-center">
+                            <button onclick="enableEdit('input-info');" class="btn btn-primary mr-2" name="button-edit">Edit
+                            </button>
+                            <button disabled onclick="confirmSaveInfo()" type="submit" class="btn btn-success" id="save" name="btn-save" style="background-color: #ccc">Save
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
     </form>
 
-    <!-- create new password -->
-    <input name="new_password" id="new_password" type="button" value="Tạo mật khẩu mới" onclick="
-                            loadFile('new-password', 'form_create_password.php');
-                            document.getElementById('new_password').setAttribute('disabled', true);
-                    ">
-    <form class="form-password" action="" onsubmit="event.preventDefault();">
-        <div class="new-password container-1"></div>
-    </form>
-    <div class="show-message-pass"></div>
-    <!--end of create new password -->
+
 
 </body>
 

@@ -153,44 +153,42 @@ function createUser() {
 }
 
 function createPassword() {
+    // $('.show-message-pass').removeClass('has-error');
+    // $('.help-block').remove();
+    document.getElementsByClassName('show-message-pass')[0].innerHTML="";
+    const urlParams = new URLSearchParams(window.location.search);
+    const user_id = urlParams.get('user_id');
 
-    $('.form-password').submit(function (event) {
-        $('.show-message').removeClass('has-error');
-        $('.help-block').remove();
-        const urlParams = new URLSearchParams(window.location.search);
-        const user_id = urlParams.get('user_id');
-
-        var formData = {
-            'password': $('input[name=password]').val(),
-            'confirm_password': $('input[name=confirm_password]').val(),
-        };
+    var formData = {
+        'password': $('input[name=password]').val(),
+        'confirm_password': $('input[name=confirm_password]').val(),
+    };
 
 
-        // process the ajax
-        $.ajax({
-            type: 'POST',
-            url: './ajax/create_password.php?user_id=' + user_id,
-            data: formData,
-            dataType: 'json',
-            encode: true
-        })
-            .done(function (data) {
-                console.log(data)
-                if (!data.success) {
-                    // show error
-                    if (data.errors.password) {
-                        $('.show-message-pass').addClass('has-error'); // add the error class to show red input
-                        $('.show-message-pass').append('<div class="help-block" style="color: red;">' + data.errors.password + '</div>'); // add the actual error message under our input
-                    }
-
-                } else {
-                    $('.form-password').html('<div class="new-password container-1">' + data.message + '</div>');
-                    $('#new_password').removeAttr("disabled");
-                    // setTimeout(loadFile('user-info', '../admin/show_user_info.php?user_id=' + user_id), 3000);
+    // process the ajax
+    $.ajax({
+        type: 'POST',
+        url: './ajax/create_password.php?user_id=' + user_id,
+        data: formData,
+        dataType: 'json',
+        encode: true
+    })
+        .done(function (data) {
+            console.log(data)
+            if (!data.success) {
+                // show error
+                if (data.errors.password) {
+                    $('.show-message-pass').addClass('has-error'); // add the error class to show red input
+                    $('.show-message-pass').append('<div class="help-block" style="color: red;">' + data.errors.password + '</div>'); // add the actual error message under our input
                 }
-            })
-        //stop submit
-    });
+
+            } else {
+                $('.show-success').html('<div class="new-password form-group row">' + data.message + '</div>');
+                $('#new_password').removeAttr("disabled");
+                // setTimeout(loadFile('user-info', '../admin/show_user_info.php?user_id=' + user_id), 3000);
+            }
+        })
+    //stop submit
 }
 
 function deleteFunction(event) {
@@ -240,8 +238,8 @@ function changeUserTypeShow() {
     }
 }
 
-function showFileName(id){
-// Add the following code if you want the name of the file appear on select
+function showFileName(id) {
+    // Add the following code if you want the name of the file appear on select
     var fileName = $('#' + id).val().split("\\").pop();
     $('#' + id).siblings(".custom-file-label").addClass("selected").html(fileName);
 }
