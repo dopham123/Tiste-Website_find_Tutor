@@ -2,100 +2,143 @@
 include('../functions/functions.php');
 
 if (!isAdmin()) {
-	$_SESSION['msg'] = "You must log in first";
-	header('location: ../login.php');
+    $_SESSION['msg'] = "You must log in first";
+    header('location: ../login.php');
 }
 
 if (isset($_GET['logout'])) {
-	session_destroy();
-	unset($_SESSION['user']);
-	header("location: ../login.php");
+    session_destroy();
+    unset($_SESSION['user']);
+    header("location: ../login.php");
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Home Page</title>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!-- load jquery via CDN -->
-	<script src="../functions/functions.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-	<!-- style css -->
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-	<link rel="stylesheet" href="./style.css">
-	<style>
-		.input-group {
-			display: block;
-		}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!-- load jquery via CDN -->
+    <script src="../functions/functions.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- style css -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .row.content {
+            height: 100%;
+        }
 
-		.error {
-			width: 92%;
-			margin: 0px auto;
-			padding: 10px;
-			border: 1px solid #a94442;
-			color: #a94442;
-			background: #f2dede;
-			border-radius: 5px;
-			text-align: left;
-		}
+        .sidenav {
+            background-color: #f1f1f1;
+            height: 100%;
+        }
 
-		table {
-			font-family: arial, sans-serif;
-			border-collapse: collapse;
-			width: 100%;
-		}
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
 
-		.table-fix-head td,
-		th {
-			border: 1px solid black;
-			text-align: left;
-			padding: 8px;
-			text-align: center;
-			width: 1%;
-		}
+            .row.content {
+                height: auto;
+            }
+        }
 
-		.table-fix-head th {
-			border: 1px solid black;
-			border-top: none;
-			position: sticky;
-			top: 0;
-			background-color: #ccc;
-		}
+        .input-group {
+            display: block;
+        }
 
-		.table-fix-head {
-			height: 300px;
-			overflow-y: scroll;
-		}
-	</style>
+        .error {
+            width: 92%;
+            margin: 0px auto;
+            padding: 10px;
+            border: 1px solid #a94442;
+            color: #a94442;
+            background: #f2dede;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .table-fix-head td,
+        th {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table-fix-head th {
+            text-align: center;
+            vertical-align: middle;
+            border-top: none;
+            position: sticky;
+            top: 0;
+        }
+
+        .table-fix-head {
+            height: 300px;
+            overflow-y: scroll;
+        }
+
+        .border-none {
+            border: none;
+        }
+    </style>
 </head>
 
-<body>
-	<div class="container">
-		<h1>Admin Page</h1>
-		<div class="text-center">
-			<div class="row">
-				<div class="col-sm-12">
-					<button type="button" onclick="loadFile('data-table', 'user_info.php')">Hiển thị danh sách người dùng</button>
-					<button type="button" onclick="loadFile('add-new-user', 'create_user_form.php')">Thêm một người dùng mới</button>
-					<a href="../index.php?logout='1'" style="color: red;">logout</a>
-				</div>
-				<div class="col-sm-12">
-					<div class="data-table"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container mt-5 border p-4">
-		<div class="add-new-user"></div>
-		<div class="row d-flex justify-content-center">
-			<div class="col-sm-10">
-				<div class="show-message" style="text-align: left;"></div>
-			</div>
-		</div>
-	</div>
+<body style="height: 100%;">
+
+    <div class="container-fluid" style="height: 100%;">
+        <div class="row content">
+            <div class="col-sm-2 sidenav">
+                <div class="row d-flex justify-content-center">
+                    <div class="p-2"><img src="../../../tiste/resource/images/admin.png" alt="" class="rounded-circle border border-dark" width="100"></div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <h6>Admin</h6>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="p-2"><img src="../../../tiste/images/logo.png" alt="" class="img-fluid" width="400"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="nav flex-column nav-pills">
+                            <button class="btn btn-info mt-3" type="button" onclick="loadFile('data-table', 'user_info.php')">Hiển thị danh sách người dùng</button>
+                            <button class="btn btn-success mt-3" type="button" onclick="loadFile('add-new-user', 'create_user_form.php')">Thêm một người dùng mới</button>
+                            <!-- <a class="nav-link">Profile</a>
+                            <a class="nav-link">Messages</a>
+                            <a class="nav-link">Settings</a> -->
+                            <a href="../index.php?logout='1'" style="color: red;">logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span style="color: black; font-size: 2rem; font-weight: bold">Dashboard</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="data-table"></div>
+                <div class="container">
+                    <div class="add-new-user mt-5"></div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-sm-10">
+                            <div class="show-message" style="text-align: left;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
