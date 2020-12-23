@@ -2,6 +2,19 @@
 include '../server/multi_login/config.php';
 ?>
 
+<?php include('../server/multi_login/functions/functions.php'); ?>
+<?php
+if (isLoggedIn() && isAdmin()) {
+    header('location: ../server/multi_login/admin/homepage_admin.php');
+}
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['user']);
+    header("location: ./index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -33,11 +46,25 @@ include '../server/multi_login/config.php';
                             </div>
                         </div>
                         <div class="col d-flex align-items-center justify-content-end">
-                            <div>
-                                <ul>
-                                    <li><a class="buy text-center" href="#">Đăng nhập</a></li>
-                                </ul>
-                            </div>
+                        <?php
+                            if (isTutor() || isStudent()) {
+                                $row = getInfo($_SESSION['user']['id']); ?>
+                                <div>
+                                    <ul>
+                                        <li><a class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
+                                        <a href="./index.php?logout='1'" style="color: red;">logout</a>
+                                    </ul>
+                                </div>
+                            <?php
+                            } else { ?>
+                                <div>
+                                    <ul>
+                                        <li><a class=" buy text-center" href="./login.php">Đăng nhập</a></li>
+                                    </ul>
+                                </div>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -47,7 +74,7 @@ include '../server/multi_login/config.php';
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center"
                         style="padding-left: 0; text-align: center;">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
+                            <a href="index.php"><img src="images/logo.png" alt="logo" /></a>
                         </div>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
@@ -55,10 +82,10 @@ include '../server/multi_login/config.php';
                             <div class="limit-box">
                                 <nav class="main-menu">
                                     <ul class="menu-area-main d-flex-column justify-content-around">
-                                        <li> <a href="index.html">Trang chủ</a> </li>
-                                        <li> <a href="about.html">Giới thiệu</a> </li>
+                                        <li> <a href="index.php">Trang chủ</a> </li>
+                                        <li> <a href="about.php">Giới thiệu</a> </li>
                                         <li class="active"> <a href="service.php">Dịch vụ</a> </li>
-                                        <li> <a href="prices.html">BẢng giá</a> </li>
+                                        <li> <a href="prices.php">BẢng giá</a> </li>
                                         <li> <a href="contact.php">Liên hệ</a> </li>
                                         <li> <a href="#">Đăng ký</a> </li>
                                     </ul>
@@ -162,8 +189,7 @@ include '../server/multi_login/config.php';
                         
                         while($row = mysqli_fetch_array($result))
                         {
-                      
-                          echo '<div class="user-card">
+                          echo '<div class="user-card" onclick="tutorDetail('.$row["user_id"].');">
                                     <div class="user-card-img">
                                         <a href="#"><img src="'.$row["img"].'" alt="lau"></a>
                                     </div>
@@ -225,520 +251,12 @@ include '../server/multi_login/config.php';
                                 </div>';
                         }
                         ?>
-                <!-- <div class="user-card">
-                    <div class="user-card-img">
-                        <a href="#"><img src="./images/lau.JPG" alt="lau"></a>
-                    </div>
-                    <div class="user-main-info">
-                        <div class="user-card-info">
-                            <div class="user-card-container">
-                                <div class="user-card-name">
-                                    <a href="#">Trương Đình Lâu</a>
-                                </div>
-                                <div class="user-rating">
-                                    <img src="./icon/rating.png" alt="rating">
-                                    <strong>5</strong>
-                                    <span>(7 đánh giá)</span>
-                                </div>
-                            </div>
-                            <div class="user-card-title">
-                                Toán, Lý , Hóa
-                            </div>
-                            <div class="user-card-salary">
-                                <div class="salary">
-                                    1,5 triệu
-                                </div>
-                                <div class="per"> / tháng</div>
-                            </div>
-                            <div class="user-card-break"></div>
-                        </div>
-                        <div class="user-card-experiment col-12">
-                            <div class="experiment">
-                                Đại học Bách Khoa TP.HCM - Vui vẻ, hoạt bát, năng động, cách giảng dạy sáng tạo 2
-                                năm kinh nghiệm làm gia sư lớp 6 - lớp 9 ...
-                            </div>
-                            <div class="address">
-                                <img src="./icon/compass.png" alt="location">
-                                <a href="#">Thủ Đức</a>
-                            </div>
-                            <div class="user-card-meta">
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> 9
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        học viên đã dạy
-                                    </div>
-                                </div>
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> 2
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        năm kinh nghiệm
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="user-card">
-                    <div class="user-card-img">
-                        <a href="#"><img src="./images/luc.JPG" alt="lau"></a>
-                    </div>
-                    <div class="user-main-info">
-                        <div class="user-card-info">
-                            <div class="user-card-container">
-                                <div class="user-card-name">
-                                    <a href="#">Lê Tấn Lực</a>
-                                </div>
-                                <div class="user-rating">
-                                    <img src="./icon/rating.png" alt="rating">
-                                    <strong>3</strong>
-                                    <span>(3 đánh giá)</span>
-                                </div>
-                            </div>
-                            <div class="user-card-title">
-                                Toán, Tiếng Anh, Luyện thi đại học
-                            </div>
-                            <div class="user-card-salary">
-                                <div class="salary">
-                                    1,4 triệu
-                                </div>
-                                <div class="per"> / tháng</div>
-                            </div>
-                            <div class="user-card-break"></div>
-                        </div>
-
-                        <div class="user-card-experiment">
-                            <div class="experiment">
-                                Đại học Bách Khoa TP.HCM - Vui vẻ, hoạt bát, năng động, cách giảng dạy sáng tạo 1
-                                năm kinh nghiệm làm gia sư lớp 10 - lớp 12 ...
-                            </div>
-                            <div class="address">
-                                <img src="./icon/compass.png" alt="location">
-                                <a href="#">Gò Vấp</a>
-                            </div>
-                            <div class="user-card-meta">
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> 3
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        học viên đã dạy
-                                    </div>
-                                </div>
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> 1
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        năm kinh nghiệm
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="user-card">
-                    <div class="user-card-img">
-                        <a href="#"><img src="./images/do.JPG" alt="lau"></a>
-                    </div>
-                    <div class="user-main-info">
-                        <div class="user-card-info">
-                            <div class="user-card-container">
-                                <div class="user-card-name">
-                                    <a href="#">Phạm Văn Đô</a>
-                                </div>
-                                <div class="user-rating">
-                                    <img src="./icon/rating.png" alt="rating">
-                                    <strong>5</strong>
-                                    <span>(18 đánh giá)</span>
-                                </div>
-                            </div>
-                            <div class="user-card-title">
-                                Tiểu học
-                            </div>
-                            <div class="user-card-salary">
-                                <div class="salary">
-                                    1,2 triệu
-                                </div>
-                                <div class="per"> / tháng</div>
-                            </div>
-                            <div class="user-card-break"></div>
-                        </div>
-                        <div class="user-card-experiment">
-                            <div class="experiment">
-                                Đại học Bách Khoa TP.HCM - Vui vẻ, hoạt bát, năng động, cách giảng dạy sáng tạo 3
-                                năm kinh nghiệm làm gia sư lớp 1 - lớp 5 ...
-                            </div>
-                            <div class="address">
-                                <img src="./icon/compass.png" alt="location">
-                                <a href="#">Thủ Đức</a>
-                            </div>
-                            <div class="user-card-meta">
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> 20
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        học viên đã dạy
-                                    </div>
-                                </div>
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> 3
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        năm kinh nghiệm
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="user-card">
-                    <div class="user-card-img">
-                        <a href="#"><img src="./images/khoi.JPG" alt="lau"></a>
-                    </div>
-                    <div class="user-main-info">
-                        <div class="user-card-info">
-                            <div class="user-card-container">
-                                <div class="user-card-name">
-                                    <a href="#">Phạm Tuấn Khôi</a>
-                                </div>
-                                <div class="user-rating">
-                                    <img src="./icon/rating.png" alt="rating">
-                                    <strong>4.5</strong>
-                                    <span>(6 đánh giá)</span>
-                                </div>
-                            </div>
-                            <div class="user-card-title">
-                                Toán, Lý , Hóa
-                            </div>
-                            <div class="user-card-salary">
-                                <div class="salary">
-                                    1,5 triệu
-                                </div>
-                                <div class="per"> / tháng</div>
-                            </div>
-                            <div class="user-card-break"></div>
-                        </div>
-                        <div class="user-card-experiment">
-                            <div class="experiment">
-                                Đại học Bách Khoa TP.HCM - Vui vẻ, hoạt bát, năng động, cách giảng dạy sáng tạo 1,5
-                                năm kinh nghiệm làm gia sư lớp 10 - lớp 12 ...
-                            </div>
-                            <div class="address">
-                                <img src="./icon/compass.png" alt="location">
-                                <a href="#">Dĩ An</a>
-                            </div>
-                            <div class="user-card-meta">
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> 9
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        học viên đã dạy
-                                    </div>
-                                </div>
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> 1,5
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        năm kinh nghiệm
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="user-card">
-                    <div class="user-card-img">
-                        <a href="#"><img src="./images/huy.JPG" alt="lau"></a>
-                    </div>
-                    <div class="user-main-info">
-                        <div class="user-card-info">
-                            <div class="user-card-container">
-                                <div class="user-card-name">
-                                    <a href="#">Nguyễn Lương Quốc Huy</a>
-                                </div>
-                                <div class="user-rating">
-                                    <img src="./icon/rating.png" alt="rating">
-                                    <strong>4.6</strong>
-                                    <span>(12 đánh giá)</span>
-                                </div>
-                            </div>
-                            <div class="user-card-title">
-                                Toán, Lý, Lập trình
-                            </div>
-                            <div class="user-card-salary">
-                                <div class="salary">
-                                    2 triệu
-                                </div>
-                                <div class="per"> / tháng</div>
-                            </div>
-                            <div class="user-card-break"></div>
-                        </div>
-                        <div class="user-card-experiment">
-                            <div class="experiment">
-                                Đại học Bách Khoa TP.HCM - Vui vẻ, hoạt bát, năng động, cách giảng dạy sáng tạo 2
-                                năm kinh nghiệm làm gia sư lớp 10 - lớp 12 ...
-                            </div>
-                            <div class="address">
-                                <img src="./icon/compass.png" alt="location">
-                                <a href="#">Thủ Đức</a>
-                            </div>
-                            <div class="user-card-meta">
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> 14
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        học viên đã dạy
-                                    </div>
-                                </div>
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> 2
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        năm kinh nghiệm
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="user-card">
-                    <div class="user-card-img">
-                        <a href="#"><img src="./images/huyduong.JPG" alt="lau"></a>
-                    </div>
-                    <div class="user-main-info">
-                        <div class="user-card-info">
-                            <div class="user-card-container">
-                                <div class="user-card-name">
-                                    <a href="#">Dương Quang Huy</a>
-                                </div>
-                                <div class="user-rating">
-                                    <img src="./icon/rating.png" alt="rating">
-                                    <strong>4.8</strong>
-                                    <span>(2 đánh giá)</span>
-                                </div>
-                            </div>
-                            <div class="user-card-title">
-                                Toán cao cấp, Luyện thi đại học
-                            </div>
-                            <div class="user-card-salary">
-                                <div class="salary">
-                                    2,2 triệu
-                                </div>
-                                <div class="per"> / tháng</div>
-                            </div>
-                            <div class="user-card-break"></div>
-                        </div>
-                        <div class="user-card-experiment">
-                            <div class="experiment">
-                                Đại học Bách Khoa TP.HCM - Vui vẻ, hoạt bát, năng động, cách giảng dạy sáng tạo 0.5
-                                năm kinh nghiệm làm gia sư lớp 12 ...
-                            </div>
-                            <div class="address">
-                                <img src="./icon/compass.png" alt="location">
-                                <a href="#">Quận 7</a>
-                            </div>
-                            <div class="user-card-meta">
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> 2
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        học viên đã dạy
-                                    </div>
-                                </div>
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> 0.5
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        năm kinh nghiệm
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="user-card">
-                    <div class="user-card-img">
-                        <a href="#"><img src="./images/thao.jpg" alt="lau"></a>
-                    </div>
-                    <div class="user-main-info">
-                        <div class="user-card-info">
-                            <div class="user-card-container">
-                                <div class="user-card-name">
-                                    <a href="#">Lê Thị Thanh Thảo</a>
-                                </div>
-                                <div class="user-rating">
-                                    <img src="./icon/rating.png" alt="rating">
-                                    <strong>4.3</strong>
-                                    <span>(10 đánh giá)</span>
-                                </div>
-                            </div>
-                            <div class="user-card-title">
-                                Toán, Tiếng Anh
-                            </div>
-                            <div class="user-card-salary">
-                                <div class="salary">
-                                    1,5 triệu
-                                </div>
-                                <div class="per"> / tháng</div>
-                            </div>
-                            <div class="user-card-break"></div>
-                        </div>
-                        <div class="user-card-experiment">
-                            <div class="experiment">
-                                Đại học Bách Khoa TP.HCM - Vui vẻ, hoạt bát, năng động, cách giảng dạy sáng tạo 1.5
-                                năm kinh nghiệm làm gia sư lớp 6 - lớp 9 ...
-                            </div>
-                            <div class="address">
-                                <img src="./icon/compass.png" alt="location">
-                                <a href="#">Dĩ An</a>
-                            </div>
-                            <div class="user-card-meta">
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> 11
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        học viên đã dạy
-                                    </div>
-                                </div>
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> 1.5
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        năm kinh nghiệm
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="user-card">
-                    <div class="user-card-img">
-                        <a href="#"><img src="./images/huytu.jpg" alt="lau"></a>
-                    </div>
-                    <div class="user-main-info">
-                        <div class="user-card-info">
-                            <div class="user-card-container">
-                                <div class="user-card-name">
-                                    <a href="#">Từ Ngọc Huy</a>
-                                </div>
-                                <div class="user-rating">
-                                    <img src="./icon/rating.png" alt="rating">
-                                    <strong>5</strong>
-                                    <span>(7 đánh giá)</span>
-                                </div>
-                            </div>
-                            <div class="user-card-title">
-                                Toán, Tiếng Anh, Luyện thi đại học
-                            </div>
-                            <div class="user-card-salary">
-                                <div class="salary">
-                                    2 triệu
-                                </div>
-                                <div class="per"> / tháng</div>
-                            </div>
-                            <div class="user-card-break"></div>
-                        </div>
-                        <div class="user-card-experiment">
-                            <div class="experiment">
-                                Đại học Bách Khoa TP.HCM - Vui vẻ, hoạt bát, năng động, cách giảng dạy sáng tạo 1
-                                năm kinh nghiệm làm gia sư lớp 10 - lớp 12 ...
-                            </div>
-                            <div class="address">
-                                <img src="./icon/compass.png" alt="location">
-                                <a href="#">Thủ Đức</a>
-                            </div>
-                            <div class="user-card-meta">
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> 7
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        học viên đã dạy
-                                    </div>
-                                </div>
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> 1
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        năm kinh nghiệm
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="user-card">
-                    <div class="user-card-img">
-                        <a href="#"><img src="./images/huong.jpg" alt="lau"></a>
-                    </div>
-                    <div class="user-main-info">
-                        <div class="user-card-info">
-                            <div class="user-card-container">
-                                <div class="user-card-name">
-                                    <a href="#">Đàm Ngọc Hương</a>
-                                </div>
-                                <div class="user-rating">
-                                    <img src="./icon/rating.png" alt="rating">
-                                    <strong>4.6</strong>
-                                    <span>(20 đánh giá)</span>
-                                </div>
-                            </div>
-                            <div class="user-card-title">
-                                Toán, Tiểu học
-                            </div>
-                            <div class="user-card-salary">
-                                <div class="salary">
-                                    1,2 triệu
-                                </div>
-                                <div class="per"> / tháng</div>
-                            </div>
-                            <div class="user-card-break"></div>
-                        </div>
-                        <div class="user-card-experiment">
-                            <div class="experiment">
-                                Đại học Bách Khoa TP.HCM - Vui vẻ, hoạt bát, năng động, cách giảng dạy sáng tạo 4
-                                năm kinh nghiệm làm gia sư lớp 1 - lớp 5 ...
-                            </div>
-                            <div class="address">
-                                <img src="./icon/compass.png" alt="location">
-                                <a href="#">Thủ Đức</a>
-                            </div>
-                            <div class="user-card-meta">
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> 25
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        học viên đã dạy
-                                    </div>
-                                </div>
-                                <div class="user-card-meta-hightlight">
-                                    <div class="user-card-meta-label">
-                                        <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> 4
-                                    </div>
-                                    <div class="user-card-total-member">
-                                        năm kinh nghiệm
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        <script>
+                            function tutorDetail(id) {
+                                location.replace('./detail.php?id='+id);
+                            }
+                        </script>
+                <!-- 
                 <div class="user-card">
                     <div class="user-card-img">
                         <a href="#"><img src="./images/hoang.jpg" alt="lau"></a>

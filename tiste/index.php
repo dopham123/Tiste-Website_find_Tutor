@@ -67,7 +67,7 @@ if (isset($_GET['logout'])) {
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center" style="padding-left: 0; text-align: center;">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
+                            <a href="index.php"><img src="images/logo.png" alt="logo" /></a>
                         </div>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
@@ -75,8 +75,8 @@ if (isset($_GET['logout'])) {
                             <div class="limit-box">
                                 <nav class="main-menu">
                                     <ul class="menu-area-main d-flex-column justify-content-around">
-                                        <li class="active"> <a href="index.html">Trang chủ</a> </li>
-                                        <li> <a href="about.html">Giới thiệu</a> </li>
+                                        <li class="active"> <a href="index.php">Trang chủ</a> </li>
+                                        <li> <a href="about.php">Giới thiệu</a> </li>
                                         <li> <a href="service.php">Dịch vụ</a> </li>
                                         <li> <a href="prices.php">BẢng giá</a> </li>
                                         <li> <a href="contact.php">Liên hệ</a> </li>
@@ -158,7 +158,7 @@ if (isset($_GET['logout'])) {
                     </div>
                 </div>
                 <div class="read-more">
-                    <a href="about.html">Xem thêm</a>
+                    <a href="about.php">Xem thêm</a>
                 </div>
             </div>
         </div>
