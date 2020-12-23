@@ -1,9 +1,14 @@
 <?php include('./functions/functions.php'); ?>
+<?php
+if (isStudent()) {
+	header('location: ./index.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Registration system PHP and MySQL</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="./style/style.css">
 </head>
 
@@ -15,7 +20,7 @@
         <?php echo display_error(); ?>
 
         <div class="input-group">
-            <label>Chọn ảnh hồ sơ</label>
+            <label>Chọn ảnh đại diện</label>
             <input type="file" name="avatar_image" id="avatar_image">
         </div>
 

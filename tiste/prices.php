@@ -1,3 +1,16 @@
+<?php include('../server/multi_login/functions/functions.php'); ?>
+<?php
+if (isLoggedIn() && isAdmin()) {
+    header('location: ../server/multi_login/admin/homepage_admin.php');
+}
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['user']);
+    header("location: ./index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +26,11 @@
 </head>
 
 <body>
+    <?php include('../server/multi_login/functions/prices-info.php');?>
+    <script>
+        let data = <?php echo $data;?>;
+        console.log(data);
+    </script>
     <header>
         <div class="header">
             <div class="head_top">
@@ -29,11 +47,25 @@
                             </div>
                         </div>
                         <div class="col d-flex align-items-center justify-content-end">
-                            <div>
-                                <ul>
-                                    <li><a class="buy text-center" href="#">Đăng nhập</a></li>
-                                </ul>
-                            </div>
+                        <?php
+                            if (isTutor() || isStudent()) {
+                                $row = getInfo($_SESSION['user']['id']); ?>
+                                <div>
+                                    <ul>
+                                        <li><a class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
+                                        <a href="./index.php?logout='1'" style="color: red;">logout</a>
+                                    </ul>
+                                </div>
+                            <?php
+                            } else { ?>
+                                <div>
+                                    <ul>
+                                        <li><a class=" buy text-center" href="./login.php">Đăng nhập</a></li>
+                                    </ul>
+                                </div>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -43,7 +75,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center"
                         style="padding-left: 0; text-align: center;">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
+                            <a href="index.php"><img src="images/logo.png" alt="logo" /></a>
                         </div>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
@@ -51,10 +83,10 @@
                             <div class="limit-box">
                                 <nav class="main-menu">
                                     <ul class="menu-area-main d-flex-column justify-content-around">
-                                        <li> <a href="index.html">Trang chủ</a> </li>
-                                        <li> <a href="about.html">Giới thiệu</a> </li>
-                                        <li> <a href="service.html">Dịch vụ</a> </li>
-                                        <li class="active"> <a href="prices.html">Bảng giá</a> </li>
+                                        <li> <a href="index.php">Trang chủ</a> </li>
+                                        <li> <a href="about.php">Giới thiệu</a> </li>
+                                        <li> <a href="service.php">Dịch vụ</a> </li>
+                                        <li class="active"> <a href="prices.php">Bảng giá</a> </li>
                                         <li> <a href="contact.php">Liên hệ</a> </li>
                                         <li> <a href="#">Đăng ký</a> </li>
                                     </ul>
@@ -82,12 +114,14 @@
         <div class="product-bg-white">
             <div class="container">
                 <div class="row">
+                    
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 text-center">
                         <table class="table table-cell-font-format text-center bg-table-1">
                             <thead class="caption-class">
                                 <tr>
-                                    <th scope="col" colspan="3" class="table-cell-head-format"><span>Lớp 2
-                                            buổi/tuần</span> <span class="d-block text-dark">(8 buổi/tháng)</span>
+                                    <th scope="col" colspan="3" class="table-cell-head-format"><span>
+                                    Lớp 2 buổi/tuần
+                                    </span> <span class="d-block text-dark">(8 buổi/tháng)</span>
                                     </th>
                                 </tr>
                             </thead>
@@ -129,6 +163,7 @@
                             </tbody>
                         </table>
                     </div>
+                    
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 text-center">
                         <table class="table table-cell-font-format text-center bg-table-2">
                             <thead class="caption-class">

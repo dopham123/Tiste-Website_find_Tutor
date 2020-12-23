@@ -64,7 +64,20 @@ function register()
 	if ($password_1 != $password_2) {
 		array_push($errors, "Mật khẩu không khớp");
 	}
-
+	if (count($errors) == 0) {
+		$select_stmt = "SELECT * FROM users WHERE username='$username' OR email='$email'";
+		$result = mysqli_query($db, $select_stmt);
+		if (mysqli_num_rows($result) > 0) {
+			while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+				if ($row["username"] == $username) {
+					array_push($errors, "Tên đăng nhập đã tồn tại");
+				}
+				if ($row["email"] == $email) {
+					array_push($errors, "Email đã tồn tại");
+				}
+			}
+		}
+	}
 	// register user if there are no errors in the form
 	if (count($errors) == 0) {
 		$password = md5($password_1); //encrypt the password before saving in the database
@@ -148,7 +161,7 @@ function register_profile()
 	global $db, $errors, $info, $experience;
 
 	// check image
-	$target_dir_avatar = "../resource/img_avatar/";
+	$target_dir_avatar = "../../resource/img_avatar/";
 	$target_file_avatar = "";
 	// Check if image file is a actual image or fake image
 	if (!isset($_FILES['avatar_image']) || $_FILES['avatar_image']['error'] == UPLOAD_ERR_NO_FILE) {
@@ -163,7 +176,7 @@ function register_profile()
 	}
 
 	// check image
-	$target_dir_profile = "../resource/img_profile/";
+	$target_dir_profile = "../../resource/img_profile/";
 	$target_file_profile = "";
 	if (!isset($_FILES['profile_image']) || $_FILES['profile_image']['error'] == UPLOAD_ERR_NO_FILE) {
 	} else {
@@ -276,7 +289,7 @@ function login()
 				$_SESSION['user'] = $logged_in_user;
 				$_SESSION['success']  = "You are now logged in";
 
-				header('location: index.php');
+				header('location: ../../ass_2_ver1/Tiste-Website_find_Tutor/tiste/index.php');
 			}
 		} else {
 			array_push($errors, "Wrong username/password combination");
@@ -293,11 +306,32 @@ function isAdmin()
 	}
 }
 
-function isUser()
+function isTutor()
 {
-	if (isset($_SESSION['user']) && ($_SESSION['user']['user_type'] == 'tutor' || $_SESSION['user']['user_type'] == 'user')) {
+	if (isset($_SESSION['user']) && ($_SESSION['user']['user_type'] == 'tutor')) {
 		return true;
 	} else {
 		return false;
 	}
+}
+
+function isStudent()
+{
+	if (isset($_SESSION['user']) && ($_SESSION['user']['user_type'] == 'user')) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function getInfo($id)
+{
+	global $db;
+	$row = array();
+	$sql = "SELECT * FROM users_info WHERE user_id=$id";
+	$result = mysqli_query($db, $sql);
+	if (mysqli_num_rows($result) > 0) {
+		return $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	}
+	return $row;
 }

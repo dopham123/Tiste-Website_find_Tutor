@@ -25,8 +25,9 @@
 
       }
 
-      function e($val) {
-            global $con;
-            return mysqli_real_escape_string($con, trim($val));
-      }
+      // function e($val) {
+      //       global $con;
+      //       return mysqli_real_escape_string($con, trim($val));
+      // }
+      mysqli_close($con);
 ?>
