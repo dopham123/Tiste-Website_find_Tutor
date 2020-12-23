@@ -10,7 +10,10 @@
       else {
             global $data;
             $id = $_GET["id"];
-            $query = "SELECT * FROM comment WHERE tutorID='$id';";
+            $query = " SELECT c.id, u.user_id, u.first_name, u.last_name, c.comment, c.tutorID
+                              FROM comment AS c , users_info AS u
+                              WHERE tutorID='$id' 
+                              AND c.commentatorID = u.user_id;";
             $result = mysqli_query($con, $query);
             $comment = array();
             if (mysqli_num_rows($result) > 0){

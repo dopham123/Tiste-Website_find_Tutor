@@ -2,6 +2,19 @@
 include '../server/multi_login/config.php';
 ?>
 
+<?php include('../server/multi_login/functions/functions.php'); ?>
+<?php
+if (isLoggedIn() && isAdmin()) {
+    header('location: ../server/multi_login/admin/homepage_admin.php');
+}
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['user']);
+    header("location: ./index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -33,11 +46,25 @@ include '../server/multi_login/config.php';
                             </div>
                         </div>
                         <div class="col d-flex align-items-center justify-content-end">
-                            <div>
-                                <ul>
-                                    <li><a class="buy text-center" href="#">Đăng nhập</a></li>
-                                </ul>
-                            </div>
+                        <?php
+                            if (isTutor() || isStudent()) {
+                                $row = getInfo($_SESSION['user']['id']); ?>
+                                <div>
+                                    <ul>
+                                        <li><a class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
+                                        <a href="./index.php?logout='1'" style="color: red;">logout</a>
+                                    </ul>
+                                </div>
+                            <?php
+                            } else { ?>
+                                <div>
+                                    <ul>
+                                        <li><a class=" buy text-center" href="./login.php">Đăng nhập</a></li>
+                                    </ul>
+                                </div>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -47,7 +74,7 @@ include '../server/multi_login/config.php';
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center"
                         style="padding-left: 0; text-align: center;">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
+                            <a href="index.php"><img src="images/logo.png" alt="logo" /></a>
                         </div>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
@@ -55,10 +82,10 @@ include '../server/multi_login/config.php';
                             <div class="limit-box">
                                 <nav class="main-menu">
                                     <ul class="menu-area-main d-flex-column justify-content-around">
-                                        <li> <a href="index.html">Trang chủ</a> </li>
-                                        <li> <a href="about.html">Giới thiệu</a> </li>
+                                        <li> <a href="index.php">Trang chủ</a> </li>
+                                        <li> <a href="about.php">Giới thiệu</a> </li>
                                         <li class="active"> <a href="service.php">Dịch vụ</a> </li>
-                                        <li> <a href="prices.html">BẢng giá</a> </li>
+                                        <li> <a href="prices.php">BẢng giá</a> </li>
                                         <li> <a href="contact.php">Liên hệ</a> </li>
                                         <li> <a href="#">Đăng ký</a> </li>
                                     </ul>

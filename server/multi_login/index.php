@@ -89,7 +89,6 @@ if (isLoggedIn() && isAdmin()) {
 
 
             function getComment(id){
-                $('#show-comment').html('');
                 $.ajax({
                     type: "GET",
                     url: "../multi_login/functions/comment.php?id=" +id,

@@ -9,7 +9,7 @@
       } else {
             global $data;
             $id = $_GET["id"];
-            $query = "  SELECT us.id, us.user_type, ui.first_name, ui.last_name, ui.district, ui.city, s.img, s.subject, s.class, s.salary, s.num_of_std, s.exp,s.star, s.intro
+            $query = "  SELECT us.id, us.user_type, ui.first_name, ui.last_name, ui.district, ui.city, s.img, s.subject, s.class, s.salary, s.num_of_std, s.exp, s.eval, s.star, s.intro
                               FROM users as us, users_info as ui, service as s
                               WHERE us.id = ui.user_id AND s.user_if_id = us.id AND us.id = '$id';";
             $result = mysqli_query($con, $query);
