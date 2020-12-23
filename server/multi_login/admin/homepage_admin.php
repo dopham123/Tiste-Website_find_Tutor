@@ -41,29 +41,60 @@ if (isset($_GET['logout'])) {
 			border-radius: 5px;
 			text-align: left;
 		}
+
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		.table-fix-head td,
+		th {
+			border: 1px solid black;
+			text-align: left;
+			padding: 8px;
+			text-align: center;
+			width: 1%;
+		}
+
+		.table-fix-head th {
+			border: 1px solid black;
+			border-top: none;
+			position: sticky;
+			top: 0;
+			background-color: #ccc;
+		}
+
+		.table-fix-head {
+			height: 300px;
+			overflow-y: scroll;
+		}
 	</style>
 </head>
 
 <body>
-	<h1>Admin Page</h1>
-	<div class="text-center">
-		<div class="row">
-			<div class="col-sm-1">
-				<button type="button" onclick="loadFile('data-table', 'user_info.php')">Show Data</button>
-				<button type="button" onclick="loadFile('add-new-user', 'create_user_form.php')">Thêm một người dùng mới</button>
-				<a href="../index.php?logout='1'" style="color: red;">logout</a>
-			</div>
-			<div class="col-sm-11">
-				<div class="data-table"></div>
-			</div>
-		</div>
-		<br>
-		<div class="row">
-			<div class="col-sm-7" style="text-align: left;">
-				<div class="add-new-user"></div>
+	<div class="container">
+		<h1>Admin Page</h1>
+		<div class="text-center">
+			<div class="row">
+				<div class="col-sm-12">
+					<button type="button" onclick="loadFile('data-table', 'user_info.php')">Hiển thị danh sách người dùng</button>
+					<button type="button" onclick="loadFile('add-new-user', 'create_user_form.php')">Thêm một người dùng mới</button>
+					<a href="../index.php?logout='1'" style="color: red;">logout</a>
+				</div>
+				<div class="col-sm-12">
+					<div class="data-table"></div>
+				</div>
 			</div>
 		</div>
-		<div class="show-message" style="text-align: left;"></div>
+	</div>
+	<div class="container mt-5 border p-4">
+		<div class="add-new-user"></div>
+		<div class="row d-flex justify-content-center">
+			<div class="col-sm-10">
+				<div class="show-message" style="text-align: left;"></div>
+			</div>
+		</div>
 	</div>
 
 </body>

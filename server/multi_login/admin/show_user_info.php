@@ -67,7 +67,26 @@ $target_dir_avatar = "../../resource/img_avatar/";
 </head>
 
 <body>
-    <form class="edit-form" method="POST" onsubmit="event.preventDefault()">
+    <div class="mt-5">
+
+    </div>
+    <div class="container mb-5">
+        <nav class="navbar fixed-top navbar-light" style="background-color: #d6dbe1;">
+            <div class="container mb-2">
+                <div class="row">
+                    <div class="col-sm-12 d-flex justify-content-end align-items-center">
+                        <button onclick="enableEdit('input-info');" class="btn btn-primary mr-2" name="button-edit">Edit
+                        </button>
+                        <button disabled onclick="confirmSaveInfo()" type="submit" class="btn btn-success btn-outline-dark" id="save" name="btn-save" style="background-color: #ccc">Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <form style="margin-top: 5rem;" class="edit-form" method="POST" onsubmit="event.preventDefault()">
         <!-- show error here -->
         <div class="show-message"></div>
         <!-- show error here -->
@@ -362,17 +381,7 @@ $target_dir_avatar = "../../resource/img_avatar/";
                 </div>
                 <!-- end of show info here -->
 
-                <div class="container mb-2">
-                    <div class="row">
-                        <div class="col-sm-12 d-flex justify-content-end align-items-center">
-                            <button onclick="enableEdit('input-info');" class="btn btn-primary mr-2" name="button-edit">Edit
-                            </button>
-                            <button disabled onclick="confirmSaveInfo()" type="submit" class="btn btn-success" id="save" name="btn-save" style="background-color: #ccc">Save
-                            </button>
-                        </div>
 
-                    </div>
-                </div>
     </form>
 
 

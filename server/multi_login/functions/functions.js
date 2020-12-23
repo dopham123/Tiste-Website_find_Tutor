@@ -147,6 +147,7 @@ function createUser() {
                 }
 
             } else {
+                $('.add-new-user').html('<div class="add-new-user">' + data.message + '</div>');
                 setTimeout(loadFile('data-table', '../admin/user_info.php'), 2000);
             }
         })
