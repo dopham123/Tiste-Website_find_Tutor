@@ -848,6 +848,16 @@ ul.sociel_link li a {
 /** end service section **/
 
 
+/* Detail */
+
+.tutor-img > img{
+    max-width: 147px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* End Detail */
+
 /** product section **/
 
 .product {

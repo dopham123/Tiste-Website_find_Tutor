@@ -10,7 +10,7 @@ if (isset($_GET['logout'])) {
     header("location: ./index.php");
 }
 ?>
-
+<?php include("../server/multi_login/functions/detail.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +22,7 @@ if (isset($_GET['logout'])) {
       <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!-- load jquery via CDN -->
-      <title>Thông tin chi tiết</title>
+      <title><?php echo $data['detail'][0]['first_name'] ." ". $data['detail'][0]['last_name'];?></title>
 </head>
 <body>
 <header>
@@ -92,7 +92,7 @@ if (isset($_GET['logout'])) {
             </div>
         </div>
 </header>
-<?php include("../server/multi_login/functions/detail.php");?>
+
 <div class="service-info">
     <div id='tutor-name' class="main-content">
         <h3><?php echo $data['detail'][0]['first_name'] ." ". $data['detail'][0]['last_name'];?></h3>
@@ -122,7 +122,19 @@ if (isset($_GET['logout'])) {
                     <p>Điểm phản hồi</p>
                     <div id="evaluate-point"><?php echo $data['detail'][0]['eval'];?></div>
                 </div>
+                <div id="num-student-info">
+                    <p>Số học viên đã dạy</p>
+                    <div id="num-student"><?php echo $data['detail'][0]['num_of_std'];?></div>
+                </div>
+                <div id="experiment-info">
+                    <p>Kinh nghiệm</p>
+                    <div id="experiment"><?php echo $data['detail'][0]['exp'];?> năm</div>
+                </div>
             </div>
+        </div>
+        <div class="user-card">
+            <div class="school-profile"><a href="#">Học bạ cấp 3</a></div>
+            <div class="school-profile"><img src="" alt=""></div>
         </div>
         <div class="user-card" style="display: block">
             <h3>Đánh giá</h3>
