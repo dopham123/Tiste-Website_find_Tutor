@@ -1,8 +1,8 @@
 <?php include('../functions/functions.php'); ?>
 <?php require "../config.php"; ?>
 <?php
-$target_dir_profile = "../../resource/img_profile/";
-$target_dir_avatar = "../../resource/img_avatar/";
+$target_dir_profile = "";
+$target_dir_avatar = "";
 $user_id = $_GET['user_id'];
 $sql = "SELECT * FROM tutor_profile WHERE user_id=$user_id";
 $result = mysqli_query($con, $sql);
@@ -22,7 +22,7 @@ if (mysqli_num_rows($result) > 0) {
 					<label class="custom-file-label" for="avatar_image">Chọn ảnh đại diện mới</label>
 				</div>
 				<div class="img-container">
-					<img class="ava-pro-img-format img-fluid img-thumbnail" id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar">
+					<img class="ava-pro-img-format img-fluid img-thumbnail" id="avatar_image_1" src="../../resource/img_avatar/<?php echo $row['avatar_image'] ?>" alt="avatar">
 				</div>
 			</div>
 
@@ -33,7 +33,7 @@ if (mysqli_num_rows($result) > 0) {
 						<label class="custom-file-label" for="profile_image">Chọn ảnh hồ sơ mới</label>
 					</div>
 					<div class="img-container">
-						<img class="ava-pro-img-format img-fluid img-thumbnail" id="profile_image_1" src="<?php echo $row['profile_image'] ?>" alt="profile">
+						<img class="ava-pro-img-format img-fluid img-thumbnail" id="profile_image_1" src="../../resource/img_profile/<?php echo $row['profile_image'] ?>" alt="profile">
 					</div>
 				</div>
 			</div>
@@ -80,7 +80,7 @@ if (mysqli_num_rows($result) > 0) {
 						<label class="custom-file-label" for="avatar_image">Chọn ảnh đại diện mới</label>
 					</div>
 					<div class="img-container">
-						<img class="ava-pro-img-format img-fluid img-thumbnail" id="avatar_image_1" src="<?php echo $row['avatar_image'] ?>" alt="avatar">
+						<img class="ava-pro-img-format img-fluid img-thumbnail" id="avatar_image_1" src="../../resource/img_avatar/<?php echo $row['avatar_image'] ?>" alt="avatar">
 					</div>
 				</div>
 
@@ -91,7 +91,7 @@ if (mysqli_num_rows($result) > 0) {
 							<label class="custom-file-label" for="profile_image">Chọn ảnh hồ sơ mới</label>
 						</div>
 						<div class="img-container">
-							<img class="ava-pro-img-format img-fluid img-thumbnail" id="profile_image_1" src="<?php echo $row['profile_image'] ?>" alt="profile">
+							<img class="ava-pro-img-format img-fluid img-thumbnail" id="profile_image_1" src="../../resource/img_profile/<?php echo $row['profile_image'] ?>" alt="profile">
 						</div>
 					</div>
 				</div>
