@@ -1437,7 +1437,7 @@ label.label-edited {
     padding-top: 0.7rem;
 }
 
-input.input-login {
+input.input-edited {
     border: 0;
     border-bottom: 2px solid #ccc;
     box-shadow: none !important;
@@ -1511,3 +1511,78 @@ button.button-send-format {
     }
 }
 /* end of contact */
+
+/* login */
+.welcom-login-format {
+    font-size: 2rem;
+    color: #20aeff;
+}
+
+.login-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.form-control-edited {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+input.input-login {
+    border-radius: 1rem;
+    background-color: white;
+    border: 2px solid black;
+    box-shadow: none !important;
+    padding-left: 10px;
+    padding: 0.6rem 0.75rem;
+}
+
+.white-bg-login {
+    background: #fff;
+    padding: 40px 20px;
+    margin-bottom: 0;
+}
+
+.blue-bg-login {
+    background-color: #09a6ff;
+}
+
+.label-edited-login {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+    padding-top: 0.7rem;
+}
+
+.login-btn {
+    background-color: #0c6cc2;
+    color: white;
+}
+/* end of login */
+.alert-top{
+    text-align: center;
+    font-size: 1rem;
+    position: fixed;
+    top: 5px; 
+    left:2%;
+    width: 96%;
+}
+
+/* register */
+.border-edited {
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding: .375rem .75rem;
+    margin: 0;
+}
+
+.bg-full-img {
+    background: url('../resource/images/Group92.png') no-repeat center center;
+    background-size: 100% 100%;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+/* end of register */
