@@ -289,7 +289,9 @@ if (isset($_GET['logout'])) {
                                                         <label class="custom-file-label" for="avatar_image">Chọn ảnh đại diện mới</label>
                                                     </div>
                                                     <div class="img-container">
-                                                        <img class="ava-pro-img-format img-fluid img-thumbnail" id="avatar_image_1" src="../server/resource/img_avatar/<?php echo $row['avatar_image'] ?>" alt="avatar">
+                                                        <div class="ava_img">
+                                                            <img class="ava-pro-img-format img-fluid img-thumbnail" id="avatar_image_1" src="../server/resource/img_avatar/<?php echo $row['avatar_image'] ?>" alt="avatar">
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -300,7 +302,9 @@ if (isset($_GET['logout'])) {
                                                             <label class="custom-file-label" for="profile_image">Chọn ảnh hồ sơ mới</label>
                                                         </div>
                                                         <div class="img-container">
-                                                            <img class="ava-pro-img-format img-fluid img-thumbnail" id="profile_image_1" src="../server/resource/img_profile/<?php echo $row['profile_image'] ?>" alt="profile">
+                                                            <div class="pro_img">
+                                                                <img class="ava-pro-img-format img-fluid img-thumbnail pro_img" id="profile_image_1" src="../server/resource/img_profile/<?php echo $row['profile_image'] ?>" alt="profile">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -402,7 +406,13 @@ if (isset($_GET['logout'])) {
                                 <div class="col-sm-12 d-flex justify-content-end align-items-center">
                                     <button onclick="enableEdit('input-info');" class="btn btn-primary mr-2" name="button-edit" style="background-color: #0069d9;">Edit
                                     </button>
-                                    <button disabled onclick="userSaveInfo();" class="btn mr-2" id="save" name="button-save" style="background-color: #ccc;">Save
+                                    <button disabled onclick="
+                                    const urlParams = new URLSearchParams(window.location.search);
+                                    const user_id = urlParams.get('user_id');
+                                    userSaveInfo();
+                                    loadFile('ava_img','./ajax/image_avatar.php?user_id='+ user_id);
+                                    loadFile('pro_img','./ajax/image_profile.php?user_id='+ user_id);
+                                    " class="btn mr-2" id="save" name="button-save" style="background-color: #ccc;">Save
                                     </button>
                                 </div>
                             </div>
