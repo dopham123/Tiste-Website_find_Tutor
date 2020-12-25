@@ -68,7 +68,7 @@ if (isTutor() || isStudent()) {
 										<li> <a href="service.php">Dịch vụ</a> </li>
 										<li> <a href="prices.php">Bảng giá</a> </li>
 										<li> <a href="contact.php">Liên hệ</a> </li>
-										<li> <a href="#">Đăng ký</a> </li>
+										<li> <a href="register.php">Đăng ký</a> </li>
 									</ul>
 								</nav>
 							</div>

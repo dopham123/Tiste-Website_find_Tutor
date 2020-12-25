@@ -59,7 +59,7 @@
                                             <li> <a href="service.php">Dịch vụ</a> </li>
                                             <li> <a href="prices.php">Bảng giá</a> </li>
                                             <li> <a href="contact.php">Liên hệ</a> </li>
-                                            <li> <a href="#">Đăng ký</a> </li>
+                                            <li class="active"> <a href="#">Đăng ký</a> </li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -69,7 +69,7 @@
                 </div>
             </div>
         </header>
-        <!-- login -->
+        <!-- register -->
         <div class="container-fluid d-flex justify-content-center align-items-center pb-5">
             <div class="row">
                 <div class="container d-flex justify-content-center align-items-center white-bg-login">
@@ -179,7 +179,7 @@
             </div>
         </div>
 
-        <!--  login -->
+        <!--  end register -->
 
         <footer>
             <div class="footer" style="position: absolute;
