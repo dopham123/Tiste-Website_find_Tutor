@@ -45,9 +45,11 @@ if (isset($_GET['logout'])) {
                                 $row = getInfo($_SESSION['user']['id']); ?>
                                 <div>
                                     <ul>
-                                        <li><a class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
-                                        <a href="./index.php?logout='1'" style="color: red;">logout</a>
+                                        <li><a href="user.info.php" class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
                                     </ul>
+                                </div>
+                                <div class="btn-logout">
+                                    <a href="./index.php?logout='1'">Logout</a>
                                 </div>
                             <?php
                             } else { ?>
@@ -80,7 +82,7 @@ if (isset($_GET['logout'])) {
                                         <li> <a href="service.php">Dịch vụ</a> </li>
                                         <li> <a href="prices.php">BẢng giá</a> </li>
                                         <li> <a href="contact.php">Liên hệ</a> </li>
-                                        <li> <a href="#">Đăng ký</a> </li>
+                                        <li> <a href="register.php">Đăng ký</a> </li>
                                     </ul>
                                 </nav>
                             </div>
