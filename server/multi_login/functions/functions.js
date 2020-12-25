@@ -31,7 +31,7 @@ function saveInfo() {
     var profile_image = "";
     var info = "";
     var experience = "";
-
+    
     const urlParams = new URLSearchParams(window.location.search);
     const user_id = urlParams.get('user_id');
     // var id = event.target.name;
@@ -39,20 +39,19 @@ function saveInfo() {
     var check = document.getElementById("avatar_image");
     if (check) {
         if ($('#avatar_image').val() != "") {
-            avatar_image = "../../resource/img_avatar/" + $('#avatar_image').val().split("\\").pop();
+            avatar_image = $('#avatar_image').val().split("\\").pop();
             // profile_image = "../../resource/img_profile/" + $('#profile_image').val().split("\\").pop();
         } else {
             // profile_image = document.getElementById("profile_image_1").src;
             // profile_image = "../../" + profile_image.substr(60);
-            avatar_image = document.getElementById("avatar_image_1").src;
-            avatar_image = "../../" + avatar_image.substr(60);
+            avatar_image = document.getElementById("avatar_image_1").src.split("/").pop();
+            // avatar_image = "../../" + avatar_image.substr(60);
         }
 
         if ($('#profile_image').val() != "") {
-            profile_image = "../../resource/img_profile/" + $('#profile_image').val().split("\\").pop();
+            profile_image = $('#profile_image').val().split("\\").pop();
         } else {
-            profile_image = document.getElementById("profile_image_1").src;
-            profile_image = "../../" + profile_image.substr(60);
+            profile_image = document.getElementById("profile_image_1").src.split("/").pop();
             // avatar_image = document.getElementById("avatar_image_1").src;
             // avatar_image = "../../" + avatar_image.substr(60);
         }

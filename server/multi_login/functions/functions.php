@@ -124,9 +124,13 @@ function register_info()
 	// form validation: ensure that the form is correctly filled
 	if (empty($fname)) {
 		array_push($errors, "Tên không được để trống");
+	} else if (!(0 === preg_match('~[0-9]~', $fname))) {
+		array_push($errors, "Tên chỉ chứa các chữ cái");
 	}
 	if (empty($lname)) {
 		array_push($errors, "Họ lót không được để trống");
+	} else if (!(0 === preg_match('~[0-9]~', $fname))) {
+		array_push($errors, "Họ lót chỉ chứa các chữ cái");
 	}
 	if (empty($phone_number)) {
 		array_push($errors, "Số điện thoại không được để trống");
@@ -161,7 +165,7 @@ function register_profile()
 	global $db, $errors, $info, $experience;
 
 	// check image
-	$target_dir_avatar = "../../resource/img_avatar/";
+	$target_dir_avatar = "";
 	$target_file_avatar = "";
 	// Check if image file is a actual image or fake image
 	if (!isset($_FILES['avatar_image']) || $_FILES['avatar_image']['error'] == UPLOAD_ERR_NO_FILE) {
@@ -176,7 +180,7 @@ function register_profile()
 	}
 
 	// check image
-	$target_dir_profile = "../../resource/img_profile/";
+	$target_dir_profile = "";
 	$target_file_profile = "";
 	if (!isset($_FILES['profile_image']) || $_FILES['profile_image']['error'] == UPLOAD_ERR_NO_FILE) {
 	} else {
@@ -334,4 +338,30 @@ function getInfo($id)
 		return $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	}
 	return $row;
+}
+
+function display_error_alert()
+{
+	global $errors;
+	if (count($errors) > 0) {
+		// $username    =  e($_POST['username']);
+		// echo '<div class="error">';
+		// foreach ($errors as $error) {
+		// 	echo $error . '<br>';
+		// }
+		// echo '</div>';
+		echo '<div class="alert alert-danger alert-top" role="alert">';
+		echo 	'<strong>';
+		echo 		$errors[0];
+		echo 	'</strong>';
+		echo	' <button type="button" class="close" data-dismiss="alert">×</button>';
+		echo '</div>';
+		echo '<script> 
+				window.setTimeout(function() {
+					$(".alert").fadeTo(500, 0).slideUp(500, function(){
+						$(this).remove(); 
+					});
+				}, 2000); 
+			</script>';
+	}
 }
