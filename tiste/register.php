@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    <?php echo display_error_alert(); ?>
     <div id="page-container">
         <header>
             <div class="header border">
@@ -92,7 +93,6 @@
                         </div>
                         <div class="col-sm-10 border border-info rounded mt-2">
                             <form method="post" action="register.php">
-                                <?php echo display_error_alert(); ?>
                                 <div class="form-group">
                                     <label>Loại tài khoản</label>
                                     <select name="role" class="input-info user_type-class custom-select">

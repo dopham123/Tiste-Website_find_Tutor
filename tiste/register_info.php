@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <?php echo display_error_alert(); ?>
     <div id="page-container">
         <header>
             <div class="header border">
@@ -93,7 +94,6 @@
                         </div>
                         <div class="col-sm-10 border border-info rounded mt-2">
                             <form method="post" action="register_info.php">
-                                <?php echo display_error_alert(); ?>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
