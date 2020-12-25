@@ -26,7 +26,6 @@ if (isset($_GET['logout'])) {
 </head>
 
 <body>
-    <?php include('../server/multi_login/functions/prices-info.php');?>
     <script>
         let data = <?php echo $data;?>;
         console.log(data);

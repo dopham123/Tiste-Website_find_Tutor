@@ -18,9 +18,9 @@ if (isset($_GET['logout'])) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <!-- style css -->
       <link rel="stylesheet" href="css/style.css">
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!-- load jquery via CDN -->
       <title><?php echo $data['detail'][0]['first_name'] ." ". $data['detail'][0]['last_name'];?></title>
 </head>
@@ -95,7 +95,7 @@ if (isset($_GET['logout'])) {
 
 <div class="service-info">
     <div id='tutor-name' class="main-content">
-        <h3><?php echo $data['detail'][0]['first_name'] ." ". $data['detail'][0]['last_name'];?></h3>
+        <h2><?php echo $data['detail'][0]['first_name'] ." ". $data['detail'][0]['last_name'];?></h2>
     </div>
     <div class="main-content">
         <div class="user-card detail-info">
@@ -103,32 +103,46 @@ if (isset($_GET['logout'])) {
                 <img src="<?php echo $data['detail'][0]['img'];?>" alt="tutor">
             </div>
             <div id="profile">
-                <h4><?php echo $data['detail'][0]['first_name'] ." ". $data['detail'][0]['last_name'];?></h4>
-                <h5>Gia sư</h5>
-                <div id="location">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                    <p><?php echo $data['detail'][0]['district'] ." ". $data['detail'][0]['city'];?></p>
-                </div>
-                <div id="subject">
-                    <h5><?php echo $data['detail'][0]['subject'];?></h5>
-                </div>
-                <div id="graduate">
-                    <i class="fa fa-briefcase" aria-hidden="true"></i>
-                    <p>Đại học Bách Khoa TP.HCM</p>
-                </div>
+                <ul class="profile">
+                    <li>
+                        <h3><?php echo $data['detail'][0]['first_name'] ." ". $data['detail'][0]['last_name'];?></h3>
+                    </li>
+                    <li>
+                        <h5>Gia sư</h5>
+                    </li>
+                    <li id="location-tutor" class="profile-detail">
+                        <i class="fa fa-map-marker small-icon" aria-hidden="true"></i>
+                        <?php echo $data['detail'][0]['district'] ." ". $data['detail'][0]['city'];?>
+                    </li>
+                    <li id="subject" class="profile-detail">
+                        <h5><?php echo $data['detail'][0]['subject'];?></h5>
+                    </li>
+                    <li id="graduate" class="profile-detail">
+                        <i class="fa fa-briefcase small-icon" aria-hidden="true"></i>
+                        Đại học Bách Khoa TP.HCM
+                    </li>
+                </ul>
             </div>
+            <div class="clearfix"></div>
             <div class="evaluate">
-                <div id="evaluate-info">
-                    <p>Điểm phản hồi</p>
-                    <div id="evaluate-point"><?php echo $data['detail'][0]['eval'];?></div>
+                <div id="evaluate-info" class="evaluate-detail">
+                    <div class="evaluate-criteria">Điểm phản hồi: </div>
+                    <div id="evaluate-point">+<?php echo $data['detail'][0]['eval'];?></div>
                 </div>
-                <div id="num-student-info">
-                    <p>Số học viên đã dạy</p>
+                <div id="num-student-info" class="evaluate-detail">
+                    <div class="evaluate-criteria">Số học viên đã dạy: </div>
                     <div id="num-student"><?php echo $data['detail'][0]['num_of_std'];?></div>
                 </div>
-                <div id="experiment-info">
-                    <p>Kinh nghiệm</p>
+                <div id="experiment-info" class="evaluate-detail">
+                    <div class="evaluate-criteria">Kinh nghiệm: </div>
                     <div id="experiment"><?php echo $data['detail'][0]['exp'];?> năm</div>
+                </div>
+                <div id="salary-info" class="evaluate-detail">
+                    <div class="evaluate-criteria">Lương: </div>
+                    <div id="salary"><?php echo $data['detail'][0]['salary'];?> triệu VNĐ</div>
+                </div>
+                <div id="register" class="evaluate-detail">
+                    <button class="btn-search">Đăng ký học</button>
                 </div>
             </div>
         </div>
@@ -137,7 +151,7 @@ if (isset($_GET['logout'])) {
             <div class="school-profile"><img src="" alt=""></div>
         </div>
         <div class="user-card" style="display: block">
-            <h3>Đánh giá</h3>
+            <h3>Bình luận</h3>
             <div id="show-comment"></div>
         </div>
     </div>
@@ -156,12 +170,16 @@ if (isset($_GET['logout'])) {
             encode: true,
             beforeSend: function () {
                 $("#submit-comment").attr("disabled", true);
-            }
+            },
+            complete: function (data) {
+                $("#submit-comment").attr("disabled", false);
+            },
         }).done(function (data){
             if (!data.success) {
-                $("#show-error").append(`
-                    <div id='error' class="error">${data.error}</div>
+                $("#show-error").html(`
+                    ${data.error}
                 `);
+                console.log(data);
             } else {
                 alert("successfull");
                 getComment(id);
@@ -180,18 +198,22 @@ if (isset($_GET['logout'])) {
                 } else {
                     for (let i = 0; i < data.comment.length; i++) {
                         $('#show-comment').append(`
-                            <div id='commentator-${data.comment[i].id}' class="commentator">${data.comment[i].first_name} ${data.comment[i].last_name}:</div>
-                            <div id='comment-${data.comment[i].id}' class="comment">${data.comment[i].comment}</div>
+                            <div class="show-cmt">
+                                <div id='commentator-${data.comment[i].id}' class="commentator cmt-info">${data.comment[i].first_name} ${data.comment[i].last_name}</div>
+                                <div id='date-comment-${data.comment[i].id}' class="date-comment cmt-info">${data.comment[i].date}</div>
+                                <div class="clearfix"></div>
+                                <div id='comment-${data.comment[i].id}' class="comment">${data.comment[i].comment}</div>
+                            </div>
                         `);
                     }
                     <?php if (isset($_SESSION['user'])) {
                                     if ($_SESSION['user']['user_type'] == 'user') {
                      ?>
                                         $('#show-comment').append(`
+                                                <span id="show-error"></span>
                                                 <div id='add-comment' class="comment">
-                                                    <label for="new-comment">Viết bình luận:</label>
-                                                    <input type="text" id="new-comment" name="new-comment">
-                                                    <button id="submit-comment" onclick='addComment(${id}, ${<?php echo ($_SESSION['user']['id']); ?>})'>Thêm</button>
+                                                    <input class="input-search ipt-cmt" type="text" id="new-comment" name="new-comment" placeholder="Viết bình luận:">
+                                                    <button class="btn-search" id="submit-comment" onclick='addComment(${id}, ${<?php echo ($_SESSION['user']['id']); ?>})'>Thêm</button>
                                                 </div>
                                         `);
                     <?php } }?>
@@ -208,9 +230,6 @@ if (isset($_GET['logout'])) {
         
     });
 </script>
-
-
-
 <footer>
       <div class="footer">
             <div class="container">

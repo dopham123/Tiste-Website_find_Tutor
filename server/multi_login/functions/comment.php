@@ -10,7 +10,7 @@
       else {
             global $data;
             $id = $_GET["id"];
-            $query = " SELECT c.id, u.user_id, u.first_name, u.last_name, c.comment, c.tutorID
+            $query = " SELECT c.id, u.user_id, u.first_name, u.last_name, c.comment, c.tutorID, c.date
                               FROM comment AS c , users_info AS u
                               WHERE tutorID='$id' 
                               AND c.commentatorID = u.user_id;";
