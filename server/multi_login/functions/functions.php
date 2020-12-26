@@ -28,6 +28,11 @@ if (isset($_POST['register_btn'])) {
 	register();
 }
 
+// add register class
+if (isset($_POST['register_class'])) {
+	register_cls();
+} 
+
 // call the register_infor() function if register_info_btn is clicked
 if (isset($_POST['register_info_btn'])) {
 	register_info();
@@ -35,6 +40,48 @@ if (isset($_POST['register_info_btn'])) {
 
 if (isset($_POST['register_profile_btn'])) {
 	register_profile();
+}
+
+// REGISTER CLASS
+function register_cls()
+{
+	// call these variables with the global keyword to make them available in function
+	global $db, $errors, $subject, $class;
+
+	// receive all input values from the form. Call the e() function
+	// defined below to escape form values
+	$subject    =  e($_POST['subject']);
+	$class       =  e($_POST['class']);
+	$salary  =  e($_POST['salary']);
+	$num_std  =  e($_POST['num-of-std']);
+
+	// form validation: ensure that the form is correctly filled
+	if (empty($subject)) {
+		array_push($errors, "Môn học không được để trống");
+	}
+	if (empty($class)) {
+		array_push($errors, "Lớp không được để trống");
+	}
+	if (empty($salary)) {
+		array_push($errors, "Học phí không được để trống");
+	}
+	if (empty($num_std)) {
+		array_push($errors, "Số học sinh không khớp");
+	}
+
+	// register user if there are no errors in the form
+	if (count($errors) == 0) {
+		$user_id = $_SESSION['user']['id'];
+		$query = "INSERT INTO service (subject, class, salary, num_of_std, user_if_id) 
+					  VALUES('$subject', '$class', '$salary', '$num_std', '$user_id')";
+		if (mysqli_query($db, $query)){
+			echo ("<script>alert('Gửi Đăng Ký Thành Công!');</script>");
+		}
+		else{
+			echo ("<script>alert('Gửi Đăng Ký Thất Bại!');</script>");
+		}
+		//header('location: register_info.php');
+	}
 }
 
 // REGISTER USER

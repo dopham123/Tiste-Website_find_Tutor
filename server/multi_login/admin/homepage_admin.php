@@ -80,6 +80,7 @@ if (isset($_GET['logout'])) {
 				<div class="col-sm-12">
 					<button type="button" onclick="loadFile('data-table', 'user_info.php')">Hiển thị danh sách người dùng</button>
 					<button type="button" onclick="loadFile('add-new-user', 'create_user_form.php')">Thêm một người dùng mới</button>
+					<a href="manage_service.php"><button type="button" >Xem danh sách dịch vụ</button></a>
 					<a href="../index.php?logout='1'" style="color: red;">logout</a>
 				</div>
 				<div class="col-sm-12">

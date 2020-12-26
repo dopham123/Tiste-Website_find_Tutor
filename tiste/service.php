@@ -45,6 +45,7 @@ if (isset($_GET['logout'])) {
                                 </ul>
                             </div>
                         </div>
+
                         <div class="col d-flex align-items-center justify-content-end">
                         <?php
                             if (isTutor() || isStudent()) {
@@ -52,7 +53,8 @@ if (isset($_GET['logout'])) {
                                 <div>
                                     <ul>
                                         <li><a class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
-                                        <a href="./index.php?logout='1'" style="color: red;">logout</a>
+                                        <a href="register_class.php" style="color: #678804; border-right:solid 2px grey;">Đăng ký mở lớp </a>
+                                        <a href="./index.php?logout='1'" style="color: red; padding-left: 5px;">Logout</a>
                                     </ul>
                                 </div>
                             <?php
@@ -161,7 +163,7 @@ if (isset($_GET['logout'])) {
                           $search_text = trim($_GET['subject']);
                           $search_class = trim($_GET['level']);
                           
-                          $query_string = "SELECT * FROM users_info AS ui INNER JOIN service AS sv ON ui.user_id = sv.user_if_id WHERE (";
+                          $query_string = "SELECT * FROM users_info AS ui INNER JOIN service AS sv ON ui.user_id = sv.user_if_id INNER JOIN tutor_profile AS pf ON ui.user_id = pf.user_id WHERE check_accept = 1 AND (";
                           
                           
                           $k = explode(' ', $search_text);
@@ -181,7 +183,7 @@ if (isset($_GET['logout'])) {
                           echo('<script>document.getElementById("total-member").innerHTML = "<strong>'.$count.' kết quả tìm kiếm cho \"'.$search_text.' - Lớp '.$search_class.'\"</strong>";</script>');
                         }
                         else{
-                          $query_string = "SELECT * FROM users_info AS ui INNER JOIN service AS sv ON ui.user_id = sv.user_if_id";
+                          $query_string = "SELECT * FROM users_info AS ui INNER JOIN service AS sv ON ui.user_id = sv.user_if_id INNER JOIN tutor_profile AS pf ON ui.user_id = pf.user_id WHERE check_accept = 1";
                           $result = mysqli_query($con, $query_string);
                         }                
                         
@@ -191,7 +193,7 @@ if (isset($_GET['logout'])) {
                         {
                           echo '<div class="user-card" onclick="tutorDetail('.$row["user_id"].');">
                                     <div class="user-card-img">
-                                        <a href="#"><img src="'.$row["img"].'" alt="lau"></a>
+                                        <a href="#"><img src="../server/multi_login/admin/'.$row["avatar_image"].'" alt="image"></a>
                                     </div>
                                     <div class="user-main-info">
                                         <div class="user-card-info">
@@ -222,7 +224,7 @@ if (isset($_GET['logout'])) {
                                             <div class="user-card-experiment">
                                                 
                                                 <div class="experiment">
-                                                    '.$row["intro"].'
+                                                    '.$row["info"].'
                                                 </div>
                                                 <div class="address">
                                                     <img src="./icon/compass.png" alt="location">
@@ -239,7 +241,7 @@ if (isset($_GET['logout'])) {
                                                     </div>
                                                     <div class="user-card-meta-hightlight">
                                                         <div class="user-card-meta-label">
-                                                            <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> '.$row["exp"].'
+                                                            <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> '.$row["experience"].'
                                                         </div>
                                                         <div class="user-card-total-member">
                                                             năm kinh nghiệm
