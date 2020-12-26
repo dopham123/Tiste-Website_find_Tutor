@@ -42,7 +42,7 @@
                         confirmDelete(event);
                         setTimeout(function() {
                             loadFile('data-table', 'user_info.php'
-                            )}, 2000);
+                            )}, 500);
                         " type="submit" class="btn btn-danger" name="<?php echo $row['id'] ?>">Delete
                                 </button>
                             </td>

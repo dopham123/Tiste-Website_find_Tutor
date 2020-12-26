@@ -25,7 +25,7 @@
 			<label>Loại tài khoản</label>
 		</div>
 		<div class="col-sm-7">
-			<select name="user_type" id="user_type" class="user_type-class">
+			<select name="user_type" id="user_type" class="user_type-class form-control custom-form">
 				<option selected value="tutor">Gia sư</option>
 				<option value="user">Học viên</option>
 			</select>
