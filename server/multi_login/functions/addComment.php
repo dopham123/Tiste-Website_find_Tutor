@@ -9,7 +9,7 @@
       if ($comment == '') {
 		$errors = "Vui lòng nhập bình luận của bạn!";
       } elseif (strlen($comment) <= 3) {
-            $errors = "Vui lòng nhập bình luận có đọ dài lớn hơn!";
+            $errors = "Vui lòng nhập bình luận có độ dài lớn hơn!";
       }elseif (strlen($comment) > 100) {
             $errors = "Bình luận quá dài. Vui lòng nhập bình luận ngắn hơn!";
       }

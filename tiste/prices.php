@@ -46,14 +46,16 @@ if (isset($_GET['logout'])) {
                             </div>
                         </div>
                         <div class="col d-flex align-items-center justify-content-end">
-                        <?php
+                            <?php
                             if (isTutor() || isStudent()) {
                                 $row = getInfo($_SESSION['user']['id']); ?>
                                 <div>
                                     <ul>
-                                        <li><a class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
-                                        <a href="./index.php?logout='1'" style="color: red;">logout</a>
+                                        <li><a href="user.info.php?user_id=<?php echo $_SESSION['user']['id']?>" class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
                                     </ul>
+                                </div>
+                                <div class="btn-logout">
+                                    <a href="./index.php?logout='1'">Logout</a>
                                 </div>
                             <?php
                             } else { ?>
@@ -71,8 +73,7 @@ if (isset($_GET['logout'])) {
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center"
-                        style="padding-left: 0; text-align: center;">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center" style="padding-left: 0; text-align: center;">
                         <div class="logo">
                             <a href="index.php"><img src="images/logo.png" alt="logo" /></a>
                         </div>
@@ -85,9 +86,18 @@ if (isset($_GET['logout'])) {
                                         <li> <a href="index.php">Trang chủ</a> </li>
                                         <li> <a href="about.php">Giới thiệu</a> </li>
                                         <li> <a href="service.php">Dịch vụ</a> </li>
-                                        <li class="active"> <a href="prices.php">Bảng giá</a> </li>
+                                        <li class="active"> <a href="prices.php">BẢng giá</a> </li>
                                         <li> <a href="contact.php">Liên hệ</a> </li>
+                                        <?php 
+                                            if (isTutor() || isStudent()) {
+                                        ?>
+                                        <?php 
+                                        } else {
+                                        ?>
                                         <li> <a href="register.php">Đăng ký</a> </li>
+                                        <?php
+                                        }
+                                        ?>
                                     </ul>
                                 </nav>
                             </div>

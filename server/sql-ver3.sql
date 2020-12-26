@@ -25,8 +25,8 @@ CREATE TABLE `users_info` (
     PRIMARY KEY (user_info_id) );
 
 CREATE TABLE `tutor_profile` ( 
-    `tutor_profile_id` int(10) NOT NULL AUTO_INCREMENT,
-    `experience` varchar(100), 
+    `tutor_profile_id` int(255) NOT NULL AUTO_INCREMENT,
+    `experience` varchar(255), 
     `info` varchar(100), 
     `avatar_image` varchar(100) , 
     `profile_image` varchar(100) , 
@@ -39,7 +39,7 @@ CREATE TABLE `tutor_profile` (
 -- Tạo bảng comment
 CREATE TABLE `comment` ( 
     `id` int(10) NOT NULL AUTO_INCREMENT,
-    `comment` varchar(100) NOT NULL,
+    `comment` varchar(255) NOT NULL,
     `commentatorID` int(10) NOT NULL, 
     `tutorID` int(10) NOT NULL,
     `date` datetime NOT NULL DEFAULT NOW(),

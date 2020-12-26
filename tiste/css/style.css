@@ -857,12 +857,13 @@ ul.sociel_link li a {
 #profile {
       width: 40%;
 }
-.clearfix::after{
-    content: " ";
-    display: table;
-    clear: both;
+.clearfix::after {
+      content: " ";
+      display: table;
+      clear: both;
 }
-.profile-detail {
+.profile > li > h3 {
+      color: #67dadf;
 }
 
 .profile-detail > i {
@@ -901,36 +902,54 @@ ul.sociel_link li a {
       color: #111111a8;
 }
 
-.commentator{
-    float: left;
+.school-profile-img>img, .experiment-info,  .evaluate-of-center {
+      padding: 5px;
+      margin: 5px;
+      width: 100%;
 }
 
-.date-comment{
-    float: right;
-    font-size: small;
+.evaluate-of-center{
+      display: flex;
 }
 
-.show-cmt{
-    border: solid 1px #adbadb;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 10px;
+.first-two-criteria{
+      width: 49%;
 }
 
-.cmt-info{
-    color: #000;
+.evaluate-star{
+      display: inline;
 }
 
-#add-comment{
-    text-align: center;
+.commentator {
+      float: left;
 }
 
-.ipt-cmt{
-    margin: 15px 0 !important;
+.date-comment {
+      float: right;
+      font-size: small;
 }
 
-#show-error{
-    color: red;
+.show-cmt {
+      border: solid 1px #adbadb;
+      padding: 5px;
+      margin: 5px;
+      border-radius: 10px;
+}
+
+.cmt-info {
+      color: #2a8dd8;
+}
+
+#add-comment {
+      text-align: center;
+}
+
+.ipt-cmt {
+      margin: 15px 0 !important;
+}
+
+#show-error {
+      color: red;
 }
 
 /* End Detail */
@@ -1431,6 +1450,12 @@ table {
       }
 }
 
+@media only screen and (max-width: 300px) {
+      .evaluate-of-center{
+            font-size: 13px;
+      }
+}
+
 @media only screen and (max-width: 767px) {
       .hover-button:hover {
             -webkit-transform: none;
@@ -1505,17 +1530,26 @@ table {
             float: left;
       }
       .tutor-img {
-          float: left;
-          width: 24%;
+            float: left;
+            width: 24%;
       }
-      #profile{
-        float: left;
-        width: 70%;
+      #profile {
+            float: left;
+            width: 70%;
       }
-      .evaluate{
-          width: 100%;
+      .evaluate {
+            width: 100%;
+      }
+      .evaluate-of-center{
+            display: block;
+            width: 100%;
+      }
+      .first-two-criteria{
+            width: 100%;
       }
 }
+
+
 
 /*end of price */
 
@@ -1528,11 +1562,11 @@ label.label-edited {
 }
 
 input.input-edited {
-    border: 0;
-    border-bottom: 2px solid #ccc;
-    box-shadow: none !important;
-    padding-left: 10px;
-    padding: 0.6rem 0.75rem;
+      border: 0;
+      border-bottom: 2px solid #ccc;
+      box-shadow: none !important;
+      padding-left: 10px;
+      padding: 0.6rem 0.75rem;
 }
 
 textarea.textarea-edited {
@@ -1608,115 +1642,115 @@ button.button-send-format {
 
 /* login */
 .welcom-login-format {
-    font-size: 2rem;
-    color: #20aeff;
+      font-size: 2rem;
+      color: #20aeff;
 }
 
 .login-grid {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+      display: grid;
+      grid-template-columns: 1fr 3fr;
 }
 
 .form-control-edited {
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
 }
 
 input.input-login {
-    border-radius: 1rem;
-    background-color: white;
-    border: 2px solid black;
-    box-shadow: none !important;
-    padding-left: 10px;
-    padding: 0.6rem 0.75rem;
+      border-radius: 1rem;
+      background-color: white;
+      border: 2px solid black;
+      box-shadow: none !important;
+      padding-left: 10px;
+      padding: 0.6rem 0.75rem;
 }
 
 .white-bg-login {
-    background: #fff;
-    padding: 40px 20px;
-    margin-bottom: 0;
+      background: #fff;
+      padding: 40px 20px;
+      margin-bottom: 0;
 }
 
 .blue-bg-login {
-    background-color: #09a6ff;
+      background-color: #09a6ff;
 }
 
 .label-edited-login {
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: white;
-    padding-top: 0.7rem;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: white;
+      padding-top: 0.7rem;
 }
 
 .login-btn {
-    background-color: #0c6cc2;
-    color: white;
+      background-color: #0c6cc2;
+      color: white;
 }
 /* end of login */
-.alert-top{
-    text-align: center;
-    font-size: 1rem;
-    position: fixed;
-    top: 5px; 
-    left:2%;
-    width: 96%;
-    z-index: 999;
+.alert-top {
+      text-align: center;
+      font-size: 1rem;
+      position: fixed;
+      top: 5px;
+      left: 2%;
+      width: 96%;
+      z-index: 999;
 }
 
 /* register */
 .border-edited {
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    padding: .375rem .75rem;
-    margin: 0;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      padding: 0.375rem 0.75rem;
+      margin: 0;
 }
 
 .bg-full-img {
-    background: url('../resource/images/Group92.png') no-repeat center center;
-    background-size: 100% 100%;
+      background: url("../resource/images/Group92.png") no-repeat center center;
+      background-size: 100% 100%;
 }
 
 #page-container {
-    position: relative;
-    min-height: 100vh;
+      position: relative;
+      min-height: 100vh;
 }
 /* end of register */
 
 /* user info */
 .btn-logout {
-    border: 1px solid black;
-    background-color: orange;
-    padding: 6px;
-    border-radius: 0.25rem;
-    margin-left: 0.25rem;
+      border: 1px solid black;
+      background-color: orange;
+      padding: 6px;
+      border-radius: 0.25rem;
+      margin-left: 0.25rem;
 }
 
 .ava-pro-img-format {
-    position: absolute;
-    /* Take your picture out of the flow */
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    /* Make the picture taking the size of it's parent */
-    width: 100%;
-    /* This if for the object-fit */
-    height: 100%;
-    /* This if for the object-fit */
-    /* Equivalent of the background-size: cover; of a background-image */
-    object-position: center;
+      position: absolute;
+      /* Take your picture out of the flow */
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      /* Make the picture taking the size of it's parent */
+      width: 100%;
+      /* This if for the object-fit */
+      height: 100%;
+      /* This if for the object-fit */
+      /* Equivalent of the background-size: cover; of a background-image */
+      object-position: center;
 }
 
 .img-container {
-    position: relative;
-    width: 100%;
-    /* The size you want */
+      position: relative;
+      width: 100%;
+      /* The size you want */
 }
 
 .img-container::after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-    /* The padding depends on the width, not on the height, so with a padding-bottom of 100% you will get a square */
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+      /* The padding depends on the width, not on the height, so with a padding-bottom of 100% you will get a square */
 }
 /* end of user info */

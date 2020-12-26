@@ -23,96 +23,111 @@ if (isset($_GET['logout'])) {
       <link rel="stylesheet" href="css/style.css">
       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!-- load jquery via CDN -->
       <title><?php echo $data['detail'][0]['first_name'] ." ". $data['detail'][0]['last_name'];?></title>
+      <style>
+          .user-card{
+              margin-bottom: 10px;
+          }
+      </style>
 </head>
 <body>
 <header>
-      <div class="header">
-            <div class="head_top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="top-box">
-                                <ul class="sociel_link">
-                                    <li class="size-60"> <a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="size-60"> <a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="size-60"> <a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li class="size-60"> <a href="#"><i class="fa fa-linkedin"></i></a></li>
+    <div class="header">
+        <div class="head_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="top-box">
+                            <ul class="sociel_link">
+                                <li class="size-60"> <a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="size-60"> <a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="size-60"> <a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li class="size-60"> <a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-end">
+                        <?php
+                        if (isTutor() || isStudent()) {
+                            $row = getInfo($_SESSION['user']['id']); ?>
+                            <div>
+                                <ul>
+                                    <li><a href="user.info.php?user_id=<?php echo $_SESSION['user']['id']?>" class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="col d-flex align-items-center justify-content-end">
+                            <div class="btn-logout">
+                                <a href="./index.php?logout='1'">Logout</a>
+                            </div>
                         <?php
-                            if (isTutor() || isStudent()) {
-                                $row = getInfo($_SESSION['user']['id']); ?>
-                                <div>
-                                    <ul>
-                                        <li><a class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
-                                        <a href="./index.php?logout='1'" style="color: red;">logout</a>
-                                    </ul>
-                                </div>
-                            <?php
-                            } else { ?>
-                                <div>
-                                    <ul>
-                                        <li><a class=" buy text-center" href="./login.php">Đăng nhập</a></li>
-                                    </ul>
-                                </div>
-                            <?php
-                            }
-                            ?>
-                        </div>
+                        } else { ?>
+                            <div>
+                                <ul>
+                                    <li><a class=" buy text-center" href="./login.php">Đăng nhập</a></li>
+                                </ul>
+                            </div>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center"
-                        style="padding-left: 0; text-align: center;">
-                        <div class="logo">
-                            <a href="index.php"><img src="images/logo.png" alt="logo" /></a>
-                        </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center" style="padding-left: 0; text-align: center;">
+                    <div class="logo">
+                        <a href="index.php"><img src="images/logo.png" alt="logo" /></a>
                     </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
-                        <div class="menu-area">
-                            <div class="limit-box">
-                                <nav class="main-menu">
-                                    <ul class="menu-area-main d-flex-column justify-content-around">
-                                        <li> <a href="index.php">Trang chủ</a> </li>
-                                        <li> <a href="about.php">Giới thiệu</a> </li>
-                                        <li class="active"> <a href="service.php">Dịch vụ</a> </li>
-                                        <li> <a href="prices.php">BẢng giá</a> </li>
-                                        <li> <a href="contact.php">Liên hệ</a> </li>
-                                        <li> <a href="#">Đăng ký</a> </li>
-                                    </ul>
-                                </nav>
-                            </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
+                    <div class="menu-area">
+                        <div class="limit-box">
+                            <nav class="main-menu">
+                                <ul class="menu-area-main d-flex-column justify-content-around">
+                                    <li> <a href="index.php">Trang chủ</a> </li>
+                                    <li> <a href="about.php">Giới thiệu</a> </li>
+                                    <li class="active"> <a href="service.php">Dịch vụ</a> </li>
+                                    <li> <a href="prices.php">BẢng giá</a> </li>
+                                    <li> <a href="contact.php">Liên hệ</a> </li>
+                                    <?php 
+                                        if (isTutor() || isStudent()) {
+                                    ?>
+                                    <?php 
+                                    } else {
+                                    ?>
+                                    <li> <a href="register.php">Đăng ký</a> </li>
+                                    <?php
+                                    }
+                                    ?>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </header>
 
 <div class="service-info">
     <div id='tutor-name' class="main-content">
-        <h2><?php echo $data['detail'][0]['first_name'] ." ". $data['detail'][0]['last_name'];?></h2>
+        <h2><?php echo $data['detail'][0]['last_name'] ." ". $data['detail'][0]['first_name'];?></h2>
     </div>
     <div class="main-content">
         <div class="user-card detail-info">
             <div class="tutor-img">
-                <img src="<?php echo $data['detail'][0]['img'];?>" alt="tutor">
+                <img src="./images/<?php echo $data['detail'][0]['avatar_image'];?>" alt="tutor">
             </div>
             <div id="profile">
                 <ul class="profile">
                     <li>
-                        <h3><?php echo $data['detail'][0]['first_name'] ." ". $data['detail'][0]['last_name'];?></h3>
+                        <h3><?php echo $data['detail'][0]['last_name'] ." ". $data['detail'][0]['first_name'];?></h3>
                     </li>
                     <li>
                         <h5>Gia sư</h5>
                     </li>
                     <li id="location-tutor" class="profile-detail">
                         <i class="fa fa-map-marker small-icon" aria-hidden="true"></i>
-                        <?php echo $data['detail'][0]['district'] ." ". $data['detail'][0]['city'];?>
+                        <?php echo $data['detail'][0]['district'] ." - ". $data['detail'][0]['city'];?>
                     </li>
                     <li id="subject" class="profile-detail">
                         <h5><?php echo $data['detail'][0]['subject'];?></h5>
@@ -146,9 +161,64 @@ if (isset($_GET['logout'])) {
                 </div>
             </div>
         </div>
-        <div class="user-card">
+        <div class="user-card" style="display: block">
             <div class="school-profile"><a href="#">Học bạ cấp 3</a></div>
-            <div class="school-profile"><img src="" alt=""></div>
+            <div class="school-profile-img"><img src="./profile/<?php echo $data['detail'][0]['profile_image'];?>" alt=""></div>
+        </div>
+        <div class="user-card" style="display: block">
+            <h3>Thông tin về gia sư</h3>
+            <div class="experiment-info"><?php echo $data['detail'][0]['info'];?></div>
+            <h3>Kinh nghiệm</h3>
+            <div class="experiment-info"><?php echo $data['detail'][0]['experience'];?></div>
+        </div>
+        <div class="user-card" style="display: block">
+            <h3>Đánh giá của trung tâm</h3>
+            <div class="evaluate-of-center">
+                <ul class="first-two-criteria">
+                    <li>
+                        <div class="evaluate-star">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                        Chuyên nghiệp
+                    </li>
+                    <li>
+                        <div class="evaluate-star">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                        </div>
+                        Độ tin cậy
+                    </li>
+                </ul>
+                <ul class="first-two-criteria">
+                    <li>
+                        <div class="evaluate-star">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                        </div>
+                        Chất lượng giảng dạy
+                    </li>
+                    <li>
+                        <div class="evaluate-star">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                        Khả năng giao tiếp
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="user-card" style="display: block">
             <h3>Bình luận</h3>
@@ -213,7 +283,7 @@ if (isset($_GET['logout'])) {
                                                 <span id="show-error"></span>
                                                 <div id='add-comment' class="comment">
                                                     <input class="input-search ipt-cmt" type="text" id="new-comment" name="new-comment" placeholder="Viết bình luận:">
-                                                    <button class="btn-search" id="submit-comment" onclick='addComment(${id}, ${<?php echo ($_SESSION['user']['id']); ?>})'>Thêm</button>
+                                                    <button class="btn" id="submit-comment" onclick='addComment(${id}, ${<?php echo ($_SESSION['user']['id']); ?>})'>Thêm</button>
                                                 </div>
                                         `);
                     <?php } }?>
@@ -225,7 +295,7 @@ if (isset($_GET['logout'])) {
     $(document).ready( () => {
         let id = <?php echo $data['detail'][0]['id'];?>;
         let data = <?php echo json_encode($data);?>;
-        console.log(data)
+        console.log(data);
         getComment(id);
         
     });
