@@ -27,6 +27,7 @@ if (isset($_GET['logout'])) {
     <!-- style css -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../server/multi_login/functions/functions.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>Tài Khoản</title>
     <style>
@@ -34,6 +35,9 @@ if (isset($_GET['logout'])) {
 </head>
 
 <body>
+    <!-- show error here -->
+    <div class="show-message"></div>
+    <!-- show error here -->
     <div id="page-container">
         <header>
             <div class="header border">
@@ -109,10 +113,10 @@ if (isset($_GET['logout'])) {
                 <div class="col-sm-12 nopadding">
                     <ul class="nav nav-tabs nav-fill">
                         <li class="nav-item border-bottom border-primary">
-                            <a class="nav-link active" href="user.info.php" style="font-weight: bold;">Thông tin cá nhân</a>
+                            <a class="nav-link active" href="user.info.php?user_id=<?php echo $_SESSION['user']['id'] ?>" style="font-weight: bold;">Thông tin cá nhân</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="user.account.php" style="color: #93999f">Thông tin tài khoản</a>
+                            <a class="nav-link" href="user.account.php?user_id=<?php echo $_SESSION['user']['id'] ?>" style="color: #93999f">Thông tin tài khoản</a>
                         </li>
                     </ul>
                 </div>
@@ -125,9 +129,7 @@ if (isset($_GET['logout'])) {
                 </div>
             </div> -->
             <form style="margin-top: 1rem;" class="edit-form" method="POST" onsubmit="event.preventDefault()">
-                <!-- show error here -->
-                <!-- <div class="show-message"></div> -->
-                <!-- show error here -->
+
 
                 <!-- show info here -->
                 <?php
@@ -287,7 +289,9 @@ if (isset($_GET['logout'])) {
                                                         <label class="custom-file-label" for="avatar_image">Chọn ảnh đại diện mới</label>
                                                     </div>
                                                     <div class="img-container">
-                                                        <img class="ava-pro-img-format img-fluid img-thumbnail" id="avatar_image_1" src="../../resource/img_avatar/<?php echo $row['avatar_image'] ?>" alt="avatar">
+                                                        <div class="ava_img">
+                                                            <img class="ava-pro-img-format img-fluid img-thumbnail" id="avatar_image_1" src="../server/resource/img_avatar/<?php echo $row['avatar_image'] ?>" alt="avatar">
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -298,7 +302,9 @@ if (isset($_GET['logout'])) {
                                                             <label class="custom-file-label" for="profile_image">Chọn ảnh hồ sơ mới</label>
                                                         </div>
                                                         <div class="img-container">
-                                                            <img class="ava-pro-img-format img-fluid img-thumbnail" id="profile_image_1" src="../../resource/img_profile/<?php echo $row['profile_image'] ?>" alt="profile">
+                                                            <div class="pro_img">
+                                                                <img class="ava-pro-img-format img-fluid img-thumbnail pro_img" id="profile_image_1" src="../server/resource/img_profile/<?php echo $row['profile_image'] ?>" alt="profile">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -398,9 +404,15 @@ if (isset($_GET['logout'])) {
                         <div class="container mb-2">
                             <div class="row">
                                 <div class="col-sm-12 d-flex justify-content-end align-items-center">
-                                    <button onclick="enableEdit('input-info');" class="btn btn-primary mr-2" name="button-edit">Edit
+                                    <button onclick="enableEdit('input-info');" class="btn btn-primary mr-2" name="button-edit" style="background-color: #0069d9;">Edit
                                     </button>
-                                    <button onclick="enableEdit('input-info');" class="btn btn-success mr-2" name="button-edit" style="background-color: green;">Save
+                                    <button disabled onclick="
+                                    const urlParams = new URLSearchParams(window.location.search);
+                                    const user_id = urlParams.get('user_id');
+                                    userSaveInfo();
+                                    loadFile('ava_img','./ajax/image_avatar.php?user_id='+ user_id);
+                                    loadFile('pro_img','./ajax/image_profile.php?user_id='+ user_id);
+                                    " class="btn mr-2" id="save" name="button-save" style="background-color: #ccc;">Save
                                     </button>
                                 </div>
                             </div>
@@ -410,6 +422,7 @@ if (isset($_GET['logout'])) {
 
             </form>
         </div>
+
         <!--  show user info -->
 
         <footer>

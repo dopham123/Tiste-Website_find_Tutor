@@ -21,6 +21,7 @@ if (isStudent()) {
 </head>
 
 <body>
+    <?php echo display_error_alert(); ?>
     <div id="page-container">
         <header>
             <div class="header border">
@@ -98,7 +99,6 @@ if (isStudent()) {
                         </div>
                         <div class="col-sm-10 border border-info rounded mt-2">
                             <form action="register_profile.php" method="post" enctype="multipart/form-data">
-                                <?php echo display_error_alert(); ?>
 
                                 <div class="row">
                                     <div class="col-sm-6">

@@ -27,6 +27,7 @@ if (isset($_GET['logout'])) {
     <!-- style css -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../server/multi_login/functions/functions.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>Tài Khoản</title>
     <style>
@@ -34,6 +35,9 @@ if (isset($_GET['logout'])) {
 </head>
 
 <body>
+    <!-- show error here -->
+    <div class="show-message"></div>
+    <!-- show error here -->
     <div id="page-container">
         <header>
             <div class="header border">
@@ -109,10 +113,10 @@ if (isset($_GET['logout'])) {
                 <div class="col-sm-12 nopadding">
                     <ul class="nav nav-tabs nav-fill">
                         <li class="nav-item">
-                            <a class="nav-link" href="user.info.php" style="color: #93999f">Thông tin cá nhân</a>
+                            <a class="nav-link" href="user.info.php?user_id=<?php echo $_SESSION['user']['id'] ?>" style="color: #93999f">Thông tin cá nhân</a>
                         </li>
                         <li class="nav-item border-bottom border-primary">
-                            <a class="nav-link active" href="user.account.php" style="font-weight: bold;">Thông tin tài khoản</a>
+                            <a class="nav-link active" href="user.account.php?user_id=<?php echo $_SESSION['user']['id'] ?>" style="font-weight: bold;">Thông tin tài khoản</a>
                         </li>
                     </ul>
                 </div>
@@ -125,9 +129,6 @@ if (isset($_GET['logout'])) {
                 </div>
             </div> -->
             <form style="margin-top: 1rem;" class="edit-form" method="POST" onsubmit="event.preventDefault()">
-                <!-- show error here -->
-                <!-- <div class="show-message"></div> -->
-                <!-- show error here -->
 
                 <!-- show info here -->
                 <?php
@@ -186,7 +187,7 @@ if (isset($_GET['logout'])) {
                         <div class="container mb-2">
                             <div class="row">
                                 <div class="col-sm-12 d-flex justify-content-end align-items-center">
-                                    <button onclick="enableEdit('input-info');" class="btn btn-success mr-2" name="button-edit" style="background-color: green;">Save
+                                    <button onclick="changePassword();" class="btn btn-success mr-2" name="button-edit" style="background-color: green;">Save
                                     </button>
                                 </div>
                             </div>

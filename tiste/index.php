@@ -45,7 +45,7 @@ if (isset($_GET['logout'])) {
                                 $row = getInfo($_SESSION['user']['id']); ?>
                                 <div>
                                     <ul>
-                                        <li><a href="user.info.php" class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
+                                        <li><a href="user.info.php?user_id=<?php echo $_SESSION['user']['id']?>" class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
                                     </ul>
                                 </div>
                                 <div class="btn-logout">
@@ -82,7 +82,16 @@ if (isset($_GET['logout'])) {
                                         <li> <a href="service.php">Dịch vụ</a> </li>
                                         <li> <a href="prices.php">BẢng giá</a> </li>
                                         <li> <a href="contact.php">Liên hệ</a> </li>
+                                        <?php 
+                                            if (isTutor() || isStudent()) {
+                                        ?>
+                                        <?php 
+                                        } else {
+                                        ?>
                                         <li> <a href="register.php">Đăng ký</a> </li>
+                                        <?php
+                                        }
+                                        ?>
                                     </ul>
                                 </nav>
                             </div>
