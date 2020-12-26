@@ -34,3 +34,25 @@ CREATE TABLE `tutor_profile` (
     FOREIGN KEY(user_id) REFERENCES users(id)         
     ON DELETE CASCADE,
     PRIMARY KEY (tutor_profile_id) );
+
+
+-- Tạo bảng comment
+CREATE TABLE `comment` ( 
+    `id` int(10) NOT NULL AUTO_INCREMENT,
+    `comment` varchar(100) NOT NULL,
+    `commentatorID` int(10) NOT NULL, 
+    `tutorID` int(10) NOT NULL,
+    `date` datetime NOT NULL DEFAULT NOW(),
+    CONSTRAINT FK_Commentator FOREIGN KEY (commentatorID) REFERENCES users(id),
+    CONSTRAINT FK_Tutor FOREIGN KEY (tutorID) REFERENCES users(id),
+    PRIMARY KEY (id) );
+
+-- Tạo bảng contact-info
+CREATE TABLE `contact_info` ( 
+    `id` int(10) NOT NULL AUTO_INCREMENT,
+    `first_name` varchar(100) NOT NULL, 
+    `last_name` varchar(100) NOT NULL, 
+    `email` varchar(100) , 
+    `phone_number` varchar(100) , 
+    `message` varchar(200),
+    PRIMARY KEY (id) );
