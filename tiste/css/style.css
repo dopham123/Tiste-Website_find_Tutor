@@ -1547,6 +1547,9 @@ table {
       .first-two-criteria{
             width: 100%;
       }
+      .header-form, .body-form{
+            width: 100% !important;
+      }
 }
 
 

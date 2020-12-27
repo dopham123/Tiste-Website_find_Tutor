@@ -111,6 +111,7 @@ if (isset($_GET['logout'])) {
                         <div class="nav flex-column nav-pills">
                             <button class="btn btn-info mt-3" type="button" onclick="loadFile('data-table', 'user_info.php')">Hiển thị danh sách người dùng</button>
                             <button class="btn btn-success mt-3" type="button" onclick="loadFile('add-new-user', 'create_user_form.php')">Thêm một người dùng mới</button>
+                            <a href="manage_service.php"><button type="button" >Xem danh sách dịch vụ</button></a>
                             <!-- <a class="nav-link">Profile</a>
                             <a class="nav-link">Messages</a>
                             <a class="nav-link">Settings</a> -->

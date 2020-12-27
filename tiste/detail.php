@@ -150,7 +150,7 @@ if (isset($_GET['logout'])) {
                 </div>
                 <div id="experiment-info" class="evaluate-detail">
                     <div class="evaluate-criteria">Kinh nghiệm: </div>
-                    <div id="experiment"><?php echo $data['detail'][0]['exp'];?> năm</div>
+                    <div id="experiment">2 năm</div>
                 </div>
                 <div id="salary-info" class="evaluate-detail">
                     <div class="evaluate-criteria">Lương: </div>

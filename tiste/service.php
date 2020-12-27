@@ -171,7 +171,7 @@ if (isset($_GET['logout'])) {
                           $search_text = trim($_GET['subject']);
                           $search_class = trim($_GET['level']);
                           
-                          $query_string = "SELECT * FROM users_info AS ui INNER JOIN service AS sv ON ui.user_id = sv.user_if_id WHERE (";
+                          $query_string = "SELECT * FROM users_info AS ui INNER JOIN service AS sv ON ui.user_id = sv.user_if_id INNER JOIN tutor_profile AS pf ON ui.user_id = pf.user_id WHERE check_accept = 1 AND (";
                           
                           
                           $k = explode(' ', $search_text);
@@ -191,75 +191,73 @@ if (isset($_GET['logout'])) {
                           echo('<script>document.getElementById("total-member").innerHTML = "<strong>'.$count.' kết quả tìm kiếm cho \"'.$search_text.' - Lớp '.$search_class.'\"</strong>";</script>');
                         }
                         else{
-                          $query_string = "SELECT * FROM users_info AS ui INNER JOIN service AS sv ON ui.user_id = sv.user_if_id";
+                          $query_string = "SELECT * FROM users_info AS ui INNER JOIN service AS sv ON ui.user_id = sv.user_if_id INNER JOIN tutor_profile AS pf ON ui.user_id = pf.user_id WHERE check_accept = 1";
                           $result = mysqli_query($con, $query_string);
-                        }                
-                        
-                        
-                        
+                        }             
                         while($row = mysqli_fetch_array($result))
                         {
-                          echo '<div class="user-card" onclick="tutorDetail('.$row["user_id"].');">
-                                    <div class="user-card-img">
-                                        <a href="#"><img src="'.$row["img"].'" alt="lau"></a>
-                                    </div>
-                                    <div class="user-main-info">
-                                        <div class="user-card-info">
-                                            <div class="user-card-container">
-                                                <div class="user-card-name">
-                                                    <a href="#">'.$row["first_name"].' '.$row["last_name"].'</a>
-                                                </div>
-                                                <div class="user-rating">
-                                                    <img src="./icon/rating.png" alt="rating">
-                                                    <strong>'.$row["star"].'</strong>
-                                                    <span>('.$row["eval"].' đánh giá)</span>
-                                                </div>
+                        ?>
+                            <div class="user-card"  onclick='tutorDetail(<?php echo $row["user_id"];?>)'>
+                                <div class="user-card-img">
+                                    <a href="#"><img src="./images/<?php echo $row["avatar_image"];?>" alt="image"></a>
+                                </div>
+                                <div class="user-main-info">
+                                    <div class="user-card-info">
+                                        <div class="user-card-container">
+                                            <div class="user-card-name">
+                                                <a href="#"><?php echo $row['last_name'] ." ". $row['first_name'];?></a>
                                             </div>
-                                            <div class="user-card-title">
-                                                '.$row["subject"].'
+                                            <div class="user-rating">
+                                                <img src="./icon/rating.png" alt="rating">
+                                                <strong><?php echo $row["star"];?></strong>
+                                                <span>(<?php echo $row["eval"];?>)</span>
                                             </div>
-                                            <div class="user-card-title" style = "color: green;">
-                                            Lớp '.$row["class"].'
-                                            </div>
-                                            <div class="user-card-salary">
-                                                <div class="salary">
-                                                    '.$row["salary"].' triệu
-                                                </div>
-                                                <div class="per"> / tháng</div>
-                                            </div>
-                                            <div class="user-card-break"></div>
                                         </div>
-                                            <div class="user-card-experiment">
-                                                
-                                                <div class="experiment">
-                                                    '.$row["intro"].'
+                                        <div class="user-card-title">
+                                            <?php echo $row["subject"];?>
+                                        </div>
+                                        <div class="user-card-title" style = "color: green;">
+                                            Lớp <?php echo $row["class"];?>
+                                        </div>
+                                        <div class="user-card-salary">
+                                            <div class="salary">
+                                                <?php echo $row["salary"];?> triệu
+                                            </div>
+                                            <div class="per"> / tháng</div>
+                                        </div>
+                                        <div class="user-card-break"></div>
+                                    </div>
+                                    <div class="user-card-experiment">
+                                        <div class="experiment">
+                                            <?php echo $row["info"];?>
+                                        </div>
+                                        <div class="address">
+                                            <img src="./icon/compass.png" alt="location">
+                                            <a href="#"><?php echo $row["district"];?></a>
+                                        </div>
+                                        <div class="user-card-meta">
+                                            <div class="user-card-meta-hightlight">
+                                                <div class="user-card-meta-label">
+                                                    <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> <?php echo $row["num_of_std"];?>
                                                 </div>
-                                                <div class="address">
-                                                    <img src="./icon/compass.png" alt="location">
-                                                    <a href="#">'.$row["district"].'</a>
-                                                </div>
-                                                <div class="user-card-meta">
-                                                    <div class="user-card-meta-hightlight">
-                                                        <div class="user-card-meta-label">
-                                                            <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> '.$row["num_of_std"].'
-                                                        </div>
-                                                        <div class="user-card-total-member">
-                                                            học viên đã dạy
-                                                        </div>
-                                                    </div>
-                                                    <div class="user-card-meta-hightlight">
-                                                        <div class="user-card-meta-label">
-                                                            <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> '.$row["exp"].'
-                                                        </div>
-                                                        <div class="user-card-total-member">
-                                                            năm kinh nghiệm
-                                                        </div>
-                                                    </div>
+                                                <div class="user-card-total-member">
+                                                    học viên đã dạy
                                                 </div>
                                             </div>
+                                            <div class="user-card-meta-hightlight">
+                                                <div class="user-card-meta-label">
+                                                    <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> 2
+                                                </div>
+                                                <div class="user-card-total-member">
+                                                    năm kinh nghiệm
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>';
-                        }
+                                </div>
+                            </div>
+                        <?php }
+                        
                         ?>
                         <script>
                             function tutorDetail(id) {
