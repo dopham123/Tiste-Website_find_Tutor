@@ -1,3 +1,4 @@
+CREATE DATABASE `web-ass-2`;
 CREATE TABLE `users` ( 
     `id` int(10) NOT NULL AUTO_INCREMENT, 
     `username` varchar(100) NOT NULL, 
@@ -56,3 +57,18 @@ CREATE TABLE `contact_info` (
     `phone_number` varchar(100) , 
     `message` varchar(200),
     PRIMARY KEY (id) );
+
+CREATE TABLE `service` ( 
+    `id` int(10) NOT NULL AUTO_INCREMENT,
+    `subject` varchar(100) NOT NULL, 
+    `class` varchar(100) NOT NULL, 
+    `salary` varchar(100) NOT NULL, 
+    `num_of_std` int(10) NOT NULL,
+    `star` float(10)  DEFAULT 0,
+    `eval` int(10)  DEFAULT 0,
+    `user_if_id` int(10), 
+    `check_accept` int(10) DEFAULT 2,
+    FOREIGN KEY(user_if_id) REFERENCES users(id),
+    PRIMARY KEY (id) );
+    
+INSERT INTO users (`username`, `email`, `password`, `user_type`) VALUES ("admin", "admin@gmail.com", "21232f297a57a5a743894a0e4a801fc3", "admin");
