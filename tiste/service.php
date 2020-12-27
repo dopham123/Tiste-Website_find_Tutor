@@ -13,6 +13,13 @@ if (isset($_GET['logout'])) {
     unset($_SESSION['user']);
     header("location: ./index.php");
 }
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $_SESSION['postdata'] = $_POST;
+    unset($_POST);
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
 ?>
 
 <!DOCTYPE html>

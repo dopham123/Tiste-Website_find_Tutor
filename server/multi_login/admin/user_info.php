@@ -19,10 +19,10 @@
             </thead>
             <tbody>
                 <?php
-                $sql = "SELECT * FROM users WHERE user_type <> 'admin'";
-                $result = mysqli_query($con, $sql);
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
+                    $sql = "SELECT * FROM users WHERE user_type <> 'admin'";
+                    $result = mysqli_query($con, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
                         <tr>
                             <td style="text-align: center;"><?php echo $row['id'] ?></td>
                             <td style="text-align: center;" name="user-name-<?php echo $row['id'] ?>"><?php echo $row['username'] ?></td>

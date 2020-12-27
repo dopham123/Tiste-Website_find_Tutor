@@ -356,3 +356,69 @@ function changePassword() {
         })
     //stop submit
 }
+function deleteService(event){
+    let btn = event.target;
+    var el = btn;
+
+    // Delete id
+    var deleteid = $(btn).data('id');
+    //document.write(deleteid);
+    var confirmalert = confirm("Are you sure?");
+    if (confirmalert == true) {
+        // AJAX Request
+        $.ajax({
+            url: 'service-manage/delete.php',
+            type: 'POST',
+            data: {
+                id: deleteid
+            },
+            success: function(response) {
+
+                if (response == 1) {
+                    // Remove row from HTML Table
+                    $(el).closest('tr').css('background', 'tomato');
+                    $(el).closest('tr').fadeOut(800, function() {
+                        $(btn).remove();
+                    });
+                } else {
+                    alert('Invalid ID.');
+                }
+
+            }
+        });
+    }
+}
+
+function updateService(event){
+    let btn = event.target;
+    var edit_id = $(btn).data('id');
+    var subject = $("#" + edit_id + "_subject").val();
+    var classs = $("#" + edit_id + "_class").val();
+    var salary = $("#" + edit_id + "_salary").val();
+    var numstd = $("#" + edit_id + "_numstd").val();
+    var star = $("#" + edit_id + "_star").val();
+    var eval = $("#" + edit_id + "_eval").val();
+    var check_stt = $("#" + edit_id + "_check").val();
+    $.ajax({
+        url: "service-manage/update.php",
+        type: "POST",
+        cache: false,
+        data: {
+            edit_id: edit_id,
+            subject: subject,
+            class: classs,
+            salary: salary,
+            numstd: numstd,
+            star: star,
+            eval: eval,
+            check_stt: check_stt
+        },
+        success: function(data) {
+            if (data) {
+                alert(data);
+            } else {
+                alert("Some thing went wrong");
+            }
+        }
+    });
+}

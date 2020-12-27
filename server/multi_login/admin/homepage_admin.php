@@ -15,7 +15,6 @@ if (isset($_GET['logout'])) {
 
 <!DOCTYPE html>
 <html lang="en" style="height: 100%;">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,7 +110,8 @@ if (isset($_GET['logout'])) {
                         <div class="nav flex-column nav-pills">
                             <button class="btn btn-info mt-3" type="button" onclick="loadFile('data-table', 'user_info.php')">Hiển thị danh sách người dùng</button>
                             <button class="btn btn-success mt-3" type="button" onclick="loadFile('add-new-user', 'create_user_form.php')">Thêm một người dùng mới</button>
-                            <a href="manage_service.php"><button type="button" >Xem danh sách dịch vụ</button></a>
+                            <button id="service-btn" class="btn btn-info mt-3" type="button" onclick="loadFile('data-table', 'manage_service.php')">Xem danh sách dịch vụ</button>
+                            <!-- <a href="manage_service.php"><button type="button" class="btn btn-info mt-3" style="width: 100%;">Xem danh sách dịch vụ</button></a> -->
                             <!-- <a class="nav-link">Profile</a>
                             <a class="nav-link">Messages</a>
                             <a class="nav-link">Settings</a> -->
@@ -140,7 +140,11 @@ if (isset($_GET['logout'])) {
             </div>
         </div>
     </div>
-
+    <script>
+        $('#service-btn').click( () =>{
+            $('.add-new-user').html('');
+        });
+    </script>
 </body>
 
 </html>
