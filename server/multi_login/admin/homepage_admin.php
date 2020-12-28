@@ -108,14 +108,14 @@ if (isset($_GET['logout'])) {
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="nav flex-column nav-pills">
-                            <button class="btn btn-info mt-3" type="button" onclick="loadFile('data-table', 'user_info.php')">Hiển thị danh sách người dùng</button>
-                            <button class="btn btn-success mt-3" type="button" onclick="loadFile('add-new-user', 'create_user_form.php')">Thêm một người dùng mới</button>
-                            <button id="service-btn" class="btn btn-info mt-3" type="button" onclick="loadFile('data-table', 'manage_service.php')">Xem danh sách dịch vụ</button>
+                            <button id="user-btn" class="btn btn-info mt-3" type="button" onclick="loadFile('data-table', 'user_info.php')">Hiển thị danh sách người dùng</button>
+                            <button id="add-btn" class="btn btn-success mt-3" type="button" onclick="loadFile('add-new-user', 'create_user_form.php')">Thêm một người dùng mới</button>
+                            <button id="service-btn" class="btn btn-info mt-3" type="button" onclick="loadFile('service-table', 'manage_service.php');">Xem danh sách dịch vụ</button>
                             <!-- <a href="manage_service.php"><button type="button" class="btn btn-info mt-3" style="width: 100%;">Xem danh sách dịch vụ</button></a> -->
                             <!-- <a class="nav-link">Profile</a>
                             <a class="nav-link">Messages</a>
                             <a class="nav-link">Settings</a> -->
-                            <a href="../../../tiste/index.php?logout=1" style="color: red;">logout</a>
+                            <a href="../../../tiste/index.php?logout=1" style="color: red;">Đăng xuất</a>
                         </div>
                     </div>
                 </div>
@@ -129,6 +129,7 @@ if (isset($_GET['logout'])) {
                 </div>
                 <hr>
                 <div class="data-table"></div>
+                <div class="service-table"></div>
                 <div class="container">
                     <div class="add-new-user mt-5"></div>
                     <div class="row d-flex justify-content-center">
@@ -143,6 +144,13 @@ if (isset($_GET['logout'])) {
     <script>
         $('#service-btn').click( () =>{
             $('.add-new-user').html('');
+            $('.data-table').html('');
+        });
+        $('#user-btn').click( () =>{
+            $('.service-table').html('');
+        });
+        $('#add-btn').click( () =>{
+            $('.service-table').html('');
         });
     </script>
 </body>

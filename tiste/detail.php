@@ -62,7 +62,7 @@ if (isset($_GET['logout'])) {
                                 }
                             ?>
                             <div class="btn-logout">
-                                <a href="./index.php?logout='1'">Logout</a>
+                                <a href="./index.php?logout='1'">Đăng xuất</a>
                             </div>
                         <?php
                         } else { ?>

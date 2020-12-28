@@ -56,6 +56,7 @@ CREATE TABLE `contact_info` (
     `email` varchar(100) , 
     `phone_number` varchar(100) , 
     `message` varchar(200),
+    `date` datetime NOT NULL DEFAULT NOW(),
     PRIMARY KEY (id) );
 
 CREATE TABLE `service` ( 

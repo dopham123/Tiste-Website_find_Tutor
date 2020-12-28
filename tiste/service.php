@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 }
                             ?>
                             <div class="btn-logout">
-                                <a href="./index.php?logout='1'">Logout</a>
+                                <a href="./index.php?logout='1'">Đăng xuất</a>
                             </div>
                         <?php
                         } else { ?>
@@ -247,7 +247,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </div>
                                         <div class="address">
                                             <img src="./icon/compass.png" alt="location">
-                                            <a href="#"><?php echo $row["district"];?></a>
+                                            <a href="#"><?php echo $row["district"];?> - <?php echo $row["city"];?></a>
                                         </div>
                                         <div class="user-card-meta">
                                             <div class="user-card-meta-hightlight">

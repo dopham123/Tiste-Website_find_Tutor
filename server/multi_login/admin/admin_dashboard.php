@@ -114,7 +114,7 @@ if (isset($_GET['logout'])) {
                             <!-- <a class="nav-link">Profile</a>
                             <a class="nav-link">Messages</a>
                             <a class="nav-link">Settings</a> -->
-                            <a href="../index.php?logout='1'" style="color: red;">logout</a>
+                            <a href="../index.php?logout='1'" style="color: red;">Đăng xuất</a>
                         </div>
                     </div>
                 </div>
