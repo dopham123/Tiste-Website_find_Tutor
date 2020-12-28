@@ -3,13 +3,13 @@ include('../functions/functions.php');
 
 if (!isAdmin()) {
     $_SESSION['msg'] = "You must log in first";
-    header("location: .../tiste/index.php");//??????????
+    header('location: ../../../tiste/index.php');//??????????
 }
 
 if (isset($_GET['logout'])) {
     session_destroy();
     unset($_SESSION['user']);
-    header("location: .../tiste/index.php");//??????????
+    header('location: ../../../tiste/index.php');//??????????
 }
 ?>
 
@@ -115,7 +115,7 @@ if (isset($_GET['logout'])) {
                             <!-- <a class="nav-link">Profile</a>
                             <a class="nav-link">Messages</a>
                             <a class="nav-link">Settings</a> -->
-                            <a href="../index.php?logout='1'" style="color: red;">logout</a>
+                            <a href="../../../tiste/index.php?logout=1" style="color: red;">logout</a>
                         </div>
                     </div>
                 </div>
