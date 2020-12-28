@@ -31,75 +31,90 @@ if (isset($_GET['logout'])) {
 </head>
 
 <body>
-    <header>
-        <div class="header">
-            <div class="head_top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="top-box">
-                                <ul class="sociel_link">
-                                    <li class="size-60"> <a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="size-60"> <a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="size-60"> <a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li class="size-60"> <a href="#"><i class="fa fa-linkedin"></i></a></li>
+<header>
+    <div class="header">
+        <div class="head_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="top-box">
+                            <ul class="sociel_link">
+                                <li class="size-60"> <a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="size-60"> <a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="size-60"> <a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li class="size-60"> <a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-end">
+                    <?php
+                        if (isTutor() || isStudent()) {
+                            $row = getInfo($_SESSION['user']['id']);?>
+                            <div>
+                                <ul>
+                                    <li><a href="user.info.php?user_id=<?php echo $_SESSION['user']['id']?>" class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
+                                    
                                 </ul>
                             </div>
-                        </div>
-
-                        <div class="col d-flex align-items-center justify-content-end">
-                        <?php
-                            if (isTutor() || isStudent()) {
-                                $row = getInfo($_SESSION['user']['id']); ?>
-                                <div>
-                                    <ul>
-                                        <li><a class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
-                                        <a href="register_class.php" style="color: #678804; border-right:solid 2px grey;">Đăng ký mở lớp </a>
-                                        <a href="./index.php?logout='1'" style="color: red; padding-left: 5px;">Logout</a>
-                                    </ul>
-                                </div>
                             <?php
-                            } else { ?>
-                                <div>
-                                    <ul>
-                                        <li><a class=" buy text-center" href="./login.php">Đăng nhập</a></li>
-                                    </ul>
-                                </div>
-                            <?php
-                            }
+                                if (isTutor()){
+                                    echo '<a href="register_class.php" class="buy text-center">Đăng ký mở lớp </a>';
+                                
+                                }
                             ?>
-                        </div>
+                            <div class="btn-logout">
+                                <a href="./index.php?logout='1'">Logout</a>
+                            </div>
+                        <?php
+                        } else { ?>
+                            <div>
+                                <ul>
+                                    <li><a class=" buy text-center" href="./login.php">Đăng nhập</a></li>
+                                </ul>
+                            </div>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center"
-                        style="padding-left: 0; text-align: center;">
-                        <div class="logo">
-                            <a href="index.php"><img src="images/logo.png" alt="logo" /></a>
-                        </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center" style="padding-left: 0; text-align: center;">
+                    <div class="logo">
+                        <a href="index.php"><img src="images/logo.png" alt="logo" /></a>
                     </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
-                        <div class="menu-area">
-                            <div class="limit-box">
-                                <nav class="main-menu">
-                                    <ul class="menu-area-main d-flex-column justify-content-around">
-                                        <li> <a href="index.php">Trang chủ</a> </li>
-                                        <li> <a href="about.php">Giới thiệu</a> </li>
-                                        <li> <a href="service.php">Dịch vụ</a> </li>
-                                        <li> <a href="prices.php">BẢng giá</a> </li>
-                                        <li> <a href="contact.php">Liên hệ</a> </li>
-                                        <li> <a href="#">Đăng ký</a> </li>
-                                    </ul>
-                                </nav>
-                            </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
+                    <div class="menu-area">
+                        <div class="limit-box">
+                            <nav class="main-menu">
+                                <ul class="menu-area-main d-flex-column justify-content-around">
+                                    <li> <a href="index.php">Trang chủ</a> </li>
+                                    <li> <a href="about.php">Giới thiệu</a> </li>
+                                    <li class="active"> <a href="service.php">Dịch vụ</a> </li>
+                                    <li> <a href="prices.php">BẢng giá</a> </li>
+                                    <li> <a href="contact.php">Liên hệ</a> </li>
+                                    <?php 
+                                        if (isTutor() || isStudent()) {
+                                    ?>
+                                    <?php 
+                                    } else {
+                                    ?>
+                                    <li> <a href="register.php">Đăng ký</a> </li>
+                                    <?php
+                                    }
+                                    ?>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
     <div class="brand_color">
         <div class="container">
             <div class="row">

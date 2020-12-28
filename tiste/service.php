@@ -53,14 +53,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                     <div class="col d-flex align-items-center justify-content-end">
-                        <?php
+                    <?php
                         if (isTutor() || isStudent()) {
-                            $row = getInfo($_SESSION['user']['id']); ?>
+                            $row = getInfo($_SESSION['user']['id']);?>
                             <div>
                                 <ul>
                                     <li><a href="user.info.php?user_id=<?php echo $_SESSION['user']['id']?>" class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
+                                    
                                 </ul>
                             </div>
+                            <?php
+                                if (isTutor()){
+                                    echo '<a href="register_class.php" class="buy text-center">Đăng ký mở lớp </a>';
+                                
+                                }
+                            ?>
                             <div class="btn-logout">
                                 <a href="./index.php?logout='1'">Logout</a>
                             </div>
