@@ -20,6 +20,7 @@ if (isset($_GET['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!-- load jquery via CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="../functions/functions.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- style css -->
@@ -110,7 +111,8 @@ if (isset($_GET['logout'])) {
                         <div class="nav flex-column nav-pills">
                             <button id="user-btn" class="btn btn-info mt-3" type="button" onclick="loadFile('data-table', 'user_info.php')">Hiển thị danh sách người dùng</button>
                             <button id="add-btn" class="btn btn-success mt-3" type="button" onclick="loadFile('add-new-user', 'create_user_form.php')">Thêm một người dùng mới</button>
-                            <button id="service-btn" class="btn btn-info mt-3" type="button" onclick="loadFile('service-table', 'manage_service.php');">Xem danh sách dịch vụ</button>
+                            <button id="service-btn" class="btn btn-primary mt-3" type="button" onclick="loadFile('service-table', 'manage_service.php');">Xem danh sách dịch vụ</button>
+                            <button id="contact-btn" class="btn btn-warning mt-3" type="button" onclick="loadFile('contact-data', 'show_contact.php');">Xem tin nhắn</button>
                             <!-- <a href="manage_service.php"><button type="button" class="btn btn-info mt-3" style="width: 100%;">Xem danh sách dịch vụ</button></a> -->
                             <!-- <a class="nav-link">Profile</a>
                             <a class="nav-link">Messages</a>
@@ -130,6 +132,7 @@ if (isset($_GET['logout'])) {
                 <hr>
                 <div class="data-table"></div>
                 <div class="service-table"></div>
+                <div class="contact-data"></div>
                 <div class="container">
                     <div class="add-new-user mt-5"></div>
                     <div class="row d-flex justify-content-center">
@@ -145,11 +148,19 @@ if (isset($_GET['logout'])) {
         $('#service-btn').click( () =>{
             $('.add-new-user').html('');
             $('.data-table').html('');
+            $('.contact-data').html('');
         });
         $('#user-btn').click( () =>{
             $('.service-table').html('');
+            $('.contact-data').html('');
         });
         $('#add-btn').click( () =>{
+            $('.service-table').html('');
+            $('.contact-data').html('');
+        });
+        $('#contact-btn').click( () =>{
+            $('.add-new-user').html('');
+            $('.data-table').html('');
             $('.service-table').html('');
         });
     </script>
