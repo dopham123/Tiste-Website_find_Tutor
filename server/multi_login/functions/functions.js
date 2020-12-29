@@ -430,7 +430,8 @@ function deleteMessage(event) {
     var element = document.getElementById('message-' + id);
     $('#message-' + id).fadeOut(600, function(){
         $('#message-' + id).css("display","");
-        $('#message-' + id).css("visibility","hidden");              
+        $('#message-' + id).css("visibility","hidden");   
+        $('#message-' + id).remove();               
     });
     ajaxRequest.open("GET", "../admin/ajax/delete_message.php?id=" + id, true);
     ajaxRequest.send(null);
