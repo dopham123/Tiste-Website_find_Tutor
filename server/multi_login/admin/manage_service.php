@@ -28,6 +28,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="./style.css">
     <script language="javascript" type="text/javascript" src="script/jquery-1.9.1.min.js"></script>
+    
     <style>
 		table,
 		td {
@@ -69,13 +70,15 @@ if (isset($_GET['logout'])) {
 			color: aliceblue;
 			transition: .3s;
 		}
+		.service-form{
+			overflow-x: scroll;
+		}
     </style>
-
-    <script>
+    <!-- <script>
 		$(document).ready(function() {
-
 			// Delete 
 			$('.del').click(function() {
+				console.log(this)
 				var el = this;
 
 				// Delete id
@@ -134,111 +137,98 @@ if (isset($_GET['logout'])) {
 					success: function(data) {
 						if (data) {
 							alert(data);
-							loadTableData();
 						} else {
 							alert("Some thing went wrong");
 						}
 					}
 				});
 			});
-
-
 		});
-    </script>
+    </script> -->
 </head>
 
 <body>
-    <div class="container">
-        <h1>Admin Page</h1>
-        <div class="text-center">
-            <div class="row">
-                <div class="col-sm-12">
-					<a href="homepage_admin.php"><button type="button" >Trở lại</button></a>
-                    <a href="../index.php?logout='1'" style="color: red;">logout</a>
-                </div>
-                <div class="col-sm-12">
-                    <div class="data-table"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <form method="post" attribute="post" action="update.php">
-        <h4 class="header">Show Infomation</h4>
-        <div id='_table'>
-            <table>
-                <thread>
-                    <tr>
-                        <td>ID</td>
-                        <td>Name</td>
-                        <td>Subject</td>
-                        <td>Class</td>
-                        <td>Salary</td>
-                        <td>Number of Student</td>
-                        <td>Star</td>
-                        <td>Number of Evaluate</td>
-                        <td>User Id</td>
-                        <td>Status</td>
-                        <td></td>
-						<td></td>
-                    </tr>
-                </thread>
-                <tbody id="user_table">
-
-
-                    <?php
-            $result = mysqli_query( $db, "SELECT * FROM service AS sv INNER JOIN users_info AS uf ON sv.user_if_id = uf.user_id" );
-            //fetch the data from the database
-            if ( $result ) {
-                while( $row = mysqli_fetch_array( $result) ) {
-                    $id = $row['id'];
-                    $subject = $row['subject'];
-					$class = $row['class'];
-					$star = $row['star'];
-                    $num_of_std = $row['num_of_std'];
-					$salary = $row['salary'];
-					$eval = $row['eval'];
-                    $user_if_id = $row['user_if_id'];
-					$check_accept = $row['check_accept'];
-					$name = $row['first_name'].' '.$row['last_name'];
-                    echo "<tr>";
-                    echo "<td>".$id."</td>";
-                    echo "<td><input id ='".$id."_name' name ='".$id."_name' type = 'text' value = '".$name."'readonly></td>";
-					echo "<td><input id ='".$id."_subject' name ='".$id."_subject' type = 'text' value = '".$subject."'></td>";
-					echo "<td><input id ='".$id."_class' name ='".$id."_class' type = 'text' value = '".$class."'></td>";
-					echo "<td><input id ='".$id."_salary' name ='".$id."_salary' type = 'text' value = '".$salary."'></td>";
-					echo "<td><input id ='".$id."_numstd' name ='".$id."_numstd' type = 'text' value = '".$num_of_std."'></td>";
-					echo "<td><input id ='".$id."_star' name ='".$id."_star' type = 'text' value = '".$star."'></td>";
-					echo "<td><input id ='".$id."_eval' name ='".$id."_eval' type = 'text' value = '".$eval."'></td>";
-					echo "<td><input id ='".$id."_userid' name ='".$id."_userid' type = 'text' value = '".$user_if_id."'readonly></td>";
-					echo '<td>';
-					if($check_accept == 1){
-						$text1 = 'selected';
-						$text2 = '';
-					}
-					else{
-						$text1 = '';
-						$text2 = 'selected';						
-					}
-					echo '<select name="'.$id.'_check" id="'.$id.'_check">
-                      <option value="1"'.$text1.'>Available</option>
-                      <option value="2"'.$text2.'>Not Available</option>
-                    </select></td>';
-                    echo "<td><button type = 'button' class = 'del' data-id='".$id."'>Delete</button></td>";
-                    echo "<td><button type = 'button' class = 'update' data-id='".$id."'>Update</button></td>";
-                echo "</tr>";
-                }
-                } else {
-                // Code xử lý lỗi
-                echo "Xảy ra lỗi khi truy vấn dữ liệu";
-                }
-                //$rowcount = mysqli_num_rows( $result );
-                ?>
-                </tbody>
+    	<form>
+		<div class="row d-flex justify-content-center">
+			<h2>THÔNG TIN GIA SƯ</h2>
+		</div>
+        <div id='_table' class="service-form col-sm-12">
+            <table id="fixTable">
+                	<thead>
+                    	<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Subject</th>
+					<th>Class</th>
+					<th>Salary</th>
+					<th>Number of Student</th>
+					<th>Star</th>
+					<th>Number of Evaluate</th>
+					<th>User Id</th>
+					<th>Status</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="user_table">
+			<?php
+				$result = mysqli_query( $db, "SELECT * FROM service AS sv INNER JOIN users_info AS uf ON sv.user_if_id = uf.user_id" );
+				//fetch the data from the database
+				if ( $result ) {
+                			while( $row = mysqli_fetch_array( $result) ) {
+						$id = $row['id'];
+						$subject = $row['subject'];
+						$class = $row['class'];
+						$star = $row['star'];
+						$num_of_std = $row['num_of_std'];
+						$salary = $row['salary'];
+						$eval = $row['eval'];
+                    			$user_if_id = $row['user_if_id'];
+						$check_accept = $row['check_accept'];
+						$name = $row['first_name'].' '.$row['last_name'];
+						echo "<tr>";
+						echo "<td>".$id."</td>";
+						echo "<td><input id ='".$id."_name' name ='".$id."_name' type = 'text' value = '".$name."'readonly></td>";
+						echo "<td><input id ='".$id."_subject' name ='".$id."_subject' type = 'text' value = '".$subject."'></td>";
+						echo "<td><input id ='".$id."_class' name ='".$id."_class' type = 'text' value = '".$class."'></td>";
+						echo "<td><input id ='".$id."_salary' name ='".$id."_salary' type = 'text' value = '".$salary."'></td>";
+						echo "<td><input id ='".$id."_numstd' name ='".$id."_numstd' type = 'text' value = '".$num_of_std."'></td>";
+						echo "<td><input id ='".$id."_star' name ='".$id."_star' type = 'text' value = '".$star."'></td>";
+						echo "<td><input id ='".$id."_eval' name ='".$id."_eval' type = 'text' value = '".$eval."'></td>";
+						echo "<td><input id ='".$id."_userid' name ='".$id."_userid' type = 'text' value = '".$user_if_id."'readonly></td>";
+						echo '<td>';
+						if($check_accept == 1){
+							$text1 = 'selected';
+							$text2 = '';
+						}
+						else{
+							$text1 = '';
+							$text2 = 'selected';						
+						}
+						echo '<select name="'.$id.'_check" id="'.$id.'_check">
+								<option value="1"'.$text1.'>Available</option>
+								<option value="2"'.$text2.'>Not Available</option>
+                    			</select></td>';
+						echo "<td><button 
+									onclick='
+									deleteService(event);'
+						type = 'button' class = 'del' data-id='".$id."'>Delete</button></td>";
+						echo "<td><button 
+										onclick='
+										updateService(event);'
+						type = 'button' class = 'update' data-id='".$id."'>Update</button></td>";
+                				echo "</tr>";
+                			}
+                		} else {
+                			// Code xử lý lỗi
+                			echo "Xảy ra lỗi khi truy vấn dữ liệu";
+                		}
+                			//$rowcount = mysqli_num_rows( $result );
+			?>
+			</tbody>
             </table>
         </div>
-
     </form>
-
 </body>
 
 </html>

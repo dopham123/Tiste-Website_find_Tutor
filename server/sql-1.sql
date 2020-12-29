@@ -82,6 +82,7 @@ CREATE TABLE `comment` (
     `comment` varchar(100) NOT NULL,
     `commentatorID` int(10) NOT NULL, 
     `tutorID` int(10) NOT NULL,
+    `date` datetime NOT NULL DEFAULT NOW(),
     CONSTRAINT FK_Commentator FOREIGN KEY (commentatorID) REFERENCES users(id),
     CONSTRAINT FK_Tutor FOREIGN KEY (tutorID) REFERENCES users(id),
     PRIMARY KEY (id) );

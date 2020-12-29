@@ -42,20 +42,23 @@ if (isset($_GET['logout'])) {
                         <div class="col d-flex align-items-center justify-content-end">
                         <?php
                             if (isTutor() || isStudent()) {
-                                $row = getInfo($_SESSION['user']['id']);
-                                echo "<div>
+                                $row = getInfo($_SESSION['user']['id']);?>
+                                <div>
                                     <ul>
-                                        <li><a class='buy text-center'>".$row['first_name'] . " " . $row['last_name']. "</a></li>";
-                                    
-                                        if (isTutor()){
-                                        echo '<a href="register_class.php" style="color: #678804; border-right:solid 2px grey;">Đăng ký mở lớp </a>';
-                                    
-                                        }
-                                    
-                                    echo  '<a href="./index.php?logout=\'1\'" style="color: red; padding-left: 5px;">Logout</a>
+                                        <li><a href="user.info.php?user_id=<?php echo $_SESSION['user']['id']?>" class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
+                                        
                                     </ul>
-                                </div>';
-                            
+                                </div>
+                                <?php
+                                    if (isTutor()){
+                                        echo '<a href="register_class.php" class="buy text-center">Đăng ký mở lớp </a>';
+                                    
+                                    }
+                                ?>
+                                <div class="btn-logout">
+                                    <a href="./index.php?logout='1'">Đăng xuất</a>
+                                </div>
+                            <?php
                             } else { ?>
                                 <div>
                                     <ul>
@@ -86,7 +89,16 @@ if (isset($_GET['logout'])) {
                                         <li> <a href="service.php">Dịch vụ</a> </li>
                                         <li> <a href="prices.php">BẢng giá</a> </li>
                                         <li> <a href="contact.php">Liên hệ</a> </li>
-                                        <li> <a href="#">Đăng ký</a> </li>
+                                        <?php 
+                                            if (isTutor() || isStudent()) {
+                                        ?>
+                                        <?php 
+                                        } else {
+                                        ?>
+                                        <li> <a href="register.php">Đăng ký</a> </li>
+                                        <?php
+                                        }
+                                        ?>
                                     </ul>
                                 </nav>
                             </div>

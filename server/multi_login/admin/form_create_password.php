@@ -14,5 +14,7 @@
     <button class="btn btn-danger" name="cancel" onclick="
             $('.new-password').html('');
             $('#new_password').removeAttr('disabled');
+            $('.show-message-pass').removeClass('has-error');
+    		$('.help-block').remove();
         ">Huỷ</button>
 </div>

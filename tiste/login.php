@@ -23,57 +23,10 @@ if (isTutor() || isStudent()) {
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/style.css">
 	<title>Đăng nhập</title>
-	<style>
-		.welcom-login-format {
-			font-size: 2rem;
-			color: #20aeff;
-		}
-
-		.login-grid {
-			display: grid;
-			grid-template-columns: 1fr 3fr;
-		}
-
-		.form-control-edited {
-			margin-bottom: 1rem;
-			margin-top: 1rem;
-		}
-
-		input.input-login {
-			border-radius: 1rem;
-			background-color: white;
-			border: 2px solid black;
-			box-shadow: none !important;
-			padding-left: 10px;
-			padding: 0.6rem 0.75rem;
-		}
-
-		.white-bg-login {
-			background: #fff;
-			padding: 40px 20px;
-			margin-bottom: 0;
-		}
-
-		.blue-bg-login {
-			background-color: #09a6ff;
-		}
-
-		.label-edited-login {
-			font-size: 0.8rem;
-			font-weight: bold;
-			color: white;
-			padding-top: 0.7rem;
-		}
-
-		.login-btn {
-			background-color: #0c6cc2;
-			color: white;
-		}
-	</style>
 </head>
 
 <body>
-	<header>
+	<header class="border">
 		<div class="header">
 			<div class="head_top">
 				<div class="container">
@@ -115,7 +68,7 @@ if (isTutor() || isStudent()) {
 										<li> <a href="service.php">Dịch vụ</a> </li>
 										<li> <a href="prices.php">Bảng giá</a> </li>
 										<li> <a href="contact.php">Liên hệ</a> </li>
-										<li> <a href="#">Đăng ký</a> </li>
+										<li> <a href="register.php">Đăng ký</a> </li>
 									</ul>
 								</nav>
 							</div>
@@ -126,7 +79,7 @@ if (isTutor() || isStudent()) {
 		</div>
 	</header>
 	<!-- login -->
-	<div class="container-fluid d-flex justify-content-center align-items-center border" style="padding: 10.6vh;">
+	<div class="container-fluid d-flex justify-content-center align-items-center" style="padding: 6.6vh;">
 		<div class="row">
 			<div class="container d-flex justify-content-center align-items-center white-bg-login">
 				<div class="row bg-white width-100 d-flex justify-content-center">
@@ -137,22 +90,21 @@ if (isTutor() || isStudent()) {
 					</div>
 					<div class="col-sm-6 border border-info rounded blue-bg-login">
 						<form method="post" action="login.php">
-							<?php echo display_error(); ?>
 							<div class="row">
 								<div class="col-sm-12 d-flex justify-content-start mt-2">
 									<h1 style="color: white; font-weight: bold;">ĐĂNG NHẬP</h1>
 								</div>
 								<div class="col-sm-3 d-flex align-items-center">
-									<label for="username" class="label-edited-login">Tên đăng nhập<span class="required" id="username-error"></span></label>
+									<label for="username" class="label-edited-login">Tên đăng nhập<span class="" id="username-error"></span></label>
 								</div>
 								<div class="col-sm-9 d-flex justify-content-center align-items-center">
-									<input type="text" name="username" class="form-control form-control-edited input-login" id="username" placeholder="wibuneverdie" required>
+									<input type="text" name="username" class="form-control form-control-edited input-login" id="username" placeholder="wibuneverdie" value="<?php echo $username; ?>">
 								</div>
 								<div class="col-sm-3 d-flex align-items-center">
 									<label for="password" class="label-edited-login">Mật khẩu</label> <span style="color: red;" id="password-error"></span>
 								</div>
 								<div class="col-sm-9">
-									<input type="password" name="password" class="form-control form-control-edited input-login" id="password" placeholder="*******" required>
+									<input type="password" name="password" class="form-control form-control-edited input-login" id="password" placeholder="*******">
 								</div>
 							</div>
 							<div class="row pb-4 pt-2">
@@ -164,8 +116,11 @@ if (isTutor() || isStudent()) {
 					</div>
 					<div class="col-sm-12 d-flex align-items-center justify-content-center">
 						<p class="font-weight-bold">
-						 	Bạn chưa có tài khoản? <a href="../server/multi_login/register.php"><u style="color: blue;">Đăng ký ngay</u></a>
+							Bạn chưa có tài khoản? <a href="./register.php"><u style="color: blue;">Đăng ký ngay</u></a>
 						</p>
+					</div>
+					<div class="col-sm-12 d-flex justify-content-center align-items-center">
+						<?php echo display_error_alert(); ?>
 					</div>
 				</div>
 			</div>
@@ -175,7 +130,10 @@ if (isTutor() || isStudent()) {
 	<!--  login -->
 
 	<footer>
-		<div class="footer">
+		<div class="footer" style="position: absolute;
+									bottom: 0;
+									width: 100%;
+									">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 offset-md-3">

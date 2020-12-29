@@ -1,5 +1,8 @@
 <?php include('../functions/functions.php'); ?>
 <?php require "../config.php"; ?>
+<div class="row d-flex justify-content-center">
+	<h2>THÊM NGƯỜI DÙNG MỚI</h2>
+</div>
 <form method="post" action="" onsubmit="event.preventDefault();">
 
 	<?php echo display_error(); ?>
@@ -22,7 +25,7 @@
 			<label>Loại tài khoản</label>
 		</div>
 		<div class="col-sm-7">
-			<select name="user_type" id="user_type" class="user_type-class">
+			<select name="user_type" id="user_type" class="user_type-class form-control custom-form">
 				<option selected value="tutor">Gia sư</option>
 				<option value="user">Học viên</option>
 			</select>
@@ -46,7 +49,9 @@
 			" type="submit" class="btn btn-primary" id="create">Tạo
 			</button>
 			<button class="btn btn-danger" name="cancel" onclick="
-            $('.add-new-user').html('');
+			$('.add-new-user').html('');
+			$('.show-message').removeClass('has-error');
+    		$('.help-block').remove();
         ">Huỷ</button>
 		</div>
 	</div>

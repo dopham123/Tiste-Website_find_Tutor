@@ -13,6 +13,13 @@ if (isset($_GET['logout'])) {
     unset($_SESSION['user']);
     header("location: ./index.php");
 }
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $_SESSION['postdata'] = $_POST;
+    unset($_POST);
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,80 +37,90 @@ if (isset($_GET['logout'])) {
 </head>
 
 <body>
-    <header>
-        <div class="header">
-            <div class="head_top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="top-box">
-                                <ul class="sociel_link">
-                                    <li class="size-60"> <a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="size-60"> <a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="size-60"> <a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li class="size-60"> <a href="#"><i class="fa fa-linkedin"></i></a></li>
+<header>
+    <div class="header">
+        <div class="head_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="top-box">
+                            <ul class="sociel_link">
+                                <li class="size-60"> <a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="size-60"> <a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="size-60"> <a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li class="size-60"> <a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-end">
+                    <?php
+                        if (isTutor() || isStudent()) {
+                            $row = getInfo($_SESSION['user']['id']);?>
+                            <div>
+                                <ul>
+                                    <li><a href="user.info.php?user_id=<?php echo $_SESSION['user']['id']?>" class="buy text-center"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></a></li>
+                                    
                                 </ul>
                             </div>
-                        </div>
-
-                        <div class="col d-flex align-items-center justify-content-end">
-                        <?php
-                            if (isTutor() || isStudent()) {
-                                $row = getInfo($_SESSION['user']['id']);
-                                echo "<div>
-                                    <ul>
-                                        <li><a class='buy text-center'>".$row['first_name'] . " " . $row['last_name']. "</a></li>";
-                                    
-                                        if (isTutor()){
-                                        echo '<a href="register_class.php" style="color: #678804; border-right:solid 2px grey;">Đăng ký mở lớp </a>';
-                                    
-                                        }
-                                    
-                                    echo  '<a href="./index.php?logout=\'1\'" style="color: red; padding-left: 5px;">Logout</a>
-                                    </ul>
-                                </div>';
-                            
-                            } else { ?>
-                                <div>
-                                    <ul>
-                                        <li><a class=" buy text-center" href="./login.php">Đăng nhập</a></li>
-                                    </ul>
-                                </div>
                             <?php
-                            }
+                                if (isTutor()){
+                                    echo '<a href="register_class.php" class="buy text-center">Đăng ký mở lớp </a>';
+                                
+                                }
                             ?>
-                        </div>
+                            <div class="btn-logout">
+                                <a href="./index.php?logout='1'">Đăng xuất</a>
+                            </div>
+                        <?php
+                        } else { ?>
+                            <div>
+                                <ul>
+                                    <li><a class=" buy text-center" href="./login.php">Đăng nhập</a></li>
+                                </ul>
+                            </div>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center"
-                        style="padding-left: 0; text-align: center;">
-                        <div class="logo">
-                            <a href="index.php"><img src="images/logo.png" alt="logo" /></a>
-                        </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section d-flex justify-content-center" style="padding-left: 0; text-align: center;">
+                    <div class="logo">
+                        <a href="index.php"><img src="images/logo.png" alt="logo" /></a>
                     </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
-                        <div class="menu-area">
-                            <div class="limit-box">
-                                <nav class="main-menu">
-                                    <ul class="menu-area-main d-flex-column justify-content-around">
-                                        <li> <a href="index.php">Trang chủ</a> </li>
-                                        <li> <a href="about.php">Giới thiệu</a> </li>
-                                        <li class="active"> <a href="service.php">Dịch vụ</a> </li>
-                                        <li> <a href="prices.php">BẢng giá</a> </li>
-                                        <li> <a href="contact.php">Liên hệ</a> </li>
-                                        <li> <a href="#">Đăng ký</a> </li>
-                                    </ul>
-                                </nav>
-                            </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
+                    <div class="menu-area">
+                        <div class="limit-box">
+                            <nav class="main-menu">
+                                <ul class="menu-area-main d-flex-column justify-content-around">
+                                    <li> <a href="index.php">Trang chủ</a> </li>
+                                    <li> <a href="about.php">Giới thiệu</a> </li>
+                                    <li class="active"> <a href="service.php">Dịch vụ</a> </li>
+                                    <li> <a href="prices.php">BẢng giá</a> </li>
+                                    <li> <a href="contact.php">Liên hệ</a> </li>
+                                    <?php 
+                                        if (isTutor() || isStudent()) {
+                                    ?>
+                                    <?php 
+                                    } else {
+                                    ?>
+                                    <li> <a href="register.php">Đăng ký</a> </li>
+                                    <?php
+                                    }
+                                    ?>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
     <div class="search brand_color">
         <div id="search-panel">
             <p id="location">
@@ -190,73 +207,71 @@ if (isset($_GET['logout'])) {
                         else{
                           $query_string = "SELECT * FROM users_info AS ui INNER JOIN service AS sv ON ui.user_id = sv.user_if_id INNER JOIN tutor_profile AS pf ON ui.user_id = pf.user_id WHERE check_accept = 1";
                           $result = mysqli_query($con, $query_string);
-                        }                
-                        
-                        
-                        
+                        }             
                         while($row = mysqli_fetch_array($result))
                         {
-                          echo '<div class="user-card" onclick="tutorDetail('.$row["user_id"].');">
-                                    <div class="user-card-img">
-                                        <a href="#"><img src="../server/multi_login/admin/'.$row["avatar_image"].'" alt="image"></a>
-                                    </div>
-                                    <div class="user-main-info">
-                                        <div class="user-card-info">
-                                            <div class="user-card-container">
-                                                <div class="user-card-name">
-                                                    <a href="#">'.$row["first_name"].' '.$row["last_name"].'</a>
-                                                </div>
-                                                <div class="user-rating">
-                                                    <img src="./icon/rating.png" alt="rating">
-                                                    <strong>'.$row["star"].'</strong>
-                                                    <span>('.$row["eval"].' đánh giá)</span>
-                                                </div>
+                        ?>
+                            <div class="user-card"  onclick='tutorDetail(<?php echo $row["user_id"];?>)'>
+                                <div class="user-card-img">
+                                    <a href="#"><img src="./images/<?php echo $row["avatar_image"];?>" alt="image"></a>
+                                </div>
+                                <div class="user-main-info">
+                                    <div class="user-card-info">
+                                        <div class="user-card-container">
+                                            <div class="user-card-name">
+                                                <a href="#"><?php echo $row['last_name'] ." ". $row['first_name'];?></a>
                                             </div>
-                                            <div class="user-card-title">
-                                                '.$row["subject"].'
+                                            <div class="user-rating">
+                                                <img src="./icon/rating.png" alt="rating">
+                                                <strong><?php echo $row["star"];?></strong>
+                                                <span>(<?php echo $row["eval"];?>)</span>
                                             </div>
-                                            <div class="user-card-title" style = "color: green;">
-                                            Lớp '.$row["class"].'
-                                            </div>
-                                            <div class="user-card-salary">
-                                                <div class="salary">
-                                                    '.$row["salary"].' triệu
-                                                </div>
-                                                <div class="per"> / tháng</div>
-                                            </div>
-                                            <div class="user-card-break"></div>
                                         </div>
-                                            <div class="user-card-experiment">
-                                                
-                                                <div class="experiment">
-                                                    '.$row["info"].'
+                                        <div class="user-card-title">
+                                            <?php echo $row["subject"];?>
+                                        </div>
+                                        <div class="user-card-title" style = "color: green;">
+                                            Lớp <?php echo $row["class"];?>
+                                        </div>
+                                        <div class="user-card-salary">
+                                            <div class="salary">
+                                                <?php echo $row["salary"];?> triệu
+                                            </div>
+                                            <div class="per"> / tháng</div>
+                                        </div>
+                                        <div class="user-card-break"></div>
+                                    </div>
+                                    <div class="user-card-experiment">
+                                        <div class="experiment">
+                                            <?php echo $row["info"];?>
+                                        </div>
+                                        <div class="address">
+                                            <img src="./icon/compass.png" alt="location">
+                                            <a href="#"><?php echo $row["district"];?> - <?php echo $row["city"];?></a>
+                                        </div>
+                                        <div class="user-card-meta">
+                                            <div class="user-card-meta-hightlight">
+                                                <div class="user-card-meta-label">
+                                                    <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> <?php echo $row["num_of_std"];?>
                                                 </div>
-                                                <div class="address">
-                                                    <img src="./icon/compass.png" alt="location">
-                                                    <a href="#">'.$row["district"].'</a>
-                                                </div>
-                                                <div class="user-card-meta">
-                                                    <div class="user-card-meta-hightlight">
-                                                        <div class="user-card-meta-label">
-                                                            <img class="user-card-meta-icon" src="./icon/member.png" alt="member"> '.$row["num_of_std"].'
-                                                        </div>
-                                                        <div class="user-card-total-member">
-                                                            học viên đã dạy
-                                                        </div>
-                                                    </div>
-                                                    <div class="user-card-meta-hightlight">
-                                                        <div class="user-card-meta-label">
-                                                            <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> '.$row["experience"].'
-                                                        </div>
-                                                        <div class="user-card-total-member">
-                                                            năm kinh nghiệm
-                                                        </div>
-                                                    </div>
+                                                <div class="user-card-total-member">
+                                                    học viên đã dạy
                                                 </div>
                                             </div>
+                                            <div class="user-card-meta-hightlight">
+                                                <div class="user-card-meta-label">
+                                                    <img class="user-card-meta-icon" src="./icon/clock.png" alt="member"> 2
+                                                </div>
+                                                <div class="user-card-total-member">
+                                                    năm kinh nghiệm
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>';
-                        }
+                                </div>
+                            </div>
+                        <?php }
+                        
                         ?>
                         <script>
                             function tutorDetail(id) {
