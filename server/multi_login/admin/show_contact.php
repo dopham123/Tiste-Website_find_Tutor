@@ -9,7 +9,7 @@
     $result = mysqli_query($con, $sql);
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
-            <div class="row d-flex justify-content-center mt-3">
+            <div class="row d-flex justify-content-center mt-3" id="message-<?php echo $row['id'] ;?>">
                 <div class="col-sm-10" style="background-color: #ccc;">
                     <div class="row border">
                         <div class="col-sm-6 d-flex justify-content-center" data-toggle="collapse" href="#id-<?php echo $row['id'] ?>">
@@ -62,6 +62,12 @@
                                 </div>
                                 <div class="col-sm-12 mt-2">
                                     <textarea class="form-control" rows="4"><?php echo $row['message'] ?></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-12 d-flex justify-content-end">
+                                    <button onclick="deleteMessage(event);" class="btn btn-danger" name="<?php echo $row['id']; ?>" id="delete_message_btn-<?php echo $row['id']; ?>">Xóa</button>
                                 </div>
                             </div>
                         </div>

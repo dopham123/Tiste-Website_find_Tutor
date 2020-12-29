@@ -422,3 +422,30 @@ function updateService(event){
         }
     });
 }
+
+function deleteMessage(event) {
+    var ajaxRequest;
+    try {
+        ajaxRequest = new XMLHttpRequest();
+    } catch (e) {
+        try {
+            ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+
+            try {
+                ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {
+                alert("Co loi xay ra voi trinh duyet cua ban!");
+                return false;
+            }
+        }
+    }
+    var id = parseInt(event.target.name);
+    var element = document.getElementById('message-' + id);
+    $('#message-' + id).fadeOut(600, function(){
+        $('#message-' + id).css("display","");
+        $('#message-' + id).css("visibility","hidden");              
+    });
+    ajaxRequest.open("GET", "../admin/ajax/delete_message.php?id=" + id, true);
+    ajaxRequest.send(null);
+}
