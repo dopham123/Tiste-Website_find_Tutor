@@ -201,10 +201,14 @@ if (isset($_GET['logout'])) {
                                 });
                                 $('#pnumber').change( () => {
                                     let pnumber = $('#pnumber').val();
-                                    if(!phoneNumberValidator(pnumber)) {
-                                        $('#pnum-error').html('    Invalid phone number!');
-                                    } else{
+                                    if (pnumber.length == 0) {
                                         $('#lname-error').html('');
+                                    } else {
+                                        if(!phoneNumberValidator(pnumber)) {
+                                            $('#pnum-error').html('    Invalid phone number!');
+                                        } else{
+                                            $('#pnum-error').html('');
+                                        }
                                     }
                                 });
                                 $('#message').change( () => {
