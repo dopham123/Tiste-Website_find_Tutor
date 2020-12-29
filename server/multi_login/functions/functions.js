@@ -34,26 +34,19 @@ function saveInfo() {
 
     const urlParams = new URLSearchParams(window.location.search);
     const user_id = urlParams.get('user_id');
-    // var id = event.target.name;
 
     var check = document.getElementById("avatar_image");
     if (check) {
         if ($('#avatar_image').val() != "") {
             avatar_image = $('#avatar_image').val().split("\\").pop();
-            // profile_image = "../../resource/img_profile/" + $('#profile_image').val().split("\\").pop();
         } else {
-            // profile_image = document.getElementById("profile_image_1").src;
-            // profile_image = "../../" + profile_image.substr(60);
             avatar_image = document.getElementById("avatar_image_1").src.split("/").pop();
-            // avatar_image = "../../" + avatar_image.substr(60);
         }
 
         if ($('#profile_image').val() != "") {
             profile_image = $('#profile_image').val().split("\\").pop();
         } else {
             profile_image = document.getElementById("profile_image_1").src.split("/").pop();
-            // avatar_image = document.getElementById("avatar_image_1").src;
-            // avatar_image = "../../" + avatar_image.substr(60);
         }
         info = $('.info').val();
         experience = $('.experience').val();
@@ -133,16 +126,16 @@ function createUser() {
             if (!data.success) {
                 // show error
                 if (data.errors.username) {
-                    $('.show-message').addClass('has-error'); // add the error class to show red input
-                    $('.show-message').append('<div class="help-block" style="color: red;">' + data.errors.username + '</div>'); // add the actual error message under our input
+                    $('.show-message').addClass('has-error'); 
+                    $('.show-message').append('<div class="help-block" style="color: red;">' + data.errors.username + '</div>');
                 }
                 if (data.errors.email) {
-                    $('.show-message').addClass('has-error'); // add the error class to show red input
-                    $('.show-message').append('<div class="help-block" style="color: red;">' + data.errors.email + '</div>'); // add the actual error message under our input
+                    $('.show-message').addClass('has-error'); 
+                    $('.show-message').append('<div class="help-block" style="color: red;">' + data.errors.email + '</div>'); 
                 }
                 if (data.errors.password) {
-                    $('.show-message').addClass('has-error'); // add the error class to show red input
-                    $('.show-message').append('<div class="help-block" style="color: red;">' + data.errors.password + '</div>'); // add the actual error message under our input
+                    $('.show-message').addClass('has-error'); 
+                    $('.show-message').append('<div class="help-block" style="color: red;">' + data.errors.password + '</div>');
                 }
 
             } else {
@@ -153,8 +146,6 @@ function createUser() {
 }
 
 function createPassword() {
-    // $('.show-message-pass').removeClass('has-error');
-    // $('.help-block').remove();
     document.getElementsByClassName('show-message-pass')[0].innerHTML = "";
     const urlParams = new URLSearchParams(window.location.search);
     const user_id = urlParams.get('user_id');
@@ -178,17 +169,15 @@ function createPassword() {
             if (!data.success) {
                 // show error
                 if (data.errors.password) {
-                    $('.show-message-pass').addClass('has-error'); // add the error class to show red input
-                    $('.show-message-pass').append('<div class="help-block" style="color: red;">' + data.errors.password + '</div>'); // add the actual error message under our input
+                    $('.show-message-pass').addClass('has-error'); 
+                    $('.show-message-pass').append('<div class="help-block" style="color: red;">' + data.errors.password + '</div>');
                 }
 
             } else {
                 $('.show-success').html('<div class="new-password form-group row">' + data.message + '</div>');
                 $('#new_password').removeAttr("disabled");
-                // setTimeout(loadFile('user-info', '../admin/show_user_info.php?user_id=' + user_id), 3000);
             }
         })
-    //stop submit
 }
 
 function deleteFunction(event) {
@@ -239,7 +228,6 @@ function changeUserTypeShow() {
 }
 
 function showFileName(id) {
-    // Add the following code if you want the name of the file appear on select
     var fileName = $('#' + id).val().split("\\").pop();
     $('#' + id).siblings(".custom-file-label").addClass("selected").html(fileName);
 }
@@ -256,7 +244,6 @@ function userSaveInfo() {
 
     const urlParams = new URLSearchParams(window.location.search);
     const user_id = urlParams.get('user_id');
-    // var id = event.target.name;
 
     var check = document.getElementById("avatar_image");
     if (check) {
@@ -354,7 +341,6 @@ function changePassword() {
                 window.setTimeout(function () { $(".alert").fadeTo(500, 0).slideUp(500, function () { $(this).remove(); }); }, 2000);
             }
         })
-    //stop submit
 }
 function deleteService(event){
     let btn = event.target;
