@@ -26,10 +26,6 @@ if (isset($_GET['logout'])) {
 </head>
 
 <body>
-    <script>
-        let data = <?php echo $data;?>;
-        console.log(data);
-    </script>
     <header>
         <div class="header">
             <div class="head_top">
